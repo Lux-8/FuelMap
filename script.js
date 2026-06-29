@@ -3,10 +3,16 @@
 // Карта
 // ===============================
 
-const map = L.map("map").setView([56.8596, 35.9119], 8);
+const map = L.map("map", {
+    attributionControl: false
+}).setView([56.8596, 35.9119], 8);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors"
+}).addTo(map);
+
+L.control.attribution({
+    prefix: false
 }).addTo(map);
 
 // ===============================

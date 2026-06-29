@@ -61,6 +61,10 @@ nav button{
     color:gray;
 }
 
+.leaflet-attribution-flag {
+    display: none !important;
+}
+
 #report{
     position:fixed;
     right:20px;
