@@ -1,24 +1,40 @@
+
 // ===============================
-// Создание карты
+// Карта
 // ===============================
 
 const map = L.map("map").setView([56.8596, 35.9119], 8);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenStreetMap"
+    attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
 // ===============================
-// Загружаем все АЗС Тверской области
+// Кластеры
+// ===============================
+
+const markers = L.markerClusterGroup();
+
+// ===============================
+// Цвет по умолчанию (пока нет данных)
+// ===============================
+
+function getColor(tags) {
+    // пока ВСЕ серые, позже ты подключишь реальные статусы
+    return "#95a5a6";
+}
+
+// ===============================
+// Overpass API (все АЗС Тверской области)
 // ===============================
 
 const query = `
 [out:json][timeout:30];
-area["name"="Тверская область"]->.searchArea;
+area["name"="Тверская область"]->.a;
 (
-  node["amenity"="fuel"](area.searchArea);
-  way["amenity"="fuel"](area.searchArea);
-  relation["amenity"="fuel"](area.searchArea);
+  node["amenity"="fuel"](area.a);
+  way["amenity"="fuel"](area.a);
+  relation["amenity"="fuel"](area.a);
 );
 out center;
 `;
@@ -27,46 +43,55 @@ fetch("https://overpass-api.de/api/interpreter", {
     method: "POST",
     body: query
 })
-.then(response => response.json())
+.then(res => res.json())
 .then(data => {
 
-    data.elements.forEach(station => {
+    data.elements.forEach(el => {
 
-        let lat = station.lat || station.center.lat;
-        let lon = station.lon || station.center.lon;
+        const lat = el.lat || el.center?.lat;
+        const lng = el.lon || el.center?.lon;
 
-        let name = "Неизвестная АЗС";
+        if (!lat || !lng) return;
 
-        if (station.tags && station.tags.name)
-            name = station.tags.name;
+        const name = el.tags?.name || "АЗС без названия";
 
-        L.circleMarker([lat, lon], {
-            radius: 5,
-            color: "#777",
-            fillColor: "#999",
+        const color = getColor(el.tags);
+
+        // ===============================
+        // КРУЖОЧЕК вместо стандартного маркера
+        // ===============================
+
+        const circle = L.circleMarker([lat, lng], {
+            radius: 7,
+            color: color,
+            fillColor: color,
             fillOpacity: 0.9,
-            weight: 1
-        })
-        .addTo(map)
-        .bindPopup(`
-            <h3>${name}</h3>
-            <p>⚫ Информация отсутствует</p>
+            weight: 2
+        });
+
+        circle.bindPopup(`
+            <b>⛽ ${name}</b><br>
+            ⚫ Статус: неизвестно<br><br>
+            💡 Скоро тут будет:
+            <br>• цены
+            <br>• наличие топлива
+            <br>• фото пользователей
         `);
 
+        markers.addLayer(circle);
     });
 
+    map.addLayer(markers);
+
 })
-.catch(err => console.error(err));
+.catch(err => {
+    console.error("Ошибка загрузки АЗС:", err);
+});
 
 // ===============================
-// Получение координат кликом
+// Координаты кликом
 // ===============================
 
-map.on("click", function(e){
-
-    console.log(
-        e.latlng.lat.toFixed(6),
-        e.latlng.lng.toFixed(6)
-    );
-
+map.on("click", e => {
+    console.log("lat:", e.latlng.lat, "lng:", e.latlng.lng);
 });
