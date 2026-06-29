@@ -1,121 +1,72 @@
-// Создаем карту
-const map = L.map('map').setView([56.8596, 35.9119], 8);
+// ===============================
+// Создание карты
+// ===============================
 
-// Карта OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
+const map = L.map("map").setView([56.8596, 35.9119], 8);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap"
 }).addTo(map);
 
-// ======================
-// Заправки
-// ======================
+// ===============================
+// Загружаем все АЗС Тверской области
+// ===============================
 
-const stations = [
+const query = `
+[out:json][timeout:30];
+area["name"="Тверская область"]->.searchArea;
+(
+  node["amenity"="fuel"](area.searchArea);
+  way["amenity"="fuel"](area.searchArea);
+  relation["amenity"="fuel"](area.searchArea);
+);
+out center;
+`;
 
-{
-    name:"Сургутнефтегаз",
-    lat:56.24039261057809,
-    lng:34.346330946165786,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+fetch("https://overpass-api.de/api/interpreter", {
+    method: "POST",
+    body: query
+})
+.then(response => response.json())
+.then(data => {
 
-{
-    name:"Лукойл",
-    lat:56.21902736710762,
-    lng:34.347892229910876,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+    data.elements.forEach(station => {
 
-{
-    name:"Лукойл",
-    lat:56.218025159517076,
-    lng:34.26597238251993,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+        let lat = station.lat || station.center.lat;
+        let lon = station.lon || station.center.lon;
 
-{
-    name:"НТК",
-    lat:56.21476482081317,
-    lng:34.19804830648347,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+        let name = "Неизвестная АЗС";
 
-{
-    name:"Gulf",
-    lat:56.25877834761983,
-    lng:34.32787759213527,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+        if (station.tags && station.tags.name)
+            name = station.tags.name;
 
-{
-    name:"Сургутнефтегаз",
-    lat:56.28624341530939,
-    lng:34.28584274442976,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+        L.circleMarker([lat, lon], {
+            radius: 5,
+            color: "#777",
+            fillColor: "#999",
+            fillOpacity: 0.9,
+            weight: 1
+        })
+        .addTo(map)
+        .bindPopup(`
+            <h3>${name}</h3>
+            <p>⚫ Информация отсутствует</p>
+        `);
 
-{
-    name:"Teboil",
-    lat:56.17752420607953,
-    lng:34.56343959840885,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+    });
 
-{
-    name:"Роснефть",
-    lat:56.15678394673606,
-    lng:34.6422773029188,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+})
+.catch(err => console.error(err));
 
-{
-    name:"Роснефть",
-    lat:56.15852864431529,
-    lng:34.63575273728923,
-    color:"gray",
-    text:"Информация неизвестна"
-},
+// ===============================
+// Получение координат кликом
+// ===============================
 
-];
-
-// Добавляем все заправки
-stations.forEach(station=>{
-
-    let color="gray";
-
-    if(station.color==="green") color="green";
-    if(station.color==="orange") color="orange";
-    if(station.color==="red") color="red";
-
-    L.circleMarker([station.lat,station.lng],{
-
-        radius:10,
-        color:color,
-        fillColor:color,
-        fillOpacity:1
-
-    })
-    .addTo(map)
-    .bindPopup(`
-        <b>${station.name}</b><br>
-        ${station.text}
-    `);
-
-});
-
-map.on('click', function(e) {
+map.on("click", function(e){
 
     console.log(
-        "Широта:", e.latlng.lat,
-        "Долгота:", e.latlng.lng
+        e.latlng.lat.toFixed(6),
+        e.latlng.lng.toFixed(6)
     );
 
 });
