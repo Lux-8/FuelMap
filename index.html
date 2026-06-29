@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelMap</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+<body>
+
+<header>
+    <h2>⛽ FuelMap</h2>
+
+    <input type="text" placeholder="Поиск заправки...">
+
+    <button>Профиль</button>
+</header>
+
+<nav>
+    <button>Все</button>
+    <button>95</button>
+    <button>98</button>
+    <button>ДТ</button>
+    <button>Газ</button>
+</nav>
+
+<div id="map"></div>
+
+<section id="updates">
+    <h3>Последние обновления</h3>
+
+    <div class="station">
+        🟢 Лукойл — Есть всё топливо
+    </div>
+
+    <div class="station">
+        🟠 Газпромнефть — Только дизель
+    </div>
+
+    <div class="station">
+        🔴 Роснефть — Топлива нет
+    </div>
+</section>
+
+<button id="report">
++ Сообщить информацию
+</button>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
