@@ -57,6 +57,10 @@ nav button{
     color:red;
 }
 
+.gray{
+    color:gray;
+}
+
 #report{
     position:fixed;
     right:20px;
