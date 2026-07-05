@@ -1,0 +1,3838 @@
+[
+    {
+        "name": "СТР",
+        "lat": 55.79721,
+        "lng": 34.287105,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.840788,
+        "lng": 35.820137,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Интел",
+        "lat": 56.8464,
+        "lng": 35.815875,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ТНП",
+        "lat": 56.892276,
+        "lng": 35.837959,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Крас-Плюс",
+        "lat": 56.857033,
+        "lng": 35.852669,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.884163,
+        "lng": 35.854623,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Топаз",
+        "lat": 56.820578,
+        "lng": 35.875698,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.822328,
+        "lng": 35.878793,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Европа",
+        "lat": 56.862673,
+        "lng": 35.876342,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.870016,
+        "lng": 35.879005,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Викинг",
+        "lat": 56.829358,
+        "lng": 35.893406,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Хорошая АЗС",
+        "lat": 56.839347,
+        "lng": 35.887214,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.849091,
+        "lng": 35.891198,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.875603,
+        "lng": 35.886525,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.845873,
+        "lng": 35.906789,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.825775,
+        "lng": 35.920007,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ТТР",
+        "lat": 56.841174,
+        "lng": 35.953252,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.842223,
+        "lng": 35.95122,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.860649,
+        "lng": 35.961811,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Восточный",
+        "lat": 56.830584,
+        "lng": 35.967944,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.79858,
+        "lng": 36.043396,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Славнефть",
+        "lat": 56.81539,
+        "lng": 35.98713,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.874956,
+        "lng": 35.941054,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.864074,
+        "lng": 35.964505,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Интел",
+        "lat": 56.861954,
+        "lng": 35.945309,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.851959,
+        "lng": 35.93634,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Акойл",
+        "lat": 56.891929,
+        "lng": 35.92903,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.88916,
+        "lng": 35.929964,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Тверьнефтепродукт",
+        "lat": 56.891004,
+        "lng": 35.928843,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "НТК",
+        "lat": 56.882212,
+        "lng": 35.799738,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.84961,
+        "lng": 35.854481,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Кедр Тверь",
+        "lat": 56.911529,
+        "lng": 35.941395,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.321645,
+        "lng": 36.761867,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.325961,
+        "lng": 36.754857,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.338348,
+        "lng": 36.718168,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "РГС",
+        "lat": 55.551066,
+        "lng": 36.387215,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.625121,
+        "lng": 36.343677,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.316927,
+        "lng": 36.767344,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СЗК",
+        "lat": 56.55556,
+        "lng": 36.513442,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.322159,
+        "lng": 36.758212,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 56.946125,
+        "lng": 35.501343,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.417785,
+        "lng": 34.945813,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.212776,
+        "lng": 36.938956,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СТС",
+        "lat": 56.23184,
+        "lng": 36.904856,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.309826,
+        "lng": 36.781809,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Lik",
+        "lat": 56.29963,
+        "lng": 36.797946,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.336123,
+        "lng": 36.718723,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сибирьнефть",
+        "lat": 56.348349,
+        "lng": 36.707599,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.373793,
+        "lng": 36.681543,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.423334,
+        "lng": 36.631017,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ТрансАЗС",
+        "lat": 56.452138,
+        "lng": 36.599625,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.463819,
+        "lng": 36.586957,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Mmk Petrol",
+        "lat": 56.507586,
+        "lng": 36.545373,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.732676,
+        "lng": 36.271143,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.770559,
+        "lng": 36.136193,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.781772,
+        "lng": 36.104905,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Игарка",
+        "lat": 56.830639,
+        "lng": 35.970388,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "35 км",
+        "lat": 57.108235,
+        "lng": 36.119809,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.07963,
+        "lng": 36.513393,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.853966,
+        "lng": 36.781679,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.851968,
+        "lng": 36.783497,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Интел",
+        "lat": 57.397998,
+        "lng": 34.803148,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Середа-Ойл",
+        "lat": 55.906408,
+        "lng": 35.505864,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ЗАК",
+        "lat": 55.733469,
+        "lng": 36.873315,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Интел Olympic",
+        "lat": 56.782029,
+        "lng": 35.96278,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.719407,
+        "lng": 35.554126,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.573897,
+        "lng": 36.718221,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.648946,
+        "lng": 36.289682,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.791423,
+        "lng": 35.89572,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.793562,
+        "lng": 35.890554,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.808478,
+        "lng": 35.918788,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Игарка",
+        "lat": 56.826882,
+        "lng": 35.949187,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Teboil",
+        "lat": 55.857572,
+        "lng": 36.761952,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Вулкан",
+        "lat": 56.027894,
+        "lng": 35.747347,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Интел",
+        "lat": 56.877867,
+        "lng": 35.827474,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.037529,
+        "lng": 35.58085,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Викинг",
+        "lat": 56.889556,
+        "lng": 35.835863,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.809929,
+        "lng": 35.97728,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "НТК",
+        "lat": 56.797663,
+        "lng": 35.861879,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Teboil",
+        "lat": 56.177539,
+        "lng": 34.563449,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Teboil",
+        "lat": 56.146586,
+        "lng": 34.889458,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.91993,
+        "lng": 35.90057,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 56.676828,
+        "lng": 35.48973,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "К36",
+        "lat": 56.830102,
+        "lng": 35.910083,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.104109,
+        "lng": 35.465888,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.783727,
+        "lng": 36.019805,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.464271,
+        "lng": 36.589294,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.709454,
+        "lng": 36.204797,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.519947,
+        "lng": 34.967064,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.03617,
+        "lng": 34.920334,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 56.824497,
+        "lng": 35.878852,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.824265,
+        "lng": 35.870737,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.74227,
+        "lng": 36.850747,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Teboil",
+        "lat": 55.594429,
+        "lng": 36.481086,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 55.588752,
+        "lng": 36.48993,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.674161,
+        "lng": 36.540444,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 55.673841,
+        "lng": 36.541729,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.994477,
+        "lng": 36.221157,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.020543,
+        "lng": 35.941177,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Элегант № 3",
+        "lat": 55.995711,
+        "lng": 36.231445,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "233 километр",
+        "lat": 57.073889,
+        "lng": 35.006232,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Юнитэк",
+        "lat": 56.993495,
+        "lng": 35.190264,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.985459,
+        "lng": 35.231155,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.877091,
+        "lng": 35.783109,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.066958,
+        "lng": 35.010738,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.705683,
+        "lng": 36.208854,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ОРТК",
+        "lat": 55.572512,
+        "lng": 36.678494,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АГЗС",
+        "lat": 56.02267,
+        "lng": 35.966323,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.224857,
+        "lng": 35.626391,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.059928,
+        "lng": 34.983711,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.846817,
+        "lng": 35.926001,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.994392,
+        "lng": 36.222451,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ИТК",
+        "lat": 55.908232,
+        "lng": 36.793197,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.879919,
+        "lng": 35.853303,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Радуга",
+        "lat": 56.272124,
+        "lng": 34.305323,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.146335,
+        "lng": 34.937558,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "М10",
+        "lat": 56.090055,
+        "lng": 35.250718,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.139724,
+        "lng": 33.14484,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СНП",
+        "lat": 57.123309,
+        "lng": 33.209468,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СелигерНефтеПродукт",
+        "lat": 57.133199,
+        "lng": 33.102637,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Тверьоблгаз",
+        "lat": 57.138262,
+        "lng": 33.16077,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.709244,
+        "lng": 36.182529,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.271102,
+        "lng": 35.233023,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Aris",
+        "lat": 56.21843,
+        "lng": 34.285052,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.04107,
+        "lng": 34.185898,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 57.041482,
+        "lng": 34.189671,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.04046,
+        "lng": 34.1856,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.747695,
+        "lng": 36.887414,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.403531,
+        "lng": 36.648802,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ТТР",
+        "lat": 56.789561,
+        "lng": 35.904365,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ОРТК",
+        "lat": 55.929847,
+        "lng": 36.949634,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.83934,
+        "lng": 35.76621,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.839429,
+        "lng": 35.821075,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Элегант",
+        "lat": 56.171869,
+        "lng": 36.133553,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.147089,
+        "lng": 34.966767,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.219032,
+        "lng": 34.347898,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.220249,
+        "lng": 34.35169,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.221046,
+        "lng": 34.341163,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Игарка",
+        "lat": 56.719857,
+        "lng": 36.784898,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Бриз",
+        "lat": 57.31413,
+        "lng": 36.089297,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.836647,
+        "lng": 35.802194,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Акойл",
+        "lat": 56.838631,
+        "lng": 35.808187,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.947561,
+        "lng": 32.734231,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Русойл",
+        "lat": 56.721313,
+        "lng": 36.772036,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.349608,
+        "lng": 36.703992,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.354756,
+        "lng": 36.064033,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Радуга",
+        "lat": 55.823026,
+        "lng": 32.937548,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 55.821304,
+        "lng": 32.93432,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.721748,
+        "lng": 36.797073,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Тверьойл",
+        "lat": 56.272861,
+        "lng": 32.768438,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.831891,
+        "lng": 35.906993,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 57.023968,
+        "lng": 34.963613,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.327604,
+        "lng": 36.694449,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 56.033956,
+        "lng": 35.885783,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Элегант №5 Волоколамск",
+        "lat": 56.024113,
+        "lng": 35.955944,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.98287,
+        "lng": 36.454321,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.116499,
+        "lng": 35.911387,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Трасса",
+        "lat": 55.856638,
+        "lng": 36.759749,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Элегант №1",
+        "lat": 56.044381,
+        "lng": 35.968007,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.054722,
+        "lng": 35.948981,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.029979,
+        "lng": 35.911653,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.813651,
+        "lng": 35.880158,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.31972,
+        "lng": 36.69322,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.271675,
+        "lng": 34.326602,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.029316,
+        "lng": 35.009534,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.366645,
+        "lng": 36.689006,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.494025,
+        "lng": 34.930029,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Ютэк",
+        "lat": 56.34454,
+        "lng": 34.550976,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.279353,
+        "lng": 34.347886,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 56.825373,
+        "lng": 35.79417,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 55.990565,
+        "lng": 36.270651,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.157518,
+        "lng": 36.723965,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.889818,
+        "lng": 35.832842,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СТК",
+        "lat": 56.851256,
+        "lng": 33.479192,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.850035,
+        "lng": 33.471401,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АГЗС",
+        "lat": 55.587871,
+        "lng": 36.490997,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.553204,
+        "lng": 35.022941,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Тверь Ойл",
+        "lat": 56.234089,
+        "lng": 33.782595,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 57.037432,
+        "lng": 34.926967,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АГЗС",
+        "lat": 57.128714,
+        "lng": 33.199428,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СТК",
+        "lat": 56.863999,
+        "lng": 33.424526,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.306746,
+        "lng": 36.782897,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.732922,
+        "lng": 36.222352,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.806646,
+        "lng": 35.869585,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.776988,
+        "lng": 36.270552,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.327355,
+        "lng": 36.560664,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.984699,
+        "lng": 36.793138,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 57.474189,
+        "lng": 33.690036,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 56.250382,
+        "lng": 35.647269,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.156786,
+        "lng": 34.642303,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.158531,
+        "lng": 34.635777,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.518661,
+        "lng": 34.953495,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "СургутНефтеГаз",
+        "lat": 56.286265,
+        "lng": 34.285865,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.679037,
+        "lng": 36.751037,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Teboil",
+        "lat": 56.785205,
+        "lng": 35.929112,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Русич",
+        "lat": 56.707239,
+        "lng": 36.789797,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.240411,
+        "lng": 34.346342,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Ютек",
+        "lat": 56.240293,
+        "lng": 34.347113,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Teboil",
+        "lat": 56.646831,
+        "lng": 36.451113,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Русойл",
+        "lat": 56.678034,
+        "lng": 36.747541,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.844694,
+        "lng": 35.948248,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 55.864164,
+        "lng": 36.939115,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ООО \"Стройконсалтинг\"",
+        "lat": 56.898805,
+        "lng": 35.907184,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.84449,
+        "lng": 35.942168,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.368597,
+        "lng": 34.048069,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.878559,
+        "lng": 35.823234,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.976833,
+        "lng": 36.470665,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.638172,
+        "lng": 34.279788,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.886674,
+        "lng": 35.903483,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АГЗС в Теряево",
+        "lat": 56.171735,
+        "lng": 36.132644,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.888497,
+        "lng": 36.42696,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.91704,
+        "lng": 36.597554,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Трасса",
+        "lat": 55.931076,
+        "lng": 36.563192,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.843614,
+        "lng": 35.783927,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 55.589447,
+        "lng": 36.873804,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.346246,
+        "lng": 36.70936,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.299308,
+        "lng": 36.795524,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.828854,
+        "lng": 35.895796,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.319145,
+        "lng": 36.563435,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.616393,
+        "lng": 36.679514,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.914771,
+        "lng": 35.905265,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АГЗС",
+        "lat": 56.036959,
+        "lng": 35.530886,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.579611,
+        "lng": 36.774235,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.203466,
+        "lng": 33.471245,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Нефтьмагистраль",
+        "lat": 55.560428,
+        "lng": 36.606297,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.782603,
+        "lng": 36.028239,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.784509,
+        "lng": 36.052556,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.782779,
+        "lng": 36.058937,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.784862,
+        "lng": 36.08148,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.778584,
+        "lng": 36.110646,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Пропан",
+        "lat": 56.731456,
+        "lng": 36.270255,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.158387,
+        "lng": 36.723433,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 57.158275,
+        "lng": 34.960508,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 56.196491,
+        "lng": 33.46353,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 57.238233,
+        "lng": 34.898897,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 57.239945,
+        "lng": 34.89953,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 57.437784,
+        "lng": 35.028834,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "92,95, Дт.",
+        "lat": 56.517045,
+        "lng": 35.969283,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.708033,
+        "lng": 36.66847,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ГазОК",
+        "lat": 55.902656,
+        "lng": 36.807603,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АГЗС",
+        "lat": 56.037378,
+        "lng": 35.488686,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "General Power",
+        "lat": 56.858032,
+        "lng": 36.677449,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.583306,
+        "lng": 36.471625,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.562554,
+        "lng": 36.505441,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "General Fueller",
+        "lat": 56.579245,
+        "lng": 36.494112,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 56.574945,
+        "lng": 36.499598,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "ВТК",
+        "lat": 56.774242,
+        "lng": 36.134102,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "РГС",
+        "lat": 55.55151,
+        "lng": 36.387057,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.567673,
+        "lng": 34.984316,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.556819,
+        "lng": 36.549641,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "НТК",
+        "lat": 56.214772,
+        "lng": 34.198047,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.744976,
+        "lng": 36.884496,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Нефтьмагистраль",
+        "lat": 55.899792,
+        "lng": 36.633396,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Нефтьмагистраль",
+        "lat": 55.88545,
+        "lng": 36.664297,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.950064,
+        "lng": 35.428309,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.272074,
+        "lng": 34.305464,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "GT Ultima",
+        "lat": 55.930868,
+        "lng": 36.936876,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.903611,
+        "lng": 36.900322,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.892853,
+        "lng": 36.690286,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.325285,
+        "lng": 36.700526,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.897669,
+        "lng": 36.798035,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Опти",
+        "lat": 56.89669,
+        "lng": 35.88947,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Лукойл",
+        "lat": 55.582323,
+        "lng": 36.827449,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 55.937466,
+        "lng": 36.546267,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Роснефть",
+        "lat": 55.626775,
+        "lng": 34.232181,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "АЗС",
+        "lat": 55.914466,
+        "lng": 36.835507,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.203714,
+        "lng": 36.823846,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Сургутнефтегаз",
+        "lat": 56.271298,
+        "lng": 32.767885,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 55.841552,
+        "lng": 36.33485,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Татнефть",
+        "lat": 56.023126,
+        "lng": 35.954124,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 55.60069,
+        "lng": 36.48251,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.317186,
+        "lng": 36.745405,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.205384,
+        "lng": 36.633418,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    },
+    {
+        "name": "Газпромнефть",
+        "lat": 56.806296,
+        "lng": 35.871005,
+        "status": "gray",
+        "text": "Информация неизвестна",
+        "fuel": {
+            "a92": false,
+            "a95": false,
+            "a98": false,
+            "diesel": false,
+            "gas": false
+        }
+    }
+]

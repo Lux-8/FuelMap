@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelMap</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⛽ FuelMap</div>
+
+    <input id="search" placeholder="Поиск заправки...">
+
+    <button id="profileBtn">👤 Профиль</button>
+
+    <!-- КНОПКА НЕДАВНЕЕ -->
+    <button id="updatesBtn">📋</button>
+</header>
+
+<nav class="filters">
+    <button class="active">Все</button>
+    <button>92</button>
+    <button>95</button>
+    <button>98</button>
+    <button>ДТ</button>
+    <button>Газ</button>
+</nav>
+
+<button id="locateBtn">📍</button>
+
+<div id="map"></div>
+
+<!-- PANEL -->
+<div id="stationPanel" class="station-panel">
+    <button id="closePanel">✕</button>
+
+    <h2 id="panelName"></h2>
+    <p id="panelStatus"></p>
+    <div id="panelFuel"></div>
+
+    <button id="panelReport">📝 Сообщить</button>
+</div>
+
+<!-- OVERLAY FOR UPDATES -->
+<div id="updatesOverlay"></div>
+
+<!-- UPDATES (BOTTOM SHEET) -->
+<section id="updates">
+    <h3>Недавнее</h3>
+    <div id="updatesList"></div>
+</section>
+
+<!-- PROFILE MODAL -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close-profile">&times;</span>
+
+        <h2>Профиль</h2>
+
+        <label>Имя (будет видно в комментариях):</label><br>
+        <input type="text" id="profileName" placeholder="Аноним">
+
+        <br><br>
+
+        <button id="saveProfile">Сохранить</button>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="reportModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <h2>Сообщить о наличии топлива</h2>
+
+        <label><input type="checkbox" id="a92"> АИ-92</label><br>
+        <label><input type="checkbox" id="a95"> АИ-95</label><br>
+        <label><input type="checkbox" id="a98"> АИ-98</label><br>
+        <label><input type="checkbox" id="diesel"> ДТ</label><br>
+        <label><input type="checkbox" id="gas"> Газ</label>
+
+        <br><br>
+
+        <textarea id="comment" placeholder="Комментарий..."></textarea>
+
+        <br><br>
+
+        <button id="sendReport">Отправить</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/filters.js"></script>
+
+<script src="js/map.js"></script>
+<script src="js/geolocation.js"></script>
+<script src="js/stations.js"></script>
+<script src="js/search.js"></script>
+
+<script src="js/panel.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/report.js"></script>
+<script src="js/admin.js"></script>
+
+<script src="js/updates.js"></script>
+
+<script>
+    createMap();
+    loadStations();
+</script>
+
+</body>
+</html>
