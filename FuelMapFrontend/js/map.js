@@ -34,23 +34,23 @@ function createMap(){
 
     map.addLayer(markers);
 
+//Этот секретный маркер добавим позже
+    //const secretMarker = L.marker([56.9057, 35.7215]);
 
-    const secretMarker = L.marker([56.9057, 35.7215]);
-
-    secretMarker.addTo(map);
+    //secretMarker.addTo(map);
 
 
-    secretMarker.bindPopup(`
-        <h3>🟣 FuelMap Secret Base</h3>
+    //secretMarker.bindPopup(`
+        //<h3>🟣 FuelMap Secret Base</h3>
 
-        <p>
-        🎉 Вы нашли секретную точку FuelMap!
-        </p>
+        //<p>
+        //🎉 Вы нашли секретную точку FuelMap!
+        //</p>
 
-        <p>
-        🚗 Первый исследователь Тверской области
-        </p>
+        //<p>
+        //🚗 Первый исследователь Тверской области
+        //</p>
 
-        <b>🏆 Достижение получено</b>
-    `);
-}
+        //<b>🏆 Достижение получено</b>
+    //`);
+//}
