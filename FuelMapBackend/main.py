@@ -150,6 +150,7 @@ def station_to_dict(s):
     return {
         "id": s.id,
         "name": s.name,
+        "address": s.address,
         "lat": s.lat,
         "lng": s.lng,
         "status": s.status,
