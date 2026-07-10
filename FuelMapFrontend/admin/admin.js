@@ -4,6 +4,7 @@ console.log("admin.js загружен");
 // ELEMENTSgit
 // ===============================
 
+const API = window.API;
 
 const adminLoginBtn = document.getElementById("adminLoginBtn");
 const adminLogoutBtn = document.getElementById("adminLogoutBtn");
