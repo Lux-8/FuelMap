@@ -21,6 +21,10 @@ function openStationPanel(station) {
     currentStation = station.id;
 
     document.getElementById("panelName").textContent = station.name;
+
+    document.getElementById("panelAddress").textContent =
+        station.address || "Адрес неизвестен";
+
     document.getElementById("panelStatus").textContent = station.text;
 
     document.getElementById("panelFuel").innerHTML =
