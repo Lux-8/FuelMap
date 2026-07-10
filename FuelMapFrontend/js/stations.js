@@ -1,3 +1,5 @@
+console.log("API сейчас:", API);
+
 async function loadStations() {
     const response = await fetch(API + "/stations");
     stations = await response.json();
