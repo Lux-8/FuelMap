@@ -8,7 +8,7 @@
 </p>
 
 <h2 align="center">
-A smart fuel station discovery platform built for drivers.
+A community-driven fuel station information platform.
 </h2>
 
 <p align="center">
@@ -19,35 +19,43 @@ Find fuel stations, check availability, share updates, and make better decisions
 
 # 🚀 About FuelMap
 
-**FuelMap** is a modern fuel station intelligence platform designed to help drivers quickly find useful information about gas stations.
+**FuelMap** is a modern platform designed to help drivers find and understand fuel station information through an interactive map and community-generated data.
 
-The platform combines:
+The project focuses on creating a reliable and constantly improving source of fuel station information.
+
+FuelMap combines:
 
 * 🗺 Interactive maps
 * ⛽ Fuel availability tracking
-* 💰 Fuel price information
+* 💰 Fuel information
 * 👥 Community reports
-* 🤖 AI-powered station summaries
 * 🔐 User authentication
 * 🛠 Administration tools
 
-FuelMap is built with a focus on scalability, clean architecture, and real-world usability.
+The project was built with a focus on:
+
+* Clean architecture
+* Scalability
+* Real-world usability
+* Modern web development practices
 
 ---
 
 # 🔥 Created by one developer
 
 <p>
-<span style="color:red"><b>⚠️ FuelMap was fully designed, developed, and engineered by a single developer: 0x8-root.</b></span>
+<span style="color:red"><b>
+⚠️ FuelMap was fully designed, developed, and engineered by a single developer: 0x8-root.
+</b></span>
 </p>
 
 <p>
 <span style="color:red"><b>
-From the initial idea to frontend architecture, backend systems, database design, API development, authentication, deployment, and user experience — the entire project was created independently.
+From the initial idea to frontend development, backend architecture, database design, API creation, authentication system, deployment setup, and user interface — the entire project was created independently.
 </b></span>
 </p>
 
-This project demonstrates the ability to design and build a complete production-ready application from zero.
+FuelMap represents the ability to design and build a complete software product from zero, including both frontend and backend systems.
 
 ---
 
@@ -55,58 +63,50 @@ This project demonstrates the ability to design and build a complete production-
 
 ## 🗺 Interactive Map
 
-* Real-time map interface
-* Fuel station markers
-* Marker clustering for performance
-* Station information panels
-* Location-based search
+FuelMap provides an interactive map experience for discovering fuel stations.
 
-Built with:
+Features:
+
+* Interactive station markers
+* Marker clustering for better performance
+* Station information panels
+* Search functionality
+* User location support
+
+Technologies:
 
 * Leaflet.js
 * OpenStreetMap
-* MarkerCluster
+* Leaflet MarkerCluster
 
 ---
 
-## ⛽ Fuel Information
+## ⛽ Fuel Station Information
 
-Users can view:
+Users can view available fuel types:
 
-* AI-92 availability
-* AI-95 availability
-* AI-98 availability
-* Diesel availability
-* Gas availability
+* AI-92
+* AI-95
+* AI-98
+* Diesel
+* Gas
 
-Community members can update information about stations.
+Fuel information can be improved through community reports.
 
 ---
 
-## 👥 Community System
+## 👥 Community-driven Updates
 
-FuelMap uses a community-driven approach:
+FuelMap uses a community-based approach.
 
 Users can:
 
 * Report fuel availability
 * Add comments
-* Share queue information
-* Provide station updates
+* Share station updates
+* Provide information about queues
 
-The goal is to create a constantly improving fuel intelligence network.
-
----
-
-## 🤖 AI Integration
-
-FuelMap includes AI-powered analysis features:
-
-* Automatic station summaries
-* Comment analysis
-* Intelligent information processing
-
-AI helps transform raw user data into useful information.
+The goal is to create a continuously improving fuel information network.
 
 ---
 
@@ -122,9 +122,9 @@ Implemented:
 
 ---
 
-## 🛠 Admin Panel
+## 🛠 Administration Panel
 
-FuelMap includes a custom administration system:
+FuelMap includes a custom administration system.
 
 Features:
 
@@ -135,9 +135,24 @@ Features:
 
 ---
 
+# 🤖 AI Integration (Coming Soon)
+
+FuelMap is designed with future AI capabilities in mind.
+
+Planned AI features:
+
+* Intelligent fuel station analysis
+* Automatic summary generation from community reports
+* Data-driven station insights
+* Smart recommendations for drivers
+
+The AI system is currently under development and will expand FuelMap's ability to process community-generated data.
+
+---
+
 # 🏗 Architecture
 
-```
+```text
 FuelMap
 │
 ├── FuelMapFrontend
@@ -152,7 +167,7 @@ FuelMap
 │   ├── Database Layer
 │   ├── Authentication
 │   ├── REST API
-│   └── AI Services
+│   └── Future AI Services
 │
 └── Deployment
     ├── Cloudflare Pages
@@ -170,7 +185,6 @@ FuelMap
 * JavaScript
 * Leaflet.js
 * OpenStreetMap
-* MarkerCluster
 
 ## Backend
 
@@ -180,7 +194,7 @@ FuelMap
 * SQLite
 * REST API
 
-## Infrastructure
+## Tools & Infrastructure
 
 * Git
 * GitHub
@@ -191,9 +205,9 @@ FuelMap
 
 # 📡 API
 
-Example:
+Example endpoint:
 
-```
+```http
 GET /stations
 ```
 
@@ -218,15 +232,15 @@ Example response:
 
 # 🎯 Vision
 
-FuelMap aims to become a global intelligent fuel infrastructure platform.
+FuelMap aims to become a global intelligent platform for fuel infrastructure information.
 
-Future goals:
+Long-term goals:
 
 * 🌍 Worldwide station coverage
 * 📱 Mobile applications
 * 🚗 Navigation integration
-* 📊 Fuel price analytics
-* 🤖 Advanced AI recommendations
+* 📊 Fuel data analytics
+* 🤖 AI-powered recommendations
 * 🏆 Community reputation system
 
 ---
@@ -235,22 +249,29 @@ Future goals:
 
 ## Phase 1 ✅
 
-* Core map system
+Completed:
+
+* Interactive map system
 * Backend API
 * Database
 * Authentication
-* Reports
+* Community reports
+* Admin panel
 
 ## Phase 2 🚧
 
-* Better AI analysis
-* Mobile optimization
-* More countries
-* Advanced analytics
+In development:
+
+* AI-powered analysis
+* Advanced station insights
+* Better mobile experience
+* Expansion to more regions
 
 ## Phase 3 🔮
 
-* Native mobile apps
+Future:
+
+* Native mobile applications
 * Large-scale infrastructure
 * Smart driving ecosystem
 
@@ -262,10 +283,10 @@ Created and maintained by:
 
 ## 0x8-root
 
-Independent developer passionate about:
+Independent developer focused on:
 
 * Software engineering
-* Artificial Intelligence
+* Artificial intelligence
 * Scalable systems
 * Product development
 
@@ -273,10 +294,10 @@ Independent developer passionate about:
 
 # 📜 License
 
-This project is currently under development.
+This project is currently under active development.
 
 ---
 
 <p align="center">
-  ⭐ If you find FuelMap interesting, consider giving the project a star.
+⭐ If you find FuelMap interesting, consider giving the project a star.
 </p>
