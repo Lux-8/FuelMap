@@ -16,12 +16,8 @@
 
 <header>
     <div class="logo">⛽ FuelMap</div>
-
     <input id="search" placeholder="Поиск заправки...">
-
     <button id="profileBtn">👤 Профиль</button>
-
-    <!-- КНОПКА НЕДАВНЕЕ -->
     <button id="updatesBtn">📋</button>
 </header>
 
@@ -38,54 +34,168 @@
 
 <div id="map"></div>
 
-<!-- PANEL -->
 <div id="stationPanel" class="station-panel">
     <button id="closePanel">✕</button>
-
     <h2 id="panelName"></h2>
     <p id="panelStatus"></p>
     <div id="panelFuel"></div>
-
+    <p id="panelAiSummary" class="ai-summary"></p>
     <button id="panelReport">📝 Сообщить</button>
 </div>
 
-<!-- OVERLAY FOR UPDATES -->
 <div id="updatesOverlay"></div>
 
-<!-- UPDATES (BOTTOM SHEET) -->
 <section id="updates">
     <h3>Недавнее</h3>
     <div id="updatesList"></div>
 </section>
 
-<!-- PROFILE MODAL -->
 <div id="profileModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content profile-window">
         <span class="close-profile">&times;</span>
 
-        <h2>Профиль</h2>
+        <div id="authLoggedIn" style="display:none;">
 
-        <label>Имя (будет видно в комментариях):</label><br>
-        <input type="text" id="profileName" placeholder="Аноним">
+    <div class="profile-avatar">
+        👤
+    </div>
 
-        <br><br>
+    <h2 id="profileTitle">
+        Профиль
+    </h2>
 
-        <button id="saveProfile">Сохранить</button>
+
+    <div class="profile-card-info">
+
+        <div class="profile-row">
+            <span>👤 Имя</span>
+            <p id="profileName"></p>
+        </div>
+
+
+        <div class="profile-row">
+            <span>📧 Email</span>
+            <p id="profileEmail"></p>
+        </div>
+
+
+        <div class="profile-row">
+            <span>🆔 ID пользователя</span>
+            <p id="profileId"></p>
+        </div>
+
+    </div>
+
+
+    <div class="profile-section">
+
+        <h3>🏆 Рейтинг пользователей</h3>
+
+        <p>
+            Скоро добавим систему рейтинга FuelMap 🚀
+        </p>
+
+    </div>
+
+
+    <div class="profile-section creators">
+
+        <h3>🚗 О создателях</h3>
+
+        <p>
+            FuelMap — сервис для поиска
+            и оценки автозаправок.
+        </p>
+
+        <p>
+            📩 Контакты:
+            <br>
+            fuelmap@email.com
+        </p>
+
+
+        <p>
+            💡 Пасхалка:
+            <br>
+            Найдите секрет на карте 😉
+        </p>
+
+    </div>
+
+
+    <button id="logoutBtn" class="logout-btn">
+        Выйти из аккаунта
+    </button>
+
+</div>
+
+        <div id="authForms">
+            <h2>Профиль</h2>
+
+            <div class="auth-tabs">
+                <button id="tabLogin" class="auth-tab active">Вход</button>
+                <button id="tabRegister" class="auth-tab">Регистрация</button>
+            </div>
+
+            <button id="googleLoginBtn" class="google-btn">🔍 Войти через Google</button>
+
+            <div class="auth-divider">или</div>
+
+            <div id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email">
+                <input type="password" id="loginPassword" placeholder="Пароль">
+                <button id="loginSubmit">Войти</button>
+            </div>
+
+            <div id="registerForm" style="display:none;">
+                <input type="text" id="registerName" placeholder="Имя">
+                <input type="email" id="registerEmail" placeholder="Email">
+                <input type="password" id="registerPassword" placeholder="Пароль (мин. 6 символов)">
+                <button id="registerSubmit">Создать аккаунт</button>
+            </div>
+
+            <p id="authError" class="auth-error"></p>
+        </div>
     </div>
 </div>
 
-<!-- MODAL -->
 <div id="reportModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
 
         <h2>Сообщить о наличии топлива</h2>
 
-        <label><input type="checkbox" id="a92"> АИ-92</label><br>
-        <label><input type="checkbox" id="a95"> АИ-95</label><br>
-        <label><input type="checkbox" id="a98"> АИ-98</label><br>
-        <label><input type="checkbox" id="diesel"> ДТ</label><br>
-        <label><input type="checkbox" id="gas"> Газ</label>
+        <label><input type="checkbox" id="a92"> АИ-92
+            <input type="number" id="price_a92" placeholder="цена, ₽" step="0.1" class="price-input">
+        </label><br>
+
+        <label><input type="checkbox" id="a95"> АИ-95
+            <input type="number" id="price_a95" placeholder="цена, ₽" step="0.1" class="price-input">
+        </label><br>
+
+        <label><input type="checkbox" id="a98"> АИ-98
+            <input type="number" id="price_a98" placeholder="цена, ₽" step="0.1" class="price-input">
+        </label><br>
+
+        <label><input type="checkbox" id="diesel"> ДТ
+            <input type="number" id="price_diesel" placeholder="цена, ₽" step="0.1" class="price-input">
+        </label><br>
+
+        <label><input type="checkbox" id="gas"> Газ
+            <input type="number" id="price_gas" placeholder="цена, ₽" step="0.1" class="price-input">
+        </label>
+
+        <div class="queue-section">
+    <label><input type="checkbox" id="hasQueue"> Есть очередь</label>
+
+    <div id="queueRating" class="star-rating" style="display:none;">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+    </div>
+</div>
 
         <br><br>
 
@@ -101,6 +211,7 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script src="js/app.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/filters.js"></script>
 

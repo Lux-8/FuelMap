@@ -17,3 +17,21 @@ function createMap(){
     map.addLayer(markers);
 
 }
+
+const secretMarker = L.marker([56.9057, 35.7215])
+    .addTo(map);
+
+
+secretMarker.bindPopup(`
+    <h3>🟣 FuelMap Secret Base</h3>
+
+    <p>
+    🎉 Вы нашли секретную точку FuelMap!
+    </p>
+
+    <p>
+    🚗 Первый исследователь Тверской области
+    </p>
+
+    <b>🏆 Достижение получено</b>
+`);

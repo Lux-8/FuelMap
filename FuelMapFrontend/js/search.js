@@ -1,19 +1,6 @@
-const search=document.getElementById("search");
+const searchInput = document.getElementById("search");
 
-search.addEventListener("input",()=>{
-
-    const text=search.value.toLowerCase();
-
-    Object.values(stationMarkers).forEach(marker=>{
-
-        marker.setStyle({
-
-            opacity:1,
-
-            fillOpacity:1
-
-        });
-
-    });
-
+searchInput.addEventListener("input", () => {
+    searchText = searchInput.value.trim().toLowerCase();
+    updateMarkerVisibility();
 });

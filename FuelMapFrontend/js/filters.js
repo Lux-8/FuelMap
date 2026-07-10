@@ -1,15 +1,43 @@
-document
-.querySelectorAll(".filters button")
-.forEach(button=>{
+let activeFuelFilter = null;
+let searchText = "";
 
-button.onclick=()=>{
+const filterButtons = document.querySelectorAll(".filters button");
 
-document
-.querySelectorAll(".filters button")
-.forEach(b=>b.classList.remove("active"));
-
-button.classList.add("active");
-
+const filterMap = {
+    "92": "a92",
+    "95": "a95",
+    "98": "a98",
+    "ДТ": "diesel",
+    "Газ": "gas"
 };
 
+filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const label = btn.textContent.trim();
+        activeFuelFilter = label === "Все" ? null : filterMap[label];
+
+        updateMarkerVisibility();
+    });
 });
+
+function updateMarkerVisibility() {
+    stations.forEach(station => {
+        const marker = stationMarkers[station.id];
+        if (!marker) return;
+
+        const passesFuelFilter = !activeFuelFilter || station.fuel[activeFuelFilter];
+        const passesSearch = searchText === "" || station.name.toLowerCase().includes(searchText);
+
+        const visible = passesFuelFilter && passesSearch;
+        const isInCluster = markers.hasLayer(marker);
+
+        if (visible && !isInCluster) {
+            markers.addLayer(marker);
+        } else if (!visible && isInCluster) {
+            markers.removeLayer(marker);
+        }
+    });
+}

@@ -1,4 +1,6 @@
-const API = "http://127.0.0.1:8000";
+console.log("app.js загружен");
+
+const API = "https://fuelmap-production.up.railway.app";
 
 let map;
 let markers;
