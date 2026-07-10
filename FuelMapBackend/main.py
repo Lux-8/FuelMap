@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -20,6 +21,17 @@ from ai_utils import generate_station_summary
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="FuelMap")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://fuelmap-4cx.pages.dev",
+        "http://127.0.0.1:5500"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 from database import SessionLocal
 from models import Station
