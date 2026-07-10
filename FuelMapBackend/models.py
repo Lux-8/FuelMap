@@ -58,6 +58,7 @@ class Station(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    address = Column(String, nullable=True)
     lat = Column(Float)
     lng = Column(Float)
     status = Column(String)
