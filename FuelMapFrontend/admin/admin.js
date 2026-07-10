@@ -1,11 +1,7 @@
 console.log("admin.js загружен");
 
-
-const API = "https://fuelmap-production.up.railway.app";
-
-
 // ===============================
-// ELEMENTS
+// ELEMENTSgit
 // ===============================
 
 
