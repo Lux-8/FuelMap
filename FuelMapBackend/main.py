@@ -20,7 +20,8 @@ from ai_utils import generate_station_summary
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="FuelMap")
+app = FastAPI()
+
 
 app.add_middleware(
     CORSMiddleware,
