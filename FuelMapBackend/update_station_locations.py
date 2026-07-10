@@ -86,8 +86,7 @@ def main():
         location = reverse_geocode(station.lat, station.lng)
 
         if location:
-            new_name = f"{station.name} — {location}"
-            station.name = new_name
+            station.address = location
             db.commit()
             updated += 1
             print(f"-> {new_name}")
