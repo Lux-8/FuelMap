@@ -6,8 +6,6 @@ from starlette.middleware.sessions import SessionMiddleware
 from pydantic import BaseModel
 from datetime import datetime
 from dotenv import load_dotenv
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -45,19 +43,6 @@ count = db.query(Station).count()
 
 if count == 0:
     subprocess.run(["python", "import_stations.py"])
-app.add_middleware(
-    CORSMiddleware,
-
-    allow_origins=[
-        "https://fuelmap-production.up.railway.app",
-    ],
-
-    allow_credentials=True,
-
-    allow_methods=["*"],
-
-    allow_headers=["*"],
-)
 
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SESSION_SECRET", "dev-fallback-secret"))
 
