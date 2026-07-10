@@ -1,0 +1,8 @@
+Запуск сервера(после активации venv):
+--- 
+uvicorn main:app --reload
+---
+Активация venv:
+---
+.\venv\Scripts\Activate.ps1
+---
