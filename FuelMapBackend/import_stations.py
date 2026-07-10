@@ -24,6 +24,7 @@ for s in stations:
 
     station = Station(
         name=s["name"],
+        address=s.get("address", ""),
         lat=s["lat"],
         lng=s["lng"],
         status=s["status"],
