@@ -21,18 +21,17 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="FuelMap")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "https://fuelmap-4cx.pages.dev"
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+from database import SessionLocal
+from models import Station
+import subprocess
 
+
+db = SessionLocal()
+
+count = db.query(Station).count()
+
+if count == 0:
+    subprocess.run(["python", "import_stations.py"])
 app.add_middleware(
     CORSMiddleware,
 
