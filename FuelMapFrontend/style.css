@@ -386,3 +386,129 @@ textarea{
         margin:0 auto 10px auto;
     }
 }
+/* ===== АКТИВНЫЙ ФИЛЬТР (подсветка) ===== */
+
+.filters button.active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+}
+
+/* ===== ЛЕГЕНДА ЦВЕТОВ ===== */
+
+.color-legend {
+    position: fixed;
+    top: 130px;
+    right: 12px;
+    z-index: 900;
+    background: rgba(15, 23, 42, 0.92);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-green  { background: #2ecc71; }
+.legend-orange { background: #f39c12; }
+.legend-gray   { background: #95a5a6; }
+
+@media (max-width: 768px) {
+    .color-legend {
+        top: auto;
+        bottom: 80px;
+        right: 8px;
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+
+/* ===== ФОРМЫ ВХОДА / РЕГИСТРАЦИИ ===== */
+
+#authForms h2 {
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.auth-tab.active {
+    background: var(--blue);
+    color: white;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.auth-divider {
+    text-align: center;
+    opacity: 0.5;
+    margin: 10px 0;
+    font-size: 13px;
+}
+
+#loginForm input,
+#registerForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+}
+
+#loginForm button,
+#registerForm button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--blue);
+    color: white;
+    cursor: pointer;
+}
+
+.auth-error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+}
