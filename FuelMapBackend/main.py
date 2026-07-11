@@ -345,17 +345,17 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
         # защита от мусорных значений с фронта — сервер не доверяет клиенту границы диапазона
         station.queue_rating = max(1, min(5, data.queue_rating))
 
-    count = sum([data.a92, data.a95, data.a98, data.diesel, data.gas])
+    has_any_fuel = any([data.a92, data.a95, data.a98, data.diesel, data.gas])
 
-    if count >= 4:
+    if has_any_fuel:
         station.status = "green"
         station.text = "Топливо есть"
-    elif count >= 2:
+    elif station.has_queue:
         station.status = "orange"
-        station.text = "Есть не всё топливо"
+        station.text = "Топлива нет, но есть очередь"
     else:
-        station.status = "red"
-        station.text = "Почти пусто"
+        station.status = "gray"
+        station.text = "Топлива нет"
 
     db.commit()
     db.close()

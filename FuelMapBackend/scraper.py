@@ -166,16 +166,16 @@ def apply_update(db, station, data: dict):
             changed = True
 
     if changed:
-        count = sum([station.a92, station.a95, station.a98, station.diesel, station.gas])
-        if count >= 4:
+        has_any_fuel = any([station.a92, station.a95, station.a98, station.diesel, station.gas])
+        if has_any_fuel:
             station.status = "green"
             station.text = "Топливо есть"
-        elif count >= 2:
+        elif station.has_queue:
             station.status = "orange"
-            station.text = "Есть не всё топливо"
+            station.text = "Топлива нет, но есть очередь"
         else:
-            station.status = "red"
-            station.text = "Почти пусто"
+            station.status = "gray"
+            station.text = "Топлива нет"
 
         db.commit()
 
