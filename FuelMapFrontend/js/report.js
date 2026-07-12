@@ -44,22 +44,46 @@ function updateStarDisplay() {
 function openReport(stationId) {
     currentStation = stationId;
 
+    // находим текущее состояние станции — форма должна показывать, что
+    // реально есть СЕЙЧАС, а не открываться с чистого листа
+    const station = stations.find(s => s.id === stationId);
+
     document.getElementById("comment").value = "";
-    document.getElementById("a92").checked = false;
-    document.getElementById("a95").checked = false;
-    document.getElementById("a98").checked = false;
-    document.getElementById("diesel").checked = false;
-    document.getElementById("gas").checked = false;
 
-    document.getElementById("price_a92").value = "";
-    document.getElementById("price_a95").value = "";
-    document.getElementById("price_a98").value = "";
-    document.getElementById("price_diesel").value = "";
-    document.getElementById("price_gas").value = "";
+    if (station) {
+        document.getElementById("a92").checked = !!station.fuel.a92;
+        document.getElementById("a95").checked = !!station.fuel.a95;
+        document.getElementById("a98").checked = !!station.fuel.a98;
+        document.getElementById("diesel").checked = !!station.fuel.diesel;
+        document.getElementById("gas").checked = !!station.fuel.gas;
 
-    hasQueueCheckbox.checked = false;
-    queueRatingEl.style.display = "none";
-    selectedQueueRating = 0;
+        document.getElementById("price_a92").value = station.price_a92 ?? "";
+        document.getElementById("price_a95").value = station.price_a95 ?? "";
+        document.getElementById("price_a98").value = station.price_a98 ?? "";
+        document.getElementById("price_diesel").value = station.price_diesel ?? "";
+        document.getElementById("price_gas").value = station.price_gas ?? "";
+
+        hasQueueCheckbox.checked = !!station.has_queue;
+        selectedQueueRating = station.queue_rating || 0;
+    } else {
+        // запасной вариант, если станция почему-то не найдена в кэше — чистая форма
+        document.getElementById("a92").checked = false;
+        document.getElementById("a95").checked = false;
+        document.getElementById("a98").checked = false;
+        document.getElementById("diesel").checked = false;
+        document.getElementById("gas").checked = false;
+
+        document.getElementById("price_a92").value = "";
+        document.getElementById("price_a95").value = "";
+        document.getElementById("price_a98").value = "";
+        document.getElementById("price_diesel").value = "";
+        document.getElementById("price_gas").value = "";
+
+        hasQueueCheckbox.checked = false;
+        selectedQueueRating = 0;
+    }
+
+    queueRatingEl.style.display = hasQueueCheckbox.checked ? "block" : "none";
     updateStarDisplay();
 
     modal.style.display = "block";
