@@ -46,7 +46,13 @@ count = db.query(Station).count()
 if count == 0:
     subprocess.run(["python", "import_stations.py"])
 
-app.add_middleware(SessionMiddleware, secret_key=os.getenv("SESSION_SECRET", "dev-fallback-secret"))
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=os.getenv("SESSION_SECRET", "dev-fallback-secret"),
+    same_site="lax",
+    https_only=True,
+    max_age=600  # сессия для OAuth-флоу живёт всего 10 минут — достаточно для логина
+)
 
 app.include_router(auth_router.router)
 app.include_router(admin_router.router)
