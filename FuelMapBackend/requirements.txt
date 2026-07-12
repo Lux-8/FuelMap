@@ -10,3 +10,4 @@ authlib
 python-multipart
 itsdangerous
 user-agents
+beautifulsoup4
