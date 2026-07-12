@@ -138,7 +138,7 @@ async function sendReport() {
         });
 
         modal.style.display = "none";
-        alert("Спасибо!");
+        showToast("Спасибо! Изменения сохранены ✅");
 
     } catch (err) {
         console.error(err);
