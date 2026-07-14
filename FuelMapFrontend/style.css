@@ -449,7 +449,8 @@ textarea{
     .color-legend {
         top: auto;
         bottom: 80px;
-        right: 8px;
+        left: 8px;
+        right: auto;
         font-size: 11px;
         padding: 6px 10px;
     }
