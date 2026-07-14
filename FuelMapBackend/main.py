@@ -36,15 +36,25 @@ app.add_middleware(
 
 from database import SessionLocal
 from models import Station
-import subprocess
-
+from import_stations import import_stations
 
 db = SessionLocal()
 
 count = db.query(Station).count()
+db.close()
 
 if count == 0:
-    subprocess.run(["python", "import_stations.py"])
+    print("[startup] База пуста — запускаю автоимпорт станций из stations.json...")
+    try:
+        added = import_stations()
+        print(f"[startup] Автоимпорт завершён: добавлено {added} станций")
+    except Exception as e:
+        # раньше ошибка тут проглатывалась молча (subprocess без check=True) —
+        # теперь она обязательно попадёт в Deploy Logs, если импорт сломается
+        print(f"[startup] ОШИБКА автоимпорта станций: {e}")
+        raise
+else:
+    print(f"[startup] В базе уже есть {count} станций, автоимпорт пропущен")
 
 app.add_middleware(
     SessionMiddleware,

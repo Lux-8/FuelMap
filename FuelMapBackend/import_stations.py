@@ -3,42 +3,54 @@ import json
 from database import SessionLocal
 from models import Station
 
-db = SessionLocal()
 
-with open("stations.json", encoding="utf-8") as f:
-    stations = json.load(f)
+def import_stations():
+    """Импортирует станции из stations.json, пропуская уже существующие
+    (сравнение по координатам). Возвращает количество добавленных."""
 
-added = 0
+    db = SessionLocal()
 
-for s in stations:
+    with open("stations.json", encoding="utf-8") as f:
+        stations = json.load(f)
 
-    exists = db.query(Station).filter(
-        Station.lat == s["lat"],
-        Station.lng == s["lng"]
-    ).first()
+    added = 0
 
-    if exists:
-        continue
+    for s in stations:
 
-    fuel = s.get("fuel", {})
+        exists = db.query(Station).filter(
+            Station.lat == s["lat"],
+            Station.lng == s["lng"]
+        ).first()
 
-    station = Station(
-        name=s["name"],
-        address=s.get("address", ""),
-        lat=s["lat"],
-        lng=s["lng"],
-        status="gray",
-        text="Нет данных",
-        a92=fuel.get("a92", False),
-        a95=fuel.get("a95", False),
-        a98=fuel.get("a98", False),
-        diesel=fuel.get("diesel", False),
-        gas=fuel.get("gas", False)
-    )
+        if exists:
+            continue
 
-    db.add(station)
-    added += 1
+        fuel = s.get("fuel", {})
 
-db.commit()
+        station = Station(
+            name=s["name"],
+            address=s.get("address", ""),
+            lat=s["lat"],
+            lng=s["lng"],
+            status="gray",
+            text="Нет данных",
+            a92=fuel.get("a92", False),
+            a95=fuel.get("a95", False),
+            a98=fuel.get("a98", False),
+            diesel=fuel.get("diesel", False),
+            gas=fuel.get("gas", False)
+        )
 
-print(f"Добавлено {added} заправок")
+        db.add(station)
+        added += 1
+
+    db.commit()
+    db.close()
+
+    return added
+
+
+if __name__ == "__main__":
+    # запуск вручную из консоли: python import_stations.py
+    added = import_stations()
+    print(f"Добавлено {added} заправок")
