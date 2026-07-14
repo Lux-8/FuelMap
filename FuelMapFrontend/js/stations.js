@@ -6,14 +6,32 @@ async function loadStations() {
     drawStations();
 }
 
-async function loadStation(id) {
-    const response = await fetch(API + "/station/" + id);
-    const station = await response.json();
+async function loadStations() {
+    console.log("[loadStations] START");
 
-    // обновляем локальный кэш, чтобы карта и панель были консистентны
-    stations = stations.map(s => (s.id === station.id ? station : s));
+    try {
+        console.log("[loadStations] отправляю запрос...");
 
-    return station;
+        const response = await fetch(`${API}/stations`);
+
+        console.log("[loadStations] fetch завершился");
+        console.log("status =", response.status);
+        console.log("ok =", response.ok);
+
+        const text = await response.text();
+
+        console.log("Ответ сервера:");
+        console.log(text);
+
+    } catch (err) {
+        console.error("FETCH ERROR:");
+        console.error(err);
+        console.error(err.name);
+        console.error(err.message);
+        console.error(err.stack);
+    }
+
+    console.log("[loadStations] END");
 }
 
 function drawStations() {
