@@ -19,10 +19,12 @@ async function loadStations() {
 
 async function loadStation(id) {
     const response = await fetch(API + "/station/" + id);
+
     const station = await response.json();
 
-    // обновляем локальный кэш, чтобы карта и панель были консистентны
-    stations = stations.map(s => (s.id === station.id ? station : s));
+    stations = stations.map(s =>
+        s.id === station.id ? station : s
+    );
 
     return station;
 }
