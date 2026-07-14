@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuelMap</title>
 
+    <!-- ВРЕМЕННО: консоль отладки открывается автоматически при загрузке,
+         чтобы не терять лог при перезагрузке страницы. Убрать перед реальным запуском. -->
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
@@ -248,20 +253,6 @@
     setTimeout(() => {
         if (map) map.invalidateSize();
     }, 1000);
-</script>
-
-<!-- ВРЕМЕННАЯ КНОПКА ОТЛАДКИ — удали перед реальным запуском для пользователей -->
-<button id="debugBtn" style="position:fixed;bottom:16px;left:16px;z-index:99999;width:44px;height:44px;border-radius:50%;background:#333;color:white;border:none;font-size:18px;opacity:0.5;">🐛</button>
-<script>
-    document.getElementById("debugBtn").onclick = function() {
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/eruda";
-        script.onload = function() {
-            eruda.init();
-            document.getElementById("debugBtn").style.display = "none";
-        };
-        document.body.appendChild(script);
-    };
 </script>
 
 </body>
