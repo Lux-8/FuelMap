@@ -78,7 +78,8 @@ header{
 /* MAP */
 #map{
     width:100%;
-    height:calc(100vh - 140px);
+    height:calc(100vh - 140px);       /* запасной вариант для старых браузеров */
+    height:calc(100dvh - 140px);      /* корректно учитывает мобильную адресную строку */
 }
 
 .profile-window {
