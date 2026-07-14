@@ -1,1 +1,1 @@
-const API = "https://fuelmap-production.up.railway.app";
+const API = "https://api.fuelmap.site";
