@@ -200,7 +200,7 @@ def admin_comments(
             "comment":
             r.comment,
 
-            "date":
+ "date":
             r.created_at
 
         })
@@ -210,33 +210,6 @@ def admin_comments(
 
 
     return result
-
-@router.get("/admin/stats")
-def admin_stats(_: bool = Depends(get_current_admin)):
-
-    db = SessionLocal()
-
-    users_count = db.query(models.User).count()
-    reports_count = db.query(models.Report).count()
-    stations_count = db.query(models.Station).count()
-
-    db.close()
-
-   return {
-    "users": users_count,
-    "reports": reports_count,
-    "stations": stations_count,
-    "online": 0
-}
-
-
-const online =
-document.getElementById("statOnline");
-
-
-if(online)
-    online.textContent =
-    data.online ?? 0;
 
 @router.get("/admin/visits")
 def admin_visits(
