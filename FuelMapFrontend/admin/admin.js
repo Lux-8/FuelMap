@@ -350,13 +350,11 @@ async function openUserModal(id) {
 
     try {
 
-        const response = await api("/admin/users");
+        const response =
+            await api(`/admin/users/${id}`);
 
-        const users = await response.json();
-
-        const user = users.find(u => u.id === id);
-
-        if (!user) return;
+        const user =
+            await response.json();
 
         const modal =
             document.getElementById("userModal");
@@ -369,68 +367,60 @@ async function openUserModal(id) {
             <div class="user-info">
 
                 <div>
-
                     <b>ID</b><br>
-
                     ${user.id}
-
                 </div>
 
                 <div>
-
                     <b>Имя</b><br>
-
                     ${user.name || "Без имени"}
-
                 </div>
 
                 <div>
-
                     <b>Email</b><br>
-
                     ${user.email}
-
                 </div>
 
                 <div>
-
-                    <b>Дата регистрации</b><br>
-
-                    ${user.created_at || "-"}
-
+                    <b>Регистрация</b><br>
+                    ${user.created_at}
                 </div>
 
                 <div>
-
                     <b>Google</b><br>
-
                     ${user.via_google ? "Да" : "Нет"}
+                </div>
 
+                <div>
+                    <b>Статус</b><br>
+                    ${user.is_blocked
+                        ? "🔴 Заблокирован"
+                        : "🟢 Активен"}
                 </div>
 
                 <div
                     style="
-                    display:flex;
-                    gap:10px;
-                    flex-wrap:wrap;
-                    margin-top:10px;
+                        display:flex;
+                        gap:10px;
+                        flex-wrap:wrap;
+                        margin-top:15px;
                     ">
 
-                    <button
-                        class="admin-btn"
-                        onclick="blockUser(${user.id})">
-
-                        🚫 Заблокировать
-
-                    </button>
-
-                    <button
-                        class="admin-btn"
-                        onclick="unblockUser(${user.id})">
-
-                        ✅ Разблокировать
-
-                    </button>
+                    ${
+                        user.is_blocked
+                        ?
+                        `<button
+                            class="admin-btn"
+                            onclick="unblockUser(${user.id})">
+                            ✅ Разблокировать
+                        </button>`
+                        :
+                        `<button
+                            class="admin-btn"
+                            onclick="blockUser(${user.id})">
+                            🚫 Заблокировать
+                        </button>`
+                    }
 
                     <button
                         class="admin-btn"
@@ -455,32 +445,11 @@ async function openUserModal(id) {
 
         console.error(err);
 
+        showMessage("Ошибка загрузки пользователя");
+
     }
 
 }
-
-
-
-function closeUserModal() {
-
-    document.getElementById(
-        "userModal"
-    ).style.display = "none";
-
-}
-
-
-
-window.onclick = function (event) {
-
-    const modal =
-        document.getElementById("userModal");
-
-    if (event.target === modal)
-        closeUserModal();
-
-}
-
 
 
 // =====================================
