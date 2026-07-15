@@ -222,13 +222,12 @@ def admin_stats(_: bool = Depends(get_current_admin)):
 
     db.close()
 
-   return {
-    "users": users_count,
-    "reports": reports_count,
-    "stations": stations_count,
-    "online": 0
-}
-
+    return {
+        "users": users_count,
+        "reports": reports_count,
+        "stations": stations_count,
+        "online": 0
+    }
 
 const online =
 document.getElementById("statOnline");
