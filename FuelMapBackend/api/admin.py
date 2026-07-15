@@ -319,7 +319,6 @@ def admin_delete_report(
     db = SessionLocal()
 
     try:
-
         report = (
             db.query(models.Report)
             .filter(models.Report.id == report_id)
@@ -332,28 +331,40 @@ def admin_delete_report(
                 detail="Репорт не найден"
             )
 
+        # Удаляем комментарии к репорту
+        comments = (
+            db.query(models.Comment)
+            .filter(models.Comment.report_id == report_id)
+            .all()
+        )
+
+        for comment in comments:
+            db.delete(comment)
+
+        # Удаляем сам репорт
         db.delete(report)
 
-        db.flush()      # Выполнить DELETE
-        db.commit()     # Сохранить изменения
+        db.commit()
 
         return {
-            "success": True
+            "success": True,
+            "message": "Репорт и комментарии удалены"
         }
 
-    except Exception as e:
+    except HTTPException:
+        db.rollback()
+        raise
 
+    except Exception as e:
         db.rollback()
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail=f"Ошибка удаления репорта: {str(e)}"
         )
 
     finally:
-
         db.close()
-
 @router.get("/admin/users")
 def admin_get_users(_: bool = Depends(get_current_admin)):
     db = SessionLocal()
