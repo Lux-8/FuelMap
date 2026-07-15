@@ -34,6 +34,40 @@ def get_current_admin(
 
     return True
 
+@router.get("/admin/users/{user_id}")
+def admin_get_user(
+    user_id: int,
+    _: bool = Depends(get_current_admin)
+):
+
+    db = SessionLocal()
+
+    user = (
+        db.query(models.User)
+        .filter(models.User.id == user_id)
+        .first()
+    )
+
+    if user is None:
+        db.close()
+        raise HTTPException(
+            status_code=404,
+            detail="Пользователь не найден"
+        )
+
+    result = {
+        "id": user.id,
+        "email": user.email,
+        "name": user.name,
+        "created_at": user.created_at,
+        "via_google": user.google_id is not None,
+        "is_blocked": getattr(user, "is_blocked", False)
+    }
+
+    db.close()
+
+    return result
+
 @router.post("/admin/login")
 def admin_login(data: AdminLoginRequest):
     if not ADMIN_PASSWORD:
