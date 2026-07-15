@@ -1,8 +1,8 @@
 console.log("admin.js загружен");
 
-// ===============================
-// ELEMENTSgit
-// ===============================
+// =====================================
+// ELEMENTS
+// =====================================
 
 const adminLoginBtn = document.getElementById("adminLoginBtn");
 const adminLogoutBtn = document.getElementById("adminLogoutBtn");
@@ -13,774 +13,900 @@ const adminPanel = document.getElementById("adminPanel");
 const adminPassword = document.getElementById("adminPassword");
 const adminLoginError = document.getElementById("adminLoginError");
 
+const TOKEN_KEY = "admin_token";
 
 
+// =====================================
+// HELPERS
+// =====================================
 
-// ===============================
+function getToken() {
+    return localStorage.getItem(TOKEN_KEY);
+}
+
+function getHeaders() {
+    return {
+        Authorization: `Bearer ${getToken()}`
+    };
+}
+
+async function api(url, options = {}) {
+
+    const response = await fetch(`${API}${url}`, {
+        ...options,
+        headers: {
+            ...(options.headers || {}),
+            ...getHeaders()
+        }
+    });
+
+    if (response.status === 401 || response.status === 403) {
+        logout();
+        throw new Error("Unauthorized");
+    }
+
+    return response;
+}
+
+
+// =====================================
 // LOGIN
-// ===============================
+// =====================================
 
+async function login() {
 
-if(adminLoginBtn){
+    adminLoginError.textContent = "";
 
-adminLoginBtn.addEventListener("click", async ()=>{
+    const password = adminPassword.value.trim();
 
+    if (!password) {
+        adminLoginError.textContent = "Введите пароль";
+        return;
+    }
 
-const password = adminPassword.value.trim();
+    try {
 
+        const response = await fetch(`${API}/admin/login`, {
 
-try{
+            method: "POST",
 
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-const response = await fetch(
-`${API}/admin/login`,
-{
+            body: JSON.stringify({
+                password
+            })
 
-method:"POST",
+        });
 
-headers:{
-"Content-Type":"application/json"
-},
+        const data = await response.json();
 
-body:JSON.stringify({
-password
-})
+        if (!response.ok) {
 
-});
+            adminLoginError.textContent =
+                data.detail || "Ошибка входа";
 
+            return;
+        }
 
-const data = await response.json();
+        localStorage.setItem(
+            TOKEN_KEY,
+            data.token
+        );
 
+        loginScreen.style.display = "none";
+        adminPanel.style.display = "flex";
 
+        await loadStats();
 
-if(response.ok){
+    } catch (err) {
 
+        console.error(err);
 
-localStorage.setItem(
-"admin_token",
-data.token
-);
+        adminLoginError.textContent =
+            "Сервер недоступен";
 
-
-loginScreen.style.display="none";
-
-adminPanel.style.display="flex";
-
-
-loadStats();
-
-
-}
-else{
-
-
-adminLoginError.textContent =
-data.detail || "Неверный пароль";
-
+    }
 
 }
 
-
-
-}catch(error){
-
-
-console.error(error);
-
-adminLoginError.textContent =
-"Сервер недоступен";
-
-
+if (adminLoginBtn) {
+    adminLoginBtn.onclick = login;
 }
 
+if (adminPassword) {
 
+    adminPassword.addEventListener("keydown", e => {
 
-});
+        if (e.key === "Enter") {
+            login();
+        }
 
+    });
 
 }
 
 
-
-
-// ===============================
+// =====================================
 // LOGOUT
-// ===============================
+// =====================================
 
+function logout() {
 
-if(adminLogoutBtn){
+    localStorage.removeItem(TOKEN_KEY);
 
-
-adminLogoutBtn.onclick=()=>{
-
-
-localStorage.removeItem(
-"admin_token"
-);
-
-
-location.reload();
-
-
-};
-
+    location.reload();
 
 }
 
+if (adminLogoutBtn) {
+    adminLogoutBtn.onclick = logout;
+}
 
 
-
-// ===============================
+// =====================================
 // AUTO LOGIN
-// ===============================
+// =====================================
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    if (!getToken())
+        return;
+
+    loginScreen.style.display = "none";
+    adminPanel.style.display = "flex";
+
+    await loadStats();
+
+});
 
 
-if(localStorage.getItem("admin_token")){
-
-
-if(loginScreen)
-loginScreen.style.display="none";
-
-
-if(adminPanel)
-adminPanel.style.display="flex";
-
-
-}
-
-
-
-
-// ===============================
+// =====================================
 // TABS
-// ===============================
+// =====================================
 
+const tabs = [
 
-function openTab(tab,event){
+    "dashboard",
 
+    "analytics",
 
+    "visits",
 
-const tabs=[
+    "users",
 
-"dashboard",
-"users",
-"stations",
-"reports",
-"achievements",
-"visits"
+    "stations",
+
+    "reports",
+
+    "achievements"
 
 ];
 
+function openTab(tab, event = null) {
 
+    tabs.forEach(name => {
 
-tabs.forEach(t=>{
+        const page = document.getElementById(
+            name + "Tab"
+        );
 
+        if (page)
+            page.style.display = "none";
 
-const el=document.getElementById(
-t+"Tab"
-);
+    });
 
+    const current = document.getElementById(
+        tab + "Tab"
+    );
 
-if(el)
-el.style.display="none";
+    if (current)
+        current.style.display = "block";
 
+    document
+        .querySelectorAll(".admin-menu button")
+        .forEach(btn => btn.classList.remove("active"));
 
-});
+    if (event)
+        event.target.classList.add("active");
 
+    switch (tab) {
 
+        case "users":
+            loadUsers();
+            break;
 
-const current=document.getElementById(
-tab+"Tab"
-);
+        case "stations":
+            loadStations();
+            break;
 
+        case "reports":
+            loadReports();
+            break;
 
+        case "visits":
+            loadVisits();
+            break;
 
-if(current)
-current.style.display="block";
-
-
-
-
-document
-.querySelectorAll(".admin-menu button")
-.forEach(btn=>{
-
-btn.classList.remove("active");
-
-});
-
-
-
-if(event)
-event.target.classList.add("active");
-
-
-
-
-if(tab==="users")
-loadUsers();
-
-
-if(tab==="stations")
-loadStations();
-
-
-if(tab==="reports")
-loadReports();
-
-
-if(tab==="visits")
-loadVisits();
-
-
+    }
 
 }
 
 
-
-
-
-// ===============================
+// =====================================
 // STATS
-// ===============================
+// =====================================
 
+async function loadStats() {
 
-async function loadStats(){
+    try {
 
+        const response = await api("/admin/stats");
 
-try{
+        const data = await response.json();
 
+        document.getElementById("statUsers").textContent =
+            data.users ?? 0;
 
-const token =
-localStorage.getItem(
-"admin_token"
-);
+        document.getElementById("statStations").textContent =
+            data.stations ?? 0;
 
+        document.getElementById("statReports").textContent =
+            data.reports ?? 0;
 
+        document.getElementById("statOnline").textContent =
+            data.online ?? 0;
 
-const response =
-await fetch(
-`${API}/admin/stats`,
-{
-headers:{
-Authorization:
-`Bearer ${token}`
-}
-}
-);
+    }
 
+    catch (err) {
 
+        console.error("Stats error", err);
 
-const data =
-await response.json();
-
-
-
-const users =
-document.getElementById(
-"statUsers"
-);
-
-
-const stations =
-document.getElementById(
-"statStations"
-);
-
-
-const reports =
-document.getElementById(
-"statReports"
-);
-
-
-
-if(users)
-users.textContent =
-data.users_count ?? 0;
-
-
-
-if(stations)
-stations.textContent =
-data.stations_count ?? 0;
-
-
-
-if(reports)
-reports.textContent =
-data.reports_count ?? 0;
-
-
-
-}catch(err){
-
-console.error(
-"Stats error",
-err
-);
+    }
 
 }
 
-
-}
-
-
-
-
-
-
-// ===============================
+// =====================================
 // USERS
-// ===============================
+// =====================================
 
+async function loadUsers() {
 
-async function loadUsers(){
+    const table = document.getElementById("usersTable");
 
+    if (!table) return;
 
-const box =
-document.getElementById(
-"usersTable"
-);
+    table.innerHTML = "Загрузка...";
 
+    try {
 
-if(!box)return;
+        const response = await api("/admin/users");
 
+        const users = await response.json();
 
+        table.innerHTML = "";
 
-const token =
-localStorage.getItem(
-"admin_token"
-);
+        table.innerHTML += `
+        <div class="admin-row">
+            <b>ID</b>
+            <b>Имя</b>
+            <b>Email</b>
+            <b>Дата регистрации</b>
+            <b>Действия</b>
+        </div>
+        `;
 
+        users.forEach(user => {
 
+            table.innerHTML += `
+            <div class="admin-row">
 
-const response =
-await fetch(
-`${API}/admin/users`,
-{
-headers:{
-Authorization:
-`Bearer ${token}`
-}
-}
-);
+                <span>#${user.id}</span>
 
+                <span>${user.name || "Без имени"}</span>
 
+                <span>${user.email}</span>
 
-const users =
-await response.json();
+                <span>${user.created_at || "-"}</span>
 
+                <div>
 
+                    <button
+                        class="admin-btn"
+                        onclick="openUserModal(${user.id})">
 
-box.innerHTML="";
+                        👁
 
+                    </button>
 
+                </div>
 
-users.forEach(user=>{
+            </div>
+            `;
 
+        });
 
-box.innerHTML+=`
+    }
 
-<div class="admin-row">
+    catch (err) {
 
+        console.error(err);
 
-<span>
-#${user.id}
-</span>
+        table.innerHTML = "Ошибка загрузки пользователей";
 
-
-<span>
-${user.name || "Без имени"}
-</span>
-
-
-<span>
-${user.email}
-</span>
-
-
-<span>
-${user.created_at || "-"}
-</span>
-
-
-
-<button 
-class="admin-btn"
-onclick='openUserModal(${JSON.stringify(user)})'>
-
-👁
-
-</button>
-
-
-
-</div>
-
-`;
-
-
-});
-
+    }
 
 }
 
 
 
-
-
-
-// ===============================
-// STATIONS
-// ===============================
-
-
-async function loadStations(){
-
-
-const box =
-document.getElementById(
-"stationsTable"
-);
-
-
-if(!box)return;
-
-
-const token =
-localStorage.getItem(
-"admin_token"
-);
-
-
-
-const response =
-await fetch(
-`${API}/admin/stations`,
-{
-headers:{
-Authorization:
-`Bearer ${token}`
-}
-}
-);
-
-
-
-const stations =
-await response.json();
-
-
-
-box.innerHTML="";
-
-
-
-stations.forEach(s=>{
-
-
-box.innerHTML+=`
-
-<div class="admin-row">
-
-
-<span>
-#${s.id}
-</span>
-
-
-<span>
-${s.name}
-</span>
-
-
-<span>
-${s.status}
-</span>
-
-
-
-<button class="admin-btn">
-
-🗑
-
-</button>
-
-
-
-</div>
-
-`;
-
-});
-
-
-}
-
-
-
-
-
-// ===============================
-// REPORTS
-// ===============================
-
-
-async function loadReports(){
-
-
-const box =
-document.getElementById(
-"reportsTable"
-);
-
-
-if(!box)return;
-
-
-
-box.innerHTML=`
-
-<div class="admin-row">
-
-<b>
-Пользователь
-</b>
-
-
-<b>
-Комментарий
-</b>
-
-
-<b>
-Дата
-</b>
-
-
-<b>
-Действие
-</b>
-
-
-</div>
-
-
-`;
-
-
-
-}
-
-
-
-
-
-// ===============================
-// VISITS
-// ===============================
-
-
-async function loadVisits(){
-
-
-const box =
-document.getElementById(
-"visitsTable"
-);
-
-
-if(!box)return;
-
-
-
-const token =
-localStorage.getItem(
-"admin_token"
-);
-
-
-
-try{
-
-
-const response =
-await fetch(
-`${API}/admin/visits`,
-{
-headers:{
-Authorization:
-`Bearer ${token}`
-}
-}
-);
-
-
-
-const data =
-await response.json();
-
-
-
-box.innerHTML=`
-
-<h3>
-🌐 Всего посещений:
-${data.total}
-</h3>
-
-`;
-
-
-
-data.visits.forEach(v=>{
-
-
-box.innerHTML+=`
-
-<div class="admin-row">
-
-
-<span>
-🌐 ${v.ip}
-</span>
-
-
-<span>
-${v.browser}
-</span>
-
-
-<span>
-${v.device}
-</span>
-
-
-<span>
-${v.created_at}
-</span>
-
-
-</div>
-
-`;
-
-
-});
-
-
-
-}catch(err){
-
-
-console.error(
-"Visits error",
-err
-);
-
-
-box.innerHTML=
-"Ошибка загрузки посещений";
-
-
-}
-
-
-}
-
-
-
-
-
-// ===============================
+// =====================================
 // USER MODAL
-// ===============================
+// =====================================
 
+async function openUserModal(id) {
 
-function openUserModal(user){
+    try {
 
+        const response = await api("/admin/users");
 
-const modal =
-document.getElementById(
-"userModal"
-);
+        const users = await response.json();
 
+        const user = users.find(u => u.id === id);
 
-const content =
-document.getElementById(
-"userModalContent"
-);
+        if (!user) return;
 
+        const modal =
+            document.getElementById("userModal");
 
+        const content =
+            document.getElementById("userModalContent");
 
-content.innerHTML=`
+        content.innerHTML = `
 
-<h2>
-Пользователь #${user.id}
-</h2>
+            <div class="user-info">
 
+                <div>
 
-<p>
-👤 ${user.name || "Без имени"}
-</p>
+                    <b>ID</b><br>
 
+                    ${user.id}
 
-<p>
-📧 ${user.email}
-</p>
+                </div>
 
+                <div>
 
-<p>
-📅 ${user.created_at}
-</p>
+                    <b>Имя</b><br>
 
+                    ${user.name || "Без имени"}
 
-<p>
-🔵 Google:
-${user.via_google ? "Да":"Нет"}
-</p>
+                </div>
 
+                <div>
 
-`;
+                    <b>Email</b><br>
 
+                    ${user.email}
 
+                </div>
 
-modal.style.display="flex";
+                <div>
 
+                    <b>Дата регистрации</b><br>
+
+                    ${user.created_at || "-"}
+
+                </div>
+
+                <div>
+
+                    <b>Google</b><br>
+
+                    ${user.via_google ? "Да" : "Нет"}
+
+                </div>
+
+                <div
+                    style="
+                    display:flex;
+                    gap:10px;
+                    flex-wrap:wrap;
+                    margin-top:10px;
+                    ">
+
+                    <button
+                        class="admin-btn"
+                        onclick="blockUser(${user.id})">
+
+                        🚫 Заблокировать
+
+                    </button>
+
+                    <button
+                        class="admin-btn"
+                        onclick="unblockUser(${user.id})">
+
+                        ✅ Разблокировать
+
+                    </button>
+
+                    <button
+                        class="admin-btn"
+                        style="background:#dc2626"
+                        onclick="deleteUser(${user.id})">
+
+                        🗑 Удалить
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        modal.style.display = "flex";
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+    }
 
 }
 
 
 
-function closeUserModal(){
+function closeUserModal() {
 
-
-document.getElementById(
-"userModal"
-).style.display="none";
-
+    document.getElementById(
+        "userModal"
+    ).style.display = "none";
 
 }
 
 
 
+window.onclick = function (event) {
 
-// ===============================
+    const modal =
+        document.getElementById("userModal");
+
+    if (event.target === modal)
+        closeUserModal();
+
+}
+
+
+
+// =====================================
+// USER ACTIONS
+// =====================================
+
+async function blockUser(id) {
+
+    if (!confirm("Заблокировать пользователя?"))
+        return;
+
+    await api(`/admin/users/${id}/block`, {
+        method: "PUT"
+    });
+
+    alert("Пользователь заблокирован");
+
+}
+
+
+
+async function unblockUser(id) {
+
+    await api(`/admin/users/${id}/unblock`, {
+        method: "PUT"
+    });
+
+    alert("Пользователь разблокирован");
+
+}
+
+
+
+async function deleteUser(id) {
+
+    if (!confirm("Удалить пользователя?"))
+        return;
+
+    await api(`/admin/users/${id}`, {
+        method: "DELETE"
+    });
+
+    closeUserModal();
+
+    loadUsers();
+
+}
+
+// =====================================
+// STATIONS
+// =====================================
+
+async function loadStations() {
+
+    const table = document.getElementById("stationsTable");
+
+    if (!table) return;
+
+    table.innerHTML = "Загрузка...";
+
+    try {
+
+        const response = await api("/admin/stations");
+
+        const stations = await response.json();
+
+        table.innerHTML = `
+            <div class="admin-row">
+                <b>ID</b>
+                <b>Название</b>
+                <b>Статус</b>
+                <b>Координаты</b>
+                <b>Действия</b>
+            </div>
+        `;
+
+        stations.forEach(station => {
+
+            table.innerHTML += `
+                <div class="admin-row">
+
+                    <span>#${station.id}</span>
+
+                    <span>${station.name}</span>
+
+                    <span>${station.status}</span>
+
+                    <span>
+                        ${station.lat},
+                        ${station.lng}
+                    </span>
+
+                    <div>
+
+                        <button
+                            class="admin-btn"
+                            style="background:#dc2626"
+                            onclick="deleteStation(${station.id})">
+
+                            🗑
+
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        table.innerHTML = "Ошибка загрузки";
+
+    }
+
+}
+
+
+
+async function deleteStation(id) {
+
+    if (!confirm("Удалить заправку?"))
+        return;
+
+    try {
+
+        await api(`/admin/stations/${id}`, {
+            method: "DELETE"
+        });
+
+        loadStations();
+
+        loadStats();
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("Не удалось удалить");
+
+    }
+
+}
+
+
+
+// =====================================
+// REPORTS
+// =====================================
+
+async function loadReports() {
+
+    const table =
+        document.getElementById("reportsTable");
+
+    if (!table) return;
+
+    table.innerHTML = "Загрузка...";
+
+    try {
+
+        const response =
+            await api("/admin/reports");
+
+        const reports =
+            await response.json();
+
+        table.innerHTML = `
+            <div class="admin-row">
+                <b>ID</b>
+                <b>АЗС</b>
+                <b>Автор</b>
+                <b>Комментарий</b>
+                <b>Дата</b>
+                <b></b>
+            </div>
+        `;
+
+        reports.forEach(report => {
+
+            table.innerHTML += `
+                <div class="admin-row">
+
+                    <span>
+                        #${report.id}
+                    </span>
+
+                    <span>
+                        ${report.station_name}
+                    </span>
+
+                    <span>
+                        ${report.author}
+                    </span>
+
+                    <span>
+                        ${report.comment}
+                    </span>
+
+                    <span>
+                        ${report.created_at}
+                    </span>
+
+                    <button
+                        class="admin-btn"
+                        style="background:#dc2626"
+                        onclick="deleteReport(${report.id})">
+
+                        🗑
+
+                    </button>
+
+                </div>
+            `;
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        table.innerHTML =
+            "Ошибка загрузки репортов";
+
+    }
+
+}
+
+
+
+async function deleteReport(id) {
+
+    if (!confirm("Удалить репорт?"))
+        return;
+
+    try {
+
+        await api(`/admin/reports/${id}`, {
+            method: "DELETE"
+        });
+
+        loadReports();
+
+        loadStats();
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("Ошибка удаления");
+
+    }
+
+}
+
+// =====================================
+// VISITS
+// =====================================
+
+async function loadVisits() {
+
+    const table = document.getElementById("visitsTable");
+
+    if (!table) return;
+
+    table.innerHTML = "Загрузка...";
+
+    try {
+
+        const response =
+            await api("/admin/visits");
+
+        const data =
+            await response.json();
+
+        table.innerHTML = `
+
+            <h3 style="margin-bottom:20px">
+                🌐 Всего посещений: ${data.total}
+            </h3>
+
+            <div class="admin-row">
+                <b>IP</b>
+                <b>Браузер</b>
+                <b>Устройство</b>
+                <b>Дата</b>
+            </div>
+
+        `;
+
+        data.visits.forEach(v => {
+
+            table.innerHTML += `
+
+                <div class="admin-row">
+
+                    <span>${v.ip}</span>
+
+                    <span>${v.browser}</span>
+
+                    <span>${v.device}</span>
+
+                    <span>${v.created_at}</span>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        table.innerHTML =
+            "Ошибка загрузки посещений";
+
+    }
+
+}
+
+
+
+// =====================================
+// ANALYTICS
+// =====================================
+
+async function loadAnalytics() {
+
+    try {
+
+        const response =
+            await api("/admin/visits");
+
+        const data =
+            await response.json();
+
+        const cards =
+            document.querySelectorAll(
+                "#analyticsTab .stat-number"
+            );
+
+        if (cards.length >= 3) {
+
+            cards[0].textContent =
+                data.total;
+
+            cards[1].textContent =
+                data.total;
+
+            cards[2].textContent =
+                data.total;
+
+        }
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+    }
+
+}
+
+
+
+// =====================================
+// NOTIFICATIONS
+// =====================================
+
+function showMessage(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    div.style.position = "fixed";
+    div.style.right = "20px";
+    div.style.bottom = "20px";
+    div.style.padding = "12px 18px";
+    div.style.background = "#2563eb";
+    div.style.color = "#fff";
+    div.style.borderRadius = "12px";
+    div.style.zIndex = "9999";
+
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+
+        div.remove();
+
+    }, 2500);
+
+}
+
+
+
+// =====================================
 // START
-// ===============================
+// =====================================
 
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
+    if (!getToken())
+        return;
 
+    loginScreen.style.display = "none";
+    adminPanel.style.display = "flex";
 
-if(localStorage.getItem("admin_token")){
+    loadStats();
 
-loadStats();
-
-}
-
+    openTab("dashboard");
 
 });
