@@ -188,19 +188,12 @@ def admin_stats(_: bool = Depends(get_current_admin)):
 
     db.close()
 
-    if(users)
-    users.textContent =
-    data.users ?? 0;
-
-
-if(stations)
-    stations.textContent =
-    data.stations ?? 0;
-
-
-if(reports)
-    reports.textContent =
-    data.reports ?? 0;
+   return {
+    "users": users_count,
+    "reports": reports_count,
+    "stations": stations_count,
+    "online": 0
+}
 
 
 const online =
