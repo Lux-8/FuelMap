@@ -339,12 +339,23 @@ def admin_delete_report(
         )
 
         for comment in comments:
-            db.delete(comment)
+            station = report.station
 
-        # Удаляем сам репорт
-        db.delete(report)
+if station:
 
-        db.commit()
+    station.a92 = report.old_a92
+    station.a95 = report.old_a95
+    station.a98 = report.old_a98
+    station.diesel = report.old_diesel
+    station.gas = report.old_gas
+
+    station.status = report.old_status
+    station.text = report.old_text
+
+
+db.delete(report)
+
+db.commit()
 
         return {
             "success": True,
