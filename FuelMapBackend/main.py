@@ -322,18 +322,29 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
     user = get_current_user_optional(request)
     author = user.name if user else "Аноним"
 
-    report = models.Report(
-        station_id=data.station_id,
-        a92=data.a92,
-        a95=data.a95,
-        a98=data.a98,
-        diesel=data.diesel,
-        gas=data.gas,
-        author=author,
-        comment=data.comment,
-        created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
-    )
+   report = models.Report(
 
+    station_id=data.station_id,
+
+    a92=data.a92,
+    a95=data.a95,
+    a98=data.a98,
+    diesel=data.diesel,
+    gas=data.gas,
+
+    old_a92=station.a92,
+    old_a95=station.a95,
+    old_a98=station.a98,
+    old_diesel=station.diesel,
+    old_gas=station.gas,
+
+    old_status=station.status,
+    old_text=station.text,
+
+    author=author,
+    comment=data.comment,
+    created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
+)
     db.add(report)
 
     station.a92 = data.a92
