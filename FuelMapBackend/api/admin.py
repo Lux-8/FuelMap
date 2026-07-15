@@ -312,23 +312,48 @@ def admin_get_reports(_: bool = Depends(get_current_admin)):
     db.close()
     return result
 
-
 @router.delete("/admin/reports/{report_id}")
-def admin_delete_report(report_id: int, _: bool = Depends(get_current_admin)):
+def admin_delete_report(
+    report_id: int,
+    _: bool = Depends(get_current_admin)
+):
     db = SessionLocal()
 
-    report = db.query(models.Report).filter(models.Report.id == report_id).first()
+    try:
 
-    if report is None:
+        report = (
+            db.query(models.Report)
+            .filter(models.Report.id == report_id)
+            .first()
+        )
+
+        if report is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Репорт не найден"
+            )
+
+        db.delete(report)
+
+        db.flush()      # Выполнить DELETE
+        db.commit()     # Сохранить изменения
+
+        return {
+            "success": True
+        }
+
+    except Exception as e:
+
+        db.rollback()
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+    finally:
+
         db.close()
-        raise HTTPException(status_code=404, detail="Репорт не найден")
-
-    db.delete(report)
-    db.commit()
-    db.close()
-
-    return {"success": True}
-
 
 @router.get("/admin/users")
 def admin_get_users(_: bool = Depends(get_current_admin)):
