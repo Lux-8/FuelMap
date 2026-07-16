@@ -112,6 +112,16 @@ class Report(Base):
     diesel = Column(Boolean)
     gas = Column(Boolean)
 
+    # Цены из репорта
+    price_a92 = Column(Float, nullable=True)
+    price_a95 = Column(Float, nullable=True)
+    price_a98 = Column(Float, nullable=True)
+    price_diesel = Column(Float, nullable=True)
+    price_gas = Column(Float, nullable=True)
+
+    has_queue = Column(Boolean, nullable=True)
+    queue_rating = Column(Integer, nullable=True)
+
     # Старое состояние станции до репорта
     old_a92 = Column(Boolean)
     old_a95 = Column(Boolean)
