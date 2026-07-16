@@ -311,7 +311,6 @@ def admin_delete_report(
     db = SessionLocal()
 
     try:
-
         report = (
             db.query(models.Report)
             .filter(models.Report.id == report_id)
@@ -324,17 +323,101 @@ def admin_delete_report(
                 detail="Репорт не найден"
             )
 
-        db.delete(report)
+        # Запоминаем АЗС до удаления
+        station_id = report.station_id
 
-        db.flush()      # Выполнить DELETE
-        db.commit()     # Сохранить изменения
+        db.delete(report)
+        db.flush()
+
+        # Ищем последний оставшийся репорт этой АЗС
+        last_report = (
+            db.query(models.Report)
+            .filter(models.Report.station_id == station_id)
+            .order_by(models.Report.id.desc())
+            .first()
+        )
+
+        station = (
+            db.query(models.Station)
+            .filter(models.Station.id == station_id)
+            .first()
+        )
+
+        if station:
+
+            if last_report:
+                # Применяем последний активный репорт
+                station.a92 = last_report.a92
+                station.a95 = last_report.a95
+                station.a98 = last_report.a98
+                station.diesel = last_report.diesel
+                station.gas = last_report.gas
+
+                if last_report.price_a92 is not None:
+                    station.price_a92 = last_report.price_a92
+
+                if last_report.price_a95 is not None:
+                    station.price_a95 = last_report.price_a95
+
+                if last_report.price_a98 is not None:
+                    station.price_a98 = last_report.price_a98
+
+                if last_report.price_diesel is not None:
+                    station.price_diesel = last_report.price_diesel
+
+                if last_report.price_gas is not None:
+                    station.price_gas = last_report.price_gas
+
+                if last_report.has_queue is not None:
+                    station.has_queue = last_report.has_queue
+
+                if last_report.queue_rating is not None:
+                    station.queue_rating = max(
+                        1,
+                        min(5, last_report.queue_rating)
+                    )
+
+            else:
+                # Репортов больше нет — возвращаем состояние по умолчанию
+                station.a92 = False
+                station.a95 = False
+                station.a98 = False
+                station.diesel = False
+                station.gas = False
+
+                station.has_queue = False
+                station.queue_rating = None
+
+            # Обновляем статус
+            has_any_fuel = any([
+                station.a92,
+                station.a95,
+                station.a98,
+                station.diesel,
+                station.gas
+            ])
+
+            if has_any_fuel:
+                station.status = "green"
+                station.text = "Топливо есть"
+
+            elif station.has_queue:
+                station.status = "orange"
+                station.text = "Топлива нет, но есть очередь"
+
+            else:
+                station.status = "gray"
+                station.text = "Топлива нет"
+
+
+        db.commit()
 
         return {
             "success": True
         }
 
-    except Exception as e:
 
+    except Exception as e:
         db.rollback()
 
         raise HTTPException(
@@ -343,9 +426,7 @@ def admin_delete_report(
         )
 
     finally:
-
         db.close()
-
 @router.get("/admin/users")
 def admin_get_users(_: bool = Depends(get_current_admin)):
     db = SessionLocal()

@@ -102,13 +102,25 @@ class Report(Base):
     __tablename__ = "reports"
 
     id = Column(Integer, primary_key=True)
+
     station_id = Column(Integer, ForeignKey("stations.id"))
 
+    # Новое состояние из репорта
     a92 = Column(Boolean)
     a95 = Column(Boolean)
     a98 = Column(Boolean)
     diesel = Column(Boolean)
     gas = Column(Boolean)
+
+    # Старое состояние станции до репорта
+    old_a92 = Column(Boolean)
+    old_a95 = Column(Boolean)
+    old_a98 = Column(Boolean)
+    old_diesel = Column(Boolean)
+    old_gas = Column(Boolean)
+
+    old_status = Column(String)
+    old_text = Column(String)
 
     author = Column(String, default="Аноним")
     comment = Column(String)
