@@ -313,7 +313,10 @@ def create_comment(report_id: int, data: CommentRequest, request: Request):
 @app.post("/report")
 def create_report(data: ReportRequest, request: Request, background_tasks: BackgroundTasks):
     db = SessionLocal()
-    station = db.query(models.Station).filter(models.Station.id == data.station_id).first()
+
+    station = db.query(models.Station)\
+        .filter(models.Station.id == data.station_id)\
+        .first()
 
     if station is None:
         db.close()
@@ -322,73 +325,102 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
     user = get_current_user_optional(request)
     author = user.name if user else "Аноним"
 
-   report = models.Report(
+    report = models.Report(
+        station_id=data.station_id,
+        a92=data.a92,
+        a95=data.a95,
+        a98=data.a98,
+        diesel=data.diesel,
+        gas=data.gas,
 
-    station_id=data.station_id,
+        price_a92=data.price_a92,
+        price_a95=data.price_a95,
+        price_a98=data.price_a98,
+        price_diesel=data.price_diesel,
+        price_gas=data.price_gas,
 
-    a92=data.a92,
-    a95=data.a95,
-    a98=data.a98,
-    diesel=data.diesel,
-    gas=data.gas,
+        has_queue=data.has_queue,
+        queue_rating=data.queue_rating,
 
-    old_a92=station.a92,
-    old_a95=station.a95,
-    old_a98=station.a98,
-    old_diesel=station.diesel,
-    old_gas=station.gas,
+        author=author,
+        comment=data.comment,
+        created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
+    )
 
-    old_status=station.status,
-    old_text=station.text,
-
-    author=author,
-    comment=data.comment,
-    created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
-)
     db.add(report)
+    db.commit()
 
-    station.a92 = data.a92
-    station.a95 = data.a95
-    station.a98 = data.a98
-    station.diesel = data.diesel
-    station.gas = data.gas
+    # сразу применяем последний репорт к станции
+    last_report = db.query(models.Report)\
+        .filter(models.Report.station_id == data.station_id)\
+        .order_by(models.Report.id.desc())\
+        .first()
 
-    # цену обновляем, только если её реально прислали — иначе не затираем старую нулём
-    if data.price_a92 is not None:
-        station.price_a92 = data.price_a92
-    if data.price_a95 is not None:
-        station.price_a95 = data.price_a95
-    if data.price_a98 is not None:
-        station.price_a98 = data.price_a98
-    if data.price_diesel is not None:
-        station.price_diesel = data.price_diesel
-    if data.price_gas is not None:
-        station.price_gas = data.price_gas
+    if last_report:
+        station.a92 = last_report.a92
+        station.a95 = last_report.a95
+        station.a98 = last_report.a98
+        station.diesel = last_report.diesel
+        station.gas = last_report.gas
 
-    if data.has_queue is not None:
-        station.has_queue = data.has_queue
+        if last_report.price_a92 is not None:
+            station.price_a92 = last_report.price_a92
 
-    if data.queue_rating is not None:
-        # защита от мусорных значений с фронта — сервер не доверяет клиенту границы диапазона
-        station.queue_rating = max(1, min(5, data.queue_rating))
+        if last_report.price_a95 is not None:
+            station.price_a95 = last_report.price_a95
 
-    has_any_fuel = any([data.a92, data.a95, data.a98, data.diesel, data.gas])
+        if last_report.price_a98 is not None:
+            station.price_a98 = last_report.price_a98
 
-    if has_any_fuel:
-        station.status = "green"
-        station.text = "Топливо есть"
-    elif station.has_queue:
-        station.status = "orange"
-        station.text = "Топлива нет, но есть очередь"
-    else:
-        station.status = "gray"
-        station.text = "Топлива нет"
+        if last_report.price_diesel is not None:
+            station.price_diesel = last_report.price_diesel
+
+        if last_report.price_gas is not None:
+            station.price_gas = last_report.price_gas
+
+        if last_report.has_queue is not None:
+            station.has_queue = last_report.has_queue
+
+        if last_report.queue_rating is not None:
+            station.queue_rating = max(
+                1,
+                min(5, last_report.queue_rating)
+            )
+
+
+        has_any_fuel = any([
+            station.a92,
+            station.a95,
+            station.a98,
+            station.diesel,
+            station.gas
+        ])
+
+        if has_any_fuel:
+            station.status = "green"
+            station.text = "Топливо есть"
+
+        elif station.has_queue:
+            station.status = "orange"
+            station.text = "Топлива нет, но есть очередь"
+
+        else:
+            station.status = "gray"
+            station.text = "Топлива нет"
+
 
     db.commit()
     db.close()
 
-    # ИИ-сводка считается ПОСЛЕ ответа пользователю — не задерживает его
-    if data.comment and data.comment.strip():
-        background_tasks.add_task(update_station_ai_summary, data.station_id)
 
-    return {"success": True}
+    # ИИ-сводка после ответа
+    if data.comment and data.comment.strip():
+        background_tasks.add_task(
+            update_station_ai_summary,
+            data.station_id
+        )
+
+
+    return {
+        "success": True
+    }
