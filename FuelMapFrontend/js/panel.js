@@ -17,20 +17,16 @@ function queueLine(hasQueue, rating) {
     return `<p>🚗 Есть очередь ${stars}</p>`;
 }
 
-function timeAgo(dateString) {
-    const now = new Date();
+function formatDate(dateString) {
     const date = new Date(dateString);
 
-    const diff = Math.floor((now - date) / 1000);
-
-    const minutes = Math.floor(diff / 60);
-    const hours = Math.floor(diff / 3600);
-    const days = Math.floor(diff / 86400);
-
-    if (minutes < 1) return "только что";
-    if (minutes < 60) return `${minutes} мин назад`;
-    if (hours < 24) return `${hours} ч назад`;
-    return `${days} дн назад`;
+    return date.toLocaleString("ru-RU", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
 }
 
 function openStationPanel(station) {
@@ -46,10 +42,10 @@ function openStationPanel(station) {
     const updated = document.getElementById("panelUpdated");
 
     if (station.updated_at) {
-    updated.textContent = "🕒 Последнее изменение: " + timeAgo(station.updated_at);
-    } else {
-        updated.textContent = "🕒 Нет информации";
-    }
+    updated.textContent = "🕒 Последнее изменение: " + formatDate(station.updated_at);
+} else {
+    updated.textContent = "🕒 Нет информации";
+}
 
     document.getElementById("panelFuel").innerHTML =
         fuelLine("АИ-92", station.fuel.a92, station.price_a92) +
