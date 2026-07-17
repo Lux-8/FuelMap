@@ -2,11 +2,44 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+    <!-- Главная карта -->
     <url>
         <loc>https://fuelmap.site/</loc>
-        <lastmod>2026-07-16</lastmod>
+        <lastmod>2026-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
+
+
+    <!-- О проекте -->
+    <url>
+        <loc>https://fuelmap.site/about.html</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+
+    <!-- Профиль -->
+    <url>
+        <loc>https://fuelmap.site/profile.html</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+
+    <!-- Карта заправок -->
+    <url>
+        <loc>https://fuelmap.site/map.html</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
+    <!-- Админку НЕ добавляем -->
+    <!-- /admin.html скрыта от поисковиков -->
+
 
 </urlset>

@@ -15,6 +15,14 @@
     <meta name="author" content="FuelMap">
     <meta name="application-name" content="FuelMap">
 
+    <meta name="apple-mobile-web-app-title" content="FuelMap">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta itemprop="name" content="FuelMap">
+    <meta itemprop="description" content="Интерактивная карта автозаправок Твери и Тверской области с актуальными ценами, наличием топлива и очередями.">
+    <meta itemprop="image" content="https://fuelmap.site/assets/preview.png">
+
     <meta name="robots"
           content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 
@@ -25,10 +33,11 @@
     <link rel="canonical" href="https://fuelmap.site/">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/preview.png">
-    <link rel="apple-touch-icon" href="/assets/preview.png">
-
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <!-- Open Graph -->
     <meta property="og:site_name" content="FuelMap">
     <meta property="og:type" content="website">
@@ -37,9 +46,9 @@
           content="Проверяйте наличие топлива, цены и очереди на АЗС Твери и Тверской области.">
     <meta property="og:url" content="https://fuelmap.site/">
     <meta property="og:image" content="https://fuelmap.site/assets/preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="FuelMap">
+    <meta property="og:image:secure_url" content="https://fuelmap.site/assets/preview.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="FuelMap — карта АЗС Твери и Тверской области">
     <meta property="og:locale" content="ru_RU">
 
     <!-- Twitter -->
@@ -48,6 +57,8 @@
     <meta name="twitter:description"
           content="Карта автозаправок Твери и области с актуальными ценами и наличием топлива.">
     <meta name="twitter:image" content="https://fuelmap.site/assets/preview.png">
+    <meta name="twitter:site" content="@FuelMap">
+    <meta name="twitter:creator" content="@FuelMap">
 
     <!-- PWA -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -68,9 +79,14 @@
       "description":"Карта автозаправок Твери и Тверской области с актуальным наличием топлива, ценами и очередями.",
       "inLanguage":"ru",
       "publisher":{
-        "@type":"Organization",
-        "name":"FuelMap"
-      },
+"@type":"Organization",
+  "name":"FuelMap",
+  "url":"https://fuelmap.site",
+  "logo":{
+    "@type":"ImageObject",
+    "url":"https://fuelmap.site/assets/logo.png"
+  }
+},
       "potentialAction":{
         "@type":"SearchAction",
         "target":"https://fuelmap.site/?q={search_term_string}",
@@ -98,6 +114,7 @@
     <input id="search" placeholder="Поиск заправки...">
     <button id="profileBtn">👤 Профиль</button>
     <button id="updatesBtn">📋</button>
+
 </header>
 
 <nav class="filters">
@@ -139,13 +156,24 @@
 
 <div id="profileModal" class="modal">
     <div class="modal-content profile-window">
-        <span class="close-profile">&times;</span>
+        <span class="close-profile modal-close" id="closeProfile">&times;</span>
 
         <div id="authLoggedIn" style="display:none;">
 
-    <div class="profile-avatar">
-        👤
-    </div>
+    <label class="profile-avatar">
+    <img id="profileAvatarImg" src="assets/default-avatar.png" alt="Аватар">
+    <input 
+        type="file" 
+        id="avatarInput" 
+        accept="image/*"
+        hidden
+    >
+</label>
+
+    <p style="text-align:center;color:#94a3b8;font-size:13px;">
+Нажмите на аватар, чтобы изменить фото
+</p>
+
 
     <h2 id="profileTitle">
         Профиль
@@ -185,29 +213,23 @@
     </div>
 
 
-    <div class="profile-section creators">
+   <div class="profile-section creators">
 
-        <h3>🚗 О создателях</h3>
+    <h3>🚗 О проекте FuelMap</h3>
 
-        <p>
-            FuelMap — сервис для поиска
-            топлива и оценки автозаправок.
-        </p>
+    <p>
+        Узнайте больше о проекте, создателях и способах связи:
+        <br>
+        <a href="about/about.html">
+            О проекте и контакты →
+        </a>
+    </p>
 
-        <p>
-            📩 Контакты:
-            <br>
-            Поддержка:
-            <a href="mailto:lux89901ru@gmail.com">lux89901ru@gmail.com</a>
-            
-        </p>
-
+</div>
 
         <p>
-            💡 Пасхалка:
-            <br>
-            Найдите секрет на карте 😉
-        </p>
+    🚀 В будущем в FuelMap могут появиться новые функции и интересные возможности.
+    </p>
 
     </div>
 
@@ -250,7 +272,7 @@
 
 <div id="reportModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close modal-close" id="closeReport">&times;</span>
 
         <h2>Сообщить о наличии топлива</h2>
 
