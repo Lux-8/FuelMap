@@ -84,6 +84,11 @@ class Station(Base):
     has_queue = Column(Boolean, nullable=True)
     queue_rating = Column(Integer, nullable=True)
 
+    updated_at = Column(
+    DateTime,
+    default=datetime.utcnow,
+    onupdate=datetime.utcnow
+    )
 
 class User(Base):
     __tablename__ = "users"

@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -174,6 +174,7 @@ def station_to_dict(s):
         "ai_summary": s.ai_summary,
         "has_queue": s.has_queue,
         "queue_rating": s.queue_rating,
+	"updated_at": s.updated_at,
         "price_a92": s.price_a92,
         "price_a95": s.price_a95,
         "price_a98": s.price_a98,
@@ -407,6 +408,8 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
         else:
             station.status = "gray"
             station.text = "Топлива нет"
+
+    station.updated_at = datetime.now(timezone(timedelta(hours=3))).replace(tzinfo=None)
 
 
     db.commit()
