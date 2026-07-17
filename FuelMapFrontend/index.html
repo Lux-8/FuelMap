@@ -2,25 +2,93 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuelMap — карта заправок с актуальным наличием топлива</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Интерактивная карта заправок с актуальным наличием и ценами на топливо. Пользователи сами отмечают, где есть бензин, дизель и газ, и какие очереди.">
+    <title>FuelMap — карта АЗС Твери и Тверской области | Цены, наличие топлива и очереди</title>
 
-    <!-- Open Graph — как ссылка выглядит при пересылке в Telegram/VK/WhatsApp -->
-    <meta property="og:title" content="FuelMap — карта заправок">
-    <meta property="og:description" content="Актуальное наличие и цены на топливо от реальных водителей. Смотри, где есть бензин прямо сейчас.">
+    <meta name="description"
+          content="FuelMap — интерактивная карта автозаправок Твери и Тверской области. Проверяйте наличие бензина АИ-92, АИ-95, АИ-98, дизеля и газа, цены, очереди и последние обновления от пользователей.">
+
+    <meta name="keywords"
+          content="АЗС Тверь, карта заправок, карта АЗС, бензин Тверь, бензин Тверская область, дизель Тверь, газ Тверь, АИ-92, АИ-95, АИ-98, цены бензин, наличие топлива, FuelMap">
+
+    <meta name="author" content="FuelMap">
+    <meta name="application-name" content="FuelMap">
+
+    <meta name="robots"
+          content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+
+    <meta name="theme-color" content="#24b25b">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="canonical" href="https://fuelmap.site/">
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/preview.png">
+    <link rel="apple-touch-icon" href="/assets/preview.png">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="FuelMap">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fuelmap.site">
+    <meta property="og:title" content="FuelMap — карта АЗС Твери">
+    <meta property="og:description"
+          content="Проверяйте наличие топлива, цены и очереди на АЗС Твери и Тверской области.">
+    <meta property="og:url" content="https://fuelmap.site/">
+    <meta property="og:image" content="https://fuelmap.site/assets/preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="FuelMap">
     <meta property="og:locale" content="ru_RU">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛽</text></svg>">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FuelMap — карта АЗС">
+    <meta name="twitter:description"
+          content="Карта автозаправок Твери и области с актуальными ценами и наличием топлива.">
+    <meta name="twitter:image" content="https://fuelmap.site/assets/preview.png">
+
+    <!-- PWA -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="FuelMap">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Язык -->
+    <meta http-equiv="content-language" content="ru">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebSite",
+      "name":"FuelMap",
+      "url":"https://fuelmap.site",
+      "description":"Карта автозаправок Твери и Тверской области с актуальным наличием топлива, ценами и очередями.",
+      "inLanguage":"ru",
+      "publisher":{
+        "@type":"Organization",
+        "name":"FuelMap"
+      },
+      "potentialAction":{
+        "@type":"SearchAction",
+        "target":"https://fuelmap.site/?q={search_term_string}",
+        "query-input":"required name=search_term_string"
+      }
+    }
+    </script>
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 </head>
 
 <body>
@@ -56,6 +124,7 @@
     <h2 id="panelName"></h2>
     <p id="panelAddress">📍 Адрес неизвестен</p>
     <p id="panelStatus"></p>
+    <p id="panelUpdated" class="panel-updated"></p>
     <div id="panelFuel"></div>
     <p id="panelAiSummary" class="ai-summary"></p>
     <button id="panelReport">📝 Сообщить</button>
@@ -261,4 +330,13 @@
 </script>
 
 </body>
+
+<h1 class="visually-hidden">
+FuelMap — карта автозаправок Твери и Тверской области
+</h1>
+
+<p class="visually-hidden">
+FuelMap помогает находить ближайшие АЗС, смотреть наличие топлива, цены на бензин АИ-92, АИ-95, АИ-98, дизельное топливо, газ, а также информацию об очередях и последних обновлениях.
+</p>
+
 </html>
