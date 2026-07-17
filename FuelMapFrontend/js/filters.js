@@ -28,8 +28,14 @@ function updateMarkerVisibility() {
         const marker = stationMarkers[station.id];
         if (!marker) return;
 
-        const passesFuelFilter = !activeFuelFilter || station.fuel[activeFuelFilter];
-        const passesSearch = searchText === "" || station.name.toLowerCase().includes(searchText);
+        const passesFuelFilter =
+            !activeFuelFilter || station.fuel[activeFuelFilter];
+
+        const searchData = `${station.name || ""} ${station.address || ""}`
+            .toLowerCase();
+
+        const passesSearch =
+            searchText === "" || searchData.includes(searchText);
 
         const visible = passesFuelFilter && passesSearch;
         const isInCluster = markers.hasLayer(marker);

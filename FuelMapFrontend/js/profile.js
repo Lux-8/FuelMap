@@ -34,7 +34,7 @@ document.getElementById("profileBtn").onclick = async () => {
     authError.textContent = "";
     await fetchMe();
     renderProfileState();
-    profileModal.style.display = "block";
+    profileModal.style.display = "flex";
 };
 
 closeProfileModal.onclick = () => {
@@ -62,6 +62,45 @@ tabRegister.onclick = () => {
     loginForm.style.display = "none";
     authError.textContent = "";
 };
+
+const avatarInput = document.getElementById("avatarInput");
+const avatarImg = document.getElementById("profileAvatarImg");
+
+
+avatarInput.addEventListener("change", function(){
+
+    const file = this.files[0];
+
+    if(!file) return;
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = function(e){
+
+        avatarImg.src = e.target.result;
+
+        localStorage.setItem(
+            "fuelmap_avatar",
+            e.target.result
+        );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+});
+
+
+// загрузка сохраненной аватарки
+
+const savedAvatar = localStorage.getItem("fuelmap_avatar");
+
+if(savedAvatar){
+    avatarImg.src = savedAvatar;
+}
 
 document.getElementById("loginSubmit").onclick = async () => {
     const email = document.getElementById("loginEmail").value.trim();

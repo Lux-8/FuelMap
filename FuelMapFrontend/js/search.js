@@ -1,6 +1,10 @@
 const searchInput = document.getElementById("search");
 
-searchInput.addEventListener("input", () => {
-    searchText = searchInput.value.trim().toLowerCase();
+searchInput.addEventListener("input", (e) => {
+    searchText = e.target.value
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+
     updateMarkerVisibility();
 });
