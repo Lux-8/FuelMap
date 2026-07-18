@@ -18,6 +18,13 @@ class AdminLoginRequest(BaseModel):
     password: str
 
 
+class StationCreateRequest(BaseModel):
+    name: str
+    address: str | None = None
+    lat: float
+    lng: float
+
+
 def get_current_admin(
     credentials: HTTPAuthorizationCredentials = Depends(security)
 ):
@@ -211,6 +218,66 @@ def admin_comments(
 
     return result
 
+
+# ==============================================================
+# УДАЛЕНИЕ ОТДЕЛЬНОГО КОММЕНТАРИЯ (ответа в треде под репортом)
+# ==============================================================
+
+@router.delete("/admin/comments/{comment_id}")
+def admin_delete_comment(
+    comment_id: int,
+    _: bool = Depends(get_current_admin)
+):
+    db = SessionLocal()
+
+    try:
+        comment = (
+            db.query(models.Comment)
+            .filter(models.Comment.id == comment_id)
+            .first()
+        )
+
+        if comment is None:
+            raise HTTPException(status_code=404, detail="Комментарий не найден")
+
+        db.delete(comment)
+        db.commit()
+
+        return {"success": True}
+
+    finally:
+        db.close()
+
+
+# ==============================================================
+# СПИСОК КОММЕНТАРИЕВ КОНКРЕТНОГО РЕПОРТА (для админки)
+# ==============================================================
+
+@router.get("/admin/reports/{report_id}/comments")
+def admin_get_report_comments(
+    report_id: int,
+    _: bool = Depends(get_current_admin)
+):
+    db = SessionLocal()
+
+    comments = (
+        db.query(models.Comment)
+        .filter(models.Comment.report_id == report_id)
+        .order_by(models.Comment.id.asc())
+        .all()
+    )
+
+    result = [{
+        "id": c.id,
+        "author": c.author,
+        "text": c.text,
+        "created_at": c.created_at
+    } for c in comments]
+
+    db.close()
+    return result
+
+
 @router.get("/admin/stats")
 def admin_stats(_: bool = Depends(get_current_admin)):
 
@@ -326,8 +393,12 @@ def admin_delete_report(
         # Запоминаем АЗС до удаления
         station_id = report.station_id
 
-        db.query(models.Comment).filter(models.Comment.report_id == report_id).delete()
-        
+        # Удаляем комментарии этого репорта, чтобы они не "осиротели"
+        # и не привязались случайно к будущему репорту с тем же id
+        db.query(models.Comment).filter(
+            models.Comment.report_id == report_id
+        ).delete()
+
         db.delete(report)
         db.flush()
 
@@ -471,6 +542,39 @@ def admin_get_stations(_: bool = Depends(get_current_admin)):
 
     return result
 
+
+# ==============================================================
+# ДОБАВЛЕНИЕ ЗАПРАВКИ ВРУЧНУЮ
+# ==============================================================
+
+@router.post("/admin/stations")
+def admin_create_station(
+    data: StationCreateRequest,
+    _: bool = Depends(get_current_admin)
+):
+    db = SessionLocal()
+
+    station = models.Station(
+        name=data.name,
+        address=data.address,
+        lat=data.lat,
+        lng=data.lng,
+        status="gray",
+        text="Топлива нет",
+        a92=False,
+        a95=False,
+        a98=False,
+        diesel=False,
+        gas=False,
+        has_queue=False
+    )
+
+    db.add(station)
+    db.commit()
+    db.refresh(station)
+    db.close()
+
+    return {"success": True, "id": station.id}
 
 
 @router.delete("/admin/stations/{station_id}")
