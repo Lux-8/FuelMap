@@ -516,6 +516,29 @@
 
         <h2>⛽ Заправки</h2>
 
+        <!-- ========== ФОРМА ДОБАВЛЕНИЯ ЗАПРАВКИ ВРУЧНУЮ ========== -->
+        <div class="admin-info-card" style="margin-bottom:20px;">
+
+            <h3>➕ Добавить заправку вручную</h3>
+
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px; max-width:420px;">
+
+                <input id="newStationName" placeholder="Название">
+                <input id="newStationAddress" placeholder="Адрес">
+                <input id="newStationLat" type="number" step="any" placeholder="Широта (lat), напр. 56.8587">
+                <input id="newStationLng" type="number" step="any" placeholder="Долгота (lng), напр. 35.9176">
+
+                <button class="admin-btn" onclick="createStation()">
+                    Создать заправку
+                </button>
+
+                <p id="newStationError" class="auth-error"></p>
+
+            </div>
+
+        </div>
+        <!-- ========================================================= -->
+
         <div
             id="stationsTable"
             class="admin-table">

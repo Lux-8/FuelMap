@@ -573,6 +573,52 @@ async function loadStations() {
 }
 
 
+// =====================================
+// STATIONS — добавление вручную
+// =====================================
+
+async function createStation() {
+
+    const name = document.getElementById("newStationName").value.trim();
+    const address = document.getElementById("newStationAddress").value.trim();
+    const lat = parseFloat(document.getElementById("newStationLat").value);
+    const lng = parseFloat(document.getElementById("newStationLng").value);
+
+    const errorEl = document.getElementById("newStationError");
+    if (errorEl) errorEl.textContent = "";
+
+    if (!name || isNaN(lat) || isNaN(lng)) {
+        if (errorEl) errorEl.textContent = "Заполните название и корректные координаты";
+        return;
+    }
+
+    try {
+        const response = await api("/admin/stations", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, address: address || null, lat, lng })
+        });
+
+        if (!response.ok) {
+            if (errorEl) errorEl.textContent = "Ошибка при создании заправки";
+            return;
+        }
+
+        document.getElementById("newStationName").value = "";
+        document.getElementById("newStationAddress").value = "";
+        document.getElementById("newStationLat").value = "";
+        document.getElementById("newStationLng").value = "";
+
+        loadStations();
+        loadStats();
+
+    } catch (err) {
+        console.error(err);
+        if (errorEl) errorEl.textContent = "Ошибка подключения";
+    }
+}
+
+
 
 async function deleteStation(id) {
 
@@ -660,15 +706,32 @@ async function loadReports() {
                         ${report.created_at}
                     </span>
 
-                    <button
-                        class="admin-btn"
-                        style="background:#dc2626"
-                        onclick="deleteReport(${report.id})">
+                    <div style="display:flex; gap:6px;">
 
-                        🗑
+                        <button
+                            class="admin-btn"
+                            onclick="toggleAdminComments(${report.id})">
 
-                    </button>
+                            💬 Ответы
 
+                        </button>
+
+                        <button
+                            class="admin-btn"
+                            style="background:#dc2626"
+                            onclick="deleteReport(${report.id})">
+
+                            🗑
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="admin-comments-${report.id}"
+                    style="display:none; padding:10px 0 10px 20px;">
                 </div>
             `;
 
@@ -685,6 +748,72 @@ async function loadReports() {
 
     }
 
+}
+
+
+// =====================================
+// REPORTS — комментарии (ответы) внутри репорта
+// =====================================
+
+async function toggleAdminComments(reportId) {
+
+    const box = document.getElementById(`admin-comments-${reportId}`);
+    if (!box) return;
+
+    if (box.style.display === "block") {
+        box.style.display = "none";
+        return;
+    }
+
+    box.style.display = "block";
+    box.innerHTML = "Загрузка...";
+
+    try {
+        const response = await api(`/admin/reports/${reportId}/comments`);
+        const comments = await response.json();
+
+        if (comments.length === 0) {
+            box.innerHTML = "<i>Нет ответов</i>";
+            return;
+        }
+
+        box.innerHTML = comments.map(c => `
+            <div class="admin-row" style="grid-template-columns:1fr 2fr 1fr auto;">
+                <span>${c.author}</span>
+                <span>${c.text}</span>
+                <span>${c.created_at || ""}</span>
+                <button
+                    class="admin-btn"
+                    style="background:#dc2626"
+                    onclick="deleteAdminComment(${c.id}, ${reportId})">
+                    🗑
+                </button>
+            </div>
+        `).join("");
+
+    } catch (err) {
+        console.error(err);
+        box.innerHTML = "Ошибка загрузки ответов";
+    }
+}
+
+async function deleteAdminComment(commentId, reportId) {
+
+    if (!confirm("Удалить этот ответ?"))
+        return;
+
+    try {
+        await api(`/admin/comments/${commentId}`, { method: "DELETE" });
+
+        // перерисовываем список комментариев этого репорта
+        const box = document.getElementById(`admin-comments-${reportId}`);
+        box.style.display = "none";
+        toggleAdminComments(reportId);
+
+    } catch (err) {
+        console.error(err);
+        alert("Не удалось удалить ответ");
+    }
 }
 
 
