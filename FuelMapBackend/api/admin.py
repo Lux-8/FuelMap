@@ -326,6 +326,8 @@ def admin_delete_report(
         # Запоминаем АЗС до удаления
         station_id = report.station_id
 
+        db.query(models.Comment).filter(models.Comment.report_id == report_id).delete()
+        
         db.delete(report)
         db.flush()
 
