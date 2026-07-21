@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from database import SessionLocal
 import models
 from auth_utils import create_access_token, decode_access_token
+from presence import get_online_count
 
 security = HTTPBearer()
 
@@ -293,7 +294,7 @@ def admin_stats(_: bool = Depends(get_current_admin)):
         "users": users_count,
         "reports": reports_count,
         "stations": stations_count,
-        "online": 0
+        "online": get_online_count()
     }
 
 @router.get("/admin/visits")
