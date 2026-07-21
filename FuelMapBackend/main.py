@@ -195,6 +195,20 @@ def root():
     return {"status": "FuelMap Backend"}
 
 
+# ==============================================================
+# PRESENCE — "онлайн сейчас" для админки
+# ==============================================================
+# Фронтенд (index.html) должен раз в ~25 сек слать сюда POST-запрос.
+# Само хранилище и подсчёт вынесены в presence.py, чтобы admin.py тоже мог его читать.
+from presence import register_ping
+
+
+@app.post("/ping")
+def ping(session_id: str):
+    register_ping(session_id)
+    return {"ok": True}
+
+
 @app.get("/station/{station_id}")
 def get_station(station_id: int):
     db = SessionLocal()
