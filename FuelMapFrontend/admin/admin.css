@@ -959,3 +959,22 @@ border-radius:12px;
 
 
 }
+
+/* ===== FIX SCROLL ===== */
+
+html,
+body{
+    height:auto !important;
+    min-height:100%;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+}
+
+.admin-body{
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+}
+
+.admin-main{
+    overflow:visible !important;
+}

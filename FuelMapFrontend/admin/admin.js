@@ -184,7 +184,11 @@ const tabs = [
 
 ];
 
+let currentTab = "dashboard";
+
 function openTab(tab, event = null) {
+
+    currentTab = tab;
 
     tabs.forEach(name => {
 
@@ -317,7 +321,7 @@ async function loadUsers() {
                         class="admin-btn"
                         onclick="openUserModal(${user.id})">
 
-                        👁
+                        Открыть
 
                     </button>
 
@@ -412,13 +416,13 @@ async function openUserModal(id) {
                         `<button
                             class="admin-btn"
                             onclick="unblockUser(${user.id})">
-                            ✅ Разблокировать
+                            Разблокировать
                         </button>`
                         :
                         `<button
                             class="admin-btn"
                             onclick="blockUser(${user.id})">
-                            🚫 Заблокировать
+                            Заблокировать
                         </button>`
                     }
 
@@ -427,7 +431,7 @@ async function openUserModal(id) {
                         style="background:#dc2626"
                         onclick="deleteUser(${user.id})">
 
-                        🗑 Удалить
+                        Удалить Удалить
 
                     </button>
 
@@ -549,7 +553,7 @@ async function loadStations() {
                             style="background:#dc2626"
                             onclick="deleteStation(${station.id})">
 
-                            🗑
+                            Удалить
 
                         </button>
 
@@ -712,7 +716,7 @@ async function loadReports() {
                             class="admin-btn"
                             onclick="toggleAdminComments(${report.id})">
 
-                            💬 Ответы
+                            Ответы
 
                         </button>
 
@@ -721,7 +725,7 @@ async function loadReports() {
                             style="background:#dc2626"
                             onclick="deleteReport(${report.id})">
 
-                            🗑
+                            Удалить
 
                         </button>
 
@@ -786,7 +790,7 @@ async function toggleAdminComments(reportId) {
                     class="admin-btn"
                     style="background:#dc2626"
                     onclick="deleteAdminComment(${c.id}, ${reportId})">
-                    🗑
+                    Удалить
                 </button>
             </div>
         `).join("");
@@ -868,7 +872,7 @@ async function loadVisits() {
         table.innerHTML = `
 
             <h3 style="margin-bottom:20px">
-                🌐 Всего посещений: ${data.total}
+                Всего посещений: ${data.total}
             </h3>
 
             <div class="admin-row">
@@ -989,6 +993,54 @@ function showMessage(text) {
 
 }
 
+
+
+// =====================================
+// АВТООБНОВЛЕНИЕ КАЖДЫЕ 15 СЕКУНД
+// =====================================
+
+function isUserTyping() {
+    const el = document.activeElement;
+    if (!el) return false;
+    return el.tagName === "INPUT" || el.tagName === "TEXTAREA";
+}
+
+function refreshCurrentTab() {
+
+    // не дёргаем интерфейс, если человек сейчас что-то вводит
+    // (например, заполняет форму новой заправки)
+    if (isUserTyping()) return;
+
+    // не обновляем, если открыто модальное окно с карточкой пользователя —
+    // иначе список за модалкой перерисуется, а модалка останется как есть, это ок,
+    // но саму модалку трогать не будем
+    loadStats();
+
+    switch (currentTab) {
+        case "users":
+            loadUsers();
+            break;
+        case "stations":
+            loadStations();
+            break;
+        case "reports":
+            // не перерисовываем таблицу репортов, если у кого-то открыт
+            // список ответов под репортом — иначе он схлопнется на каждое обновление
+            const anyThreadOpen = Array.from(
+                document.querySelectorAll('[id^="admin-comments-"]')
+            ).some(el => el.style.display === "block");
+
+            if (!anyThreadOpen) {
+                loadReports();
+            }
+            break;
+        case "visits":
+            loadVisits();
+            break;
+    }
+}
+
+setInterval(refreshCurrentTab, 15000);
 
 
 // =====================================
