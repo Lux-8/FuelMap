@@ -1,9 +1,11 @@
 import os
+import time
+from collections import defaultdict
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import RedirectResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from authlib.integrations.starlette_client import OAuth
 
 from database import SessionLocal
@@ -13,6 +15,32 @@ from auth_utils import hash_password, verify_password, create_access_token, deco
 router = APIRouter()
 
 FRONTEND_URL = os.getenv("FRONTEND_URL")
+
+# --- Простой rate limiter в памяти процесса ---
+# Не переживает рестарт сервера и не работает между несколькими воркерами,
+# но этого достаточно, чтобы остановить примитивный брутфорс на одном инстансе.
+# Для серьёзного продакшена с несколькими воркерами лучше заменить на slowapi + Redis.
+_attempts: dict[str, list[float]] = defaultdict(list)
+
+RATE_LIMIT_MAX_ATTEMPTS = 5
+RATE_LIMIT_WINDOW_SECONDS = 60
+
+
+def check_rate_limit(request: Request, bucket: str):
+    """Разрешает не больше RATE_LIMIT_MAX_ATTEMPTS попыток за RATE_LIMIT_WINDOW_SECONDS с одного IP."""
+    key = f"{bucket}:{request.client.host}"
+    now = time.time()
+
+    # оставляем только попытки внутри текущего окна
+    _attempts[key] = [t for t in _attempts[key] if now - t < RATE_LIMIT_WINDOW_SECONDS]
+
+    if len(_attempts[key]) >= RATE_LIMIT_MAX_ATTEMPTS:
+        raise HTTPException(
+            status_code=429,
+            detail="Слишком много попыток. Подождите минуту и попробуйте снова.",
+        )
+
+    _attempts[key].append(now)
 
 oauth = OAuth()
 oauth.register(
@@ -25,13 +53,13 @@ oauth.register(
 
 
 class RegisterRequest(BaseModel):
-    email: str
+    email: EmailStr
     password: str
     name: str
 
 
 class LoginRequest(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
@@ -77,7 +105,9 @@ def get_current_user_optional(request: Request):
 
 
 @router.post("/auth/register")
-def register(data: RegisterRequest):
+def register(data: RegisterRequest, request: Request):
+    check_rate_limit(request, "register")
+
     db = SessionLocal()
 
     email = data.email.strip().lower()
@@ -109,7 +139,9 @@ def register(data: RegisterRequest):
 
 
 @router.post("/auth/login")
-def login(data: LoginRequest):
+def login(data: LoginRequest, request: Request):
+    check_rate_limit(request, "login")
+
     db = SessionLocal()
     email = data.email.strip().lower()
 

@@ -56,9 +56,18 @@ if count == 0:
 else:
     print(f"[startup] В базе уже есть {count} станций, автоимпорт пропущен")
 
+SESSION_SECRET = os.getenv("SESSION_SECRET")
+if not SESSION_SECRET:
+    raise RuntimeError(
+        "SESSION_SECRET не задан в переменных окружения. "
+        "Раньше тут был захардкоженный дефолт — это дыра в безопасности "
+        "(любой, кто знает дефолт, мог подделать сессию). Задай переменную "
+        "окружения и перезапусти сервер."
+    )
+
 app.add_middleware(
     SessionMiddleware,
-    secret_key=os.getenv("SESSION_SECRET", "dev-fallback-secret"),
+    secret_key=SESSION_SECRET,
     same_site="lax",
     https_only=True,
     max_age=600  # сессия для OAuth-флоу живёт всего 10 минут — достаточно для логина

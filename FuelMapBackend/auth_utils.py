@@ -6,6 +6,12 @@ from passlib.context import CryptContext
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 SECRET_KEY = os.getenv("JWT_SECRET")
+if not SECRET_KEY:
+    raise RuntimeError(
+        "JWT_SECRET не задан в переменных окружения. "
+        "Без него токены нельзя подписывать безопасно — сервер не запустится."
+    )
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7
 
@@ -32,9 +38,9 @@ def decode_access_token(token: str):
             SECRET_KEY,
             algorithms=[ALGORITHM]
         )
-        print("JWT PAYLOAD:", payload)
         return payload
 
-    except Exception as e:
-        print("JWT ERROR:", e)
+    except Exception:
+        # Токен невалиден/истёк — не логируем содержимое,
+        # чтобы не светить payload и детали ошибок в логах прод-сервера
         return None
