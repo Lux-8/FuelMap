@@ -17,10 +17,11 @@ def import_stations():
 
     for s in stations:
 
-        exists = db.query(Station).filter(
-            Station.lat == s["lat"],
-            Station.lng == s["lng"]
-        ).first()
+        exists = (
+            db.query(Station)
+            .filter(Station.lat == s["lat"], Station.lng == s["lng"])
+            .first()
+        )
 
         if exists:
             continue
@@ -38,7 +39,7 @@ def import_stations():
             a95=fuel.get("a95", False),
             a98=fuel.get("a98", False),
             diesel=fuel.get("diesel", False),
-            gas=fuel.get("gas", False)
+            gas=fuel.get("gas", False),
         )
 
         db.add(station)

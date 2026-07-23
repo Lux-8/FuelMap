@@ -10,7 +10,12 @@ from authlib.integrations.starlette_client import OAuth
 
 from database import SessionLocal
 import models
-from auth_utils import hash_password, verify_password, create_access_token, decode_access_token
+from auth_utils import (
+    hash_password,
+    verify_password,
+    create_access_token,
+    decode_access_token,
+)
 
 router = APIRouter()
 
@@ -41,6 +46,7 @@ def check_rate_limit(request: Request, bucket: str):
         )
 
     _attempts[key].append(now)
+
 
 oauth = OAuth()
 oauth.register(
@@ -119,13 +125,15 @@ def register(data: RegisterRequest, request: Request):
 
     if len(data.password) < 6:
         db.close()
-        raise HTTPException(status_code=400, detail="Пароль должен быть не короче 6 символов")
+        raise HTTPException(
+            status_code=400, detail="Пароль должен быть не короче 6 символов"
+        )
 
     user = models.User(
         email=email,
         name=data.name.strip() or email.split("@")[0],
         password_hash=hash_password(data.password),
-        created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
+        created_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
     )
 
     db.add(user)
@@ -147,7 +155,11 @@ def login(data: LoginRequest, request: Request):
 
     user = db.query(models.User).filter(models.User.email == email).first()
 
-    if user is None or user.password_hash is None or not verify_password(data.password, user.password_hash):
+    if (
+        user is None
+        or user.password_hash is None
+        or not verify_password(data.password, user.password_hash)
+    ):
         db.close()
         raise HTTPException(status_code=401, detail="Неверный email или пароль")
 
@@ -174,21 +186,27 @@ async def google_callback(request: Request):
     userinfo = token.get("userinfo")
 
     if userinfo is None:
-        raise HTTPException(status_code=400, detail="Google не вернул данные пользователя")
+        raise HTTPException(
+            status_code=400, detail="Google не вернул данные пользователя"
+        )
 
     db = SessionLocal()
 
-    user = db.query(models.User).filter(models.User.google_id == userinfo["sub"]).first()
+    user = (
+        db.query(models.User).filter(models.User.google_id == userinfo["sub"]).first()
+    )
 
     if user is None:
-        user = db.query(models.User).filter(models.User.email == userinfo["email"]).first()
+        user = (
+            db.query(models.User).filter(models.User.email == userinfo["email"]).first()
+        )
 
         if user is None:
             user = models.User(
                 email=userinfo["email"],
                 name=userinfo.get("name", userinfo["email"].split("@")[0]),
                 google_id=userinfo["sub"],
-                created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
+                created_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
             )
             db.add(user)
         else:

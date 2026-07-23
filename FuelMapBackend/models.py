@@ -14,44 +14,23 @@ from database import Base
 
 from database import Base
 
+
 class Visit(Base):
 
     __tablename__ = "visits"
 
+    id = Column(Integer, primary_key=True)
 
-    id = Column(
-        Integer,
-        primary_key=True
-    )
+    user_id = Column(Integer, nullable=True)
 
+    ip = Column(String, nullable=True)
 
-    user_id = Column(
-        Integer,
-        nullable=True
-    )
+    browser = Column(String, nullable=True)
 
+    device = Column(String, nullable=True)
 
-    ip = Column(
-        String,
-        nullable=True
-    )
+    created_at = Column(String)
 
-
-    browser = Column(
-        String,
-        nullable=True
-    )
-
-
-    device = Column(
-        String,
-        nullable=True
-    )
-
-
-    created_at = Column(
-        String
-    )
 
 class Station(Base):
     __tablename__ = "stations"
@@ -74,7 +53,7 @@ class Station(Base):
     old_diesel = Column(Boolean)
     old_gas = Column(Boolean)
     old_status = Column(String)
-    old_text = Column(String)	
+    old_text = Column(String)
     ai_summary = Column(String, nullable=True)
     price_a92 = Column(Float, nullable=True)
     price_a95 = Column(Float, nullable=True)
@@ -84,11 +63,8 @@ class Station(Base):
     has_queue = Column(Boolean, nullable=True)
     queue_rating = Column(Integer, nullable=True)
 
-    updated_at = Column(
-    DateTime,
-    default=datetime.utcnow,
-    onupdate=datetime.utcnow
-    )
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 
 class User(Base):
     __tablename__ = "users"
@@ -143,6 +119,7 @@ class Report(Base):
 
     station = relationship("Station")
 
+
 class Comment(Base):
     __tablename__ = "comments"
 
@@ -165,7 +142,4 @@ class EasterEgg(Base):
 
     status = Column(String, nullable=True)
 
-    claimed_at = Column(
-        DateTime,
-        default=datetime.utcnow
-    )
+    claimed_at = Column(DateTime, default=datetime.utcnow)

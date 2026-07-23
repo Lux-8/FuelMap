@@ -20,7 +20,6 @@ except Exception as e:
     print("is_blocked:", e)
 
 
-
 try:
     cursor.execute("""
     ALTER TABLE users
@@ -31,7 +30,6 @@ try:
 
 except Exception as e:
     print("last_login:", e)
-
 
 
 conn.commit()

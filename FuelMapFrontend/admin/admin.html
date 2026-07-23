@@ -1,656 +1,318 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>FuelMap Admin</title>
 
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
 
-</head>
+  <body class="admin-body">
+    <!-- ===================================== -->
+    <!-- LOGIN -->
+    <!-- ===================================== -->
 
-<body class="admin-body">
-
-<!-- ===================================== -->
-<!-- LOGIN -->
-<!-- ===================================== -->
-
-<div
-    id="loginScreen"
-    class="admin-login-screen">
-
-    <div class="admin-login-box">
-
+    <div id="loginScreen" class="admin-login-screen">
+      <div class="admin-login-box">
         <h1>⛽ FuelMap Admin</h1>
 
-        <p class="login-subtitle">
-            Панель управления системой
-        </p>
+        <p class="login-subtitle">Панель управления системой</p>
 
         <input
+          id="adminPassword"
+          type="password"
+          placeholder="Введите пароль администратора"
+          autocomplete="current-password"
+        />
 
-            id="adminPassword"
+        <button id="adminLoginBtn">Войти</button>
 
-            type="password"
-
-            placeholder="Введите пароль администратора"
-
-            autocomplete="current-password"
-
-        >
-
-        <button id="adminLoginBtn">
-
-            Войти
-
-        </button>
-
-        <p
-            id="adminLoginError"
-            class="auth-error">
-        </p>
-
+        <p id="adminLoginError" class="auth-error"></p>
+      </div>
     </div>
 
-</div>
+    <!-- ===================================== -->
+    <!-- ADMIN -->
+    <!-- ===================================== -->
 
-<!-- ===================================== -->
-<!-- ADMIN -->
-<!-- ===================================== -->
+    <div id="adminPanel" class="admin-layout" style="display: none">
+      <!-- ===================================== -->
+      <!-- SIDEBAR -->
+      <!-- ===================================== -->
 
-<div
-    id="adminPanel"
-    class="admin-layout"
-    style="display:none;">
+      <aside class="admin-sidebar">
+        <div class="admin-logo">⛽ FuelMap</div>
 
-<!-- ===================================== -->
-<!-- SIDEBAR -->
-<!-- ===================================== -->
+        <div class="admin-version">Admin Panel v2</div>
 
-<aside class="admin-sidebar">
-
-    <div class="admin-logo">
-
-        ⛽ FuelMap
-
-    </div>
-
-    <div class="admin-version">
-
-        Admin Panel v2
-
-    </div>
-
-    <nav class="admin-menu">
-
-        <button
-            class="active"
-            onclick="openTab('dashboard', event)">
-
+        <nav class="admin-menu">
+          <button class="active" onclick="openTab('dashboard', event)">
             📊 Dashboard
+          </button>
 
-        </button>
+          <button onclick="openTab('analytics', event)">📈 Аналитика</button>
 
-        <button
-            onclick="openTab('analytics', event)">
+          <button onclick="openTab('visits', event)">🌐 Посещения</button>
 
-            📈 Аналитика
+          <button onclick="openTab('users', event)">👤 Пользователи</button>
 
-        </button>
+          <button onclick="openTab('stations', event)">⛽ Заправки</button>
 
-        <button
-            onclick="openTab('visits', event)">
+          <button onclick="openTab('reports', event)">📝 Репорты</button>
 
-            🌐 Посещения
-
-        </button>
-
-        <button
-            onclick="openTab('users', event)">
-
-            👤 Пользователи
-
-        </button>
-
-        <button
-            onclick="openTab('stations', event)">
-
-            ⛽ Заправки
-
-        </button>
-
-        <button
-            onclick="openTab('reports', event)">
-
-            📝 Репорты
-
-        </button>
-
-        <button
-            onclick="openTab('achievements', event)">
-
+          <button onclick="openTab('achievements', event)">
             🏆 Достижения
+          </button>
+        </nav>
+      </aside>
 
-        </button>
+      <!-- ===================================== -->
+      <!-- MAIN -->
+      <!-- ===================================== -->
 
-    </nav>
+      <main class="admin-main">
+        <header class="admin-header">
+          <div>
+            <h1>FuelMap Dashboard</h1>
 
-</aside>
+            <p>Управление сервисом</p>
+          </div>
 
-<!-- ===================================== -->
-<!-- MAIN -->
-<!-- ===================================== -->
+          <button id="adminLogoutBtn" class="admin-btn">Выйти</button>
+        </header>
 
-<main class="admin-main">
+        <!-- ===================================== -->
+        <!-- STATS -->
+        <!-- ===================================== -->
 
-<header class="admin-header">
+        <section class="admin-stats">
+          <div class="stat-card">
+            <h3>👥 Пользователи</h3>
 
-    <div>
+            <div id="statUsers" class="stat-number">0</div>
 
-        <h1>
+            <p>Зарегистрировано</p>
+          </div>
 
-            FuelMap Dashboard
+          <div class="stat-card">
+            <h3>⛽ Заправки</h3>
 
-        </h1>
+            <div id="statStations" class="stat-number">0</div>
 
-        <p>
+            <p>В базе</p>
+          </div>
 
-            Управление сервисом
+          <div class="stat-card">
+            <h3>📝 Репорты</h3>
 
-        </p>
+            <div id="statReports" class="stat-number">0</div>
 
-    </div>
+            <p>Получено</p>
+          </div>
 
-    <button
+          <div class="stat-card">
+            <h3>🟢 Онлайн</h3>
 
-        id="adminLogoutBtn"
+            <div id="statOnline" class="stat-number">0</div>
 
-        class="admin-btn">
+            <p>Сейчас на сайте</p>
+          </div>
+        </section>
 
-        Выйти
+        <!-- ===================================== -->
+        <!-- DASHBOARD -->
+        <!-- ===================================== -->
 
-    </button>
+        <div id="dashboardTab" class="admin-tab">
+          <section class="admin-section">
+            <h2>📊 Главная панель</h2>
 
-</header>
+            <p>Добро пожаловать в административную панель FuelMap.</p>
 
-<!-- ===================================== -->
-<!-- STATS -->
-<!-- ===================================== -->
+            <div class="admin-info-grid">
+              <div class="admin-info-card">
+                <h3>🚀 Backend</h3>
 
-<section class="admin-stats">
+                <p>FastAPI</p>
+              </div>
 
-    <div class="stat-card">
+              <div class="admin-info-card">
+                <h3>🗄 База данных</h3>
 
-        <h3>
+                <p>SQLite</p>
+              </div>
 
-            👥 Пользователи
+              <div class="admin-info-card">
+                <h3>🌍 API</h3>
 
-        </h3>
-
-        <div
-
-            id="statUsers"
-
-            class="stat-number">
-
-            0
-
+                <p>Онлайн</p>
+              </div>
+            </div>
+          </section>
         </div>
 
-        <p>
+        <!-- ===================================== -->
+        <!-- ANALYTICS -->
+        <!-- ===================================== -->
 
-            Зарегистрировано
+        <div id="analyticsTab" class="admin-tab" style="display: none">
+          <section class="admin-section">
+            <h2>📈 Аналитика</h2>
 
-        </p>
+            <div class="analytics-grid">
+              <div class="stat-card">
+                <h3>Сегодня</h3>
 
-    </div>
+                <div class="stat-number">0</div>
+              </div>
 
-    <div class="stat-card">
+              <div class="stat-card">
+                <h3>За неделю</h3>
 
-        <h3>
+                <div class="stat-number">0</div>
+              </div>
 
-            ⛽ Заправки
+              <div class="stat-card">
+                <h3>За месяц</h3>
 
-        </h3>
-
-        <div
-
-            id="statStations"
-
-            class="stat-number">
-
-            0
-
+                <div class="stat-number">0</div>
+              </div>
+            </div>
+          </section>
         </div>
 
-        <p>
+        <!-- ===================================== -->
+        <!-- VISITS -->
+        <!-- ===================================== -->
 
-            В базе
+        <div id="visitsTab" class="admin-tab" style="display: none">
+          <section class="admin-section">
+            <h2>🌐 Посещения сайта</h2>
 
-        </p>
-
-    </div>
-
-    <div class="stat-card">
-
-        <h3>
-
-            📝 Репорты
-
-        </h3>
-
-        <div
-
-            id="statReports"
-
-            class="stat-number">
-
-            0
-
+            <div id="visitsTable" class="admin-table">
+              <div class="admin-row">Загрузка...</div>
+            </div>
+          </section>
         </div>
 
-        <p>
+        <!-- ===================================== -->
+        <!-- USERS -->
+        <!-- ===================================== -->
 
-            Получено
+        <div id="usersTab" class="admin-tab" style="display: none">
+          <section class="admin-section">
+            <h2>👤 Пользователи</h2>
 
-        </p>
-
-    </div>
-
-    <div class="stat-card">
-
-        <h3>
-
-            🟢 Онлайн
-
-        </h3>
-
-        <div
-
-            id="statOnline"
-
-            class="stat-number">
-
-            0
-
+            <div id="usersTable" class="admin-table">
+              <div class="admin-row">Загрузка...</div>
+            </div>
+          </section>
         </div>
 
-        <p>
-
-            Сейчас на сайте
-
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ===================================== -->
-<!-- DASHBOARD -->
-<!-- ===================================== -->
-
-<div
-    id="dashboardTab"
-    class="admin-tab">
-
-    <section class="admin-section">
-
-        <h2>
-
-            📊 Главная панель
-
-        </h2>
-
-        <p>
-
-            Добро пожаловать в административную панель FuelMap.
-
-        </p>
-
-        <div class="admin-info-grid">
-
-            <div class="admin-info-card">
-
-                <h3>
-
-                    🚀 Backend
-
-                </h3>
-
-                <p>
-
-                    FastAPI
-
-                </p>
-
-            </div>
-
-            <div class="admin-info-card">
-
-                <h3>
-
-                    🗄 База данных
-
-                </h3>
-
-                <p>
-
-                    SQLite
-
-                </p>
-
-            </div>
-
-            <div class="admin-info-card">
-
-                <h3>
-
-                    🌍 API
-
-                </h3>
-
-                <p>
-
-                    Онлайн
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-<!-- ===================================== -->
-<!-- ANALYTICS -->
-<!-- ===================================== -->
-
-<div
-    id="analyticsTab"
-    class="admin-tab"
-    style="display:none;">
-
-    <section class="admin-section">
-
-        <h2>
-
-            📈 Аналитика
-
-        </h2>
-
-        <div class="analytics-grid">
-
-            <div class="stat-card">
-
-                <h3>
-
-                    Сегодня
-
-                </h3>
-
-                <div class="stat-number">
-
-                    0
-
-                </div>
-
-            </div>
-
-            <div class="stat-card">
-
-                <h3>
-
-                    За неделю
-
-                </h3>
-
-                <div class="stat-number">
-
-                    0
-
-                </div>
-
-            </div>
-
-            <div class="stat-card">
-
-                <h3>
-
-                    За месяц
-
-                </h3>
-
-                <div class="stat-number">
-
-                    0
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-<!-- ===================================== -->
-<!-- VISITS -->
-<!-- ===================================== -->
-
-<div
-    id="visitsTab"
-    class="admin-tab"
-    style="display:none;">
-
-    <section class="admin-section">
-
-        <h2>
-
-            🌐 Посещения сайта
-
-        </h2>
-
-        <div
-            id="visitsTable"
-            class="admin-table">
-
-            <div class="admin-row">
-
-                Загрузка...
-
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-<!-- ===================================== -->
-<!-- USERS -->
-<!-- ===================================== -->
-
-<div
-    id="usersTab"
-    class="admin-tab"
-    style="display:none;">
-
-    <section class="admin-section">
-
-        <h2>👤 Пользователи</h2>
-
-        <div
-            id="usersTable"
-            class="admin-table">
-
-            <div class="admin-row">
-                Загрузка...
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-<!-- ===================================== -->
-<!-- STATIONS -->
-<!-- ===================================== -->
-
-<div
-    id="stationsTab"
-    class="admin-tab"
-    style="display:none;">
-
-    <section class="admin-section">
-
-        <h2>⛽ Заправки</h2>
-
-        <!-- ========== ФОРМА ДОБАВЛЕНИЯ ЗАПРАВКИ ВРУЧНУЮ ========== -->
-        <div class="admin-info-card" style="margin-bottom:20px;">
-
-            <h3>➕ Добавить заправку вручную</h3>
-
-            <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px; max-width:420px;">
-
-                <input id="newStationName" placeholder="Название">
-                <input id="newStationAddress" placeholder="Адрес">
-                <input id="newStationLat" type="number" step="any" placeholder="Широта (lat), напр. 56.8587">
-                <input id="newStationLng" type="number" step="any" placeholder="Долгота (lng), напр. 35.9176">
+        <!-- ===================================== -->
+        <!-- STATIONS -->
+        <!-- ===================================== -->
+
+        <div id="stationsTab" class="admin-tab" style="display: none">
+          <section class="admin-section">
+            <h2>⛽ Заправки</h2>
+
+            <!-- ========== ФОРМА ДОБАВЛЕНИЯ ЗАПРАВКИ ВРУЧНУЮ ========== -->
+            <div class="admin-info-card" style="margin-bottom: 20px">
+              <h3>➕ Добавить заправку вручную</h3>
+
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 8px;
+                  margin-top: 10px;
+                  max-width: 420px;
+                "
+              >
+                <input id="newStationName" placeholder="Название" />
+                <input id="newStationAddress" placeholder="Адрес" />
+                <input
+                  id="newStationLat"
+                  type="number"
+                  step="any"
+                  placeholder="Широта (lat), напр. 56.8587"
+                />
+                <input
+                  id="newStationLng"
+                  type="number"
+                  step="any"
+                  placeholder="Долгота (lng), напр. 35.9176"
+                />
 
                 <button class="admin-btn" onclick="createStation()">
-                    Создать заправку
+                  Создать заправку
                 </button>
 
                 <p id="newStationError" class="auth-error"></p>
-
+              </div>
             </div>
+            <!-- ========================================================= -->
 
-        </div>
-        <!-- ========================================================= -->
-
-        <div
-            id="stationsTable"
-            class="admin-table">
-
-            <div class="admin-row">
-                Загрузка...
+            <div id="stationsTable" class="admin-table">
+              <div class="admin-row">Загрузка...</div>
             </div>
-
+          </section>
         </div>
 
-    </section>
+        <!-- ===================================== -->
+        <!-- REPORTS -->
+        <!-- ===================================== -->
 
-</div>
+        <div id="reportsTab" class="admin-tab" style="display: none">
+          <section class="admin-section">
+            <h2>📝 Репорты</h2>
 
-<!-- ===================================== -->
-<!-- REPORTS -->
-<!-- ===================================== -->
-
-<div
-    id="reportsTab"
-    class="admin-tab"
-    style="display:none;">
-
-    <section class="admin-section">
-
-        <h2>📝 Репорты</h2>
-
-        <div
-            id="reportsTable"
-            class="admin-table">
-
-            <div class="admin-row">
-                Загрузка...
+            <div id="reportsTable" class="admin-table">
+              <div class="admin-row">Загрузка...</div>
             </div>
-
+          </section>
         </div>
 
-    </section>
+        <!-- ===================================== -->
+        <!-- ACHIEVEMENTS -->
+        <!-- ===================================== -->
 
-</div>
+        <div id="achievementsTab" class="admin-tab" style="display: none">
+          <section class="admin-section">
+            <h2>🏆 Достижения</h2>
 
-<!-- ===================================== -->
-<!-- ACHIEVEMENTS -->
-<!-- ===================================== -->
+            <div class="admin-table">
+              <div class="admin-row">💎 Secret Premium Explorer</div>
 
-<div
-    id="achievementsTab"
-    class="admin-tab"
-    style="display:none;">
+              <div class="admin-row">🏆 Secret Explorer</div>
 
-    <section class="admin-section">
-
-        <h2>🏆 Достижения</h2>
-
-        <div class="admin-table">
-
-            <div class="admin-row">
-                💎 Secret Premium Explorer
+              <div class="admin-row">⛽ Первый отчёт</div>
             </div>
-
-            <div class="admin-row">
-                🏆 Secret Explorer
-            </div>
-
-            <div class="admin-row">
-                ⛽ Первый отчёт
-            </div>
-
+          </section>
         </div>
-
-    </section>
-
-</div>
-
-</main>
-
-</div>
-
-<!-- ===================================== -->
-<!-- USER MODAL -->
-<!-- ===================================== -->
-
-<div
-    id="userModal"
-    class="admin-modal">
-
-    <div class="admin-modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeUserModal()">
-
-            ✕
-
-        </button>
-
-        <h2>
-
-            👤 Пользователь
-
-        </h2>
-
-        <div id="userModalContent">
-
-        </div>
-
+      </main>
     </div>
 
-</div>
+    <!-- ===================================== -->
+    <!-- USER MODAL -->
+    <!-- ===================================== -->
 
-<script src="../config.js"></script>
-<script src="admin.js"></script>
+    <div id="userModal" class="admin-modal">
+      <div class="admin-modal-box">
+        <button class="modal-close" onclick="closeUserModal()">✕</button>
 
-</body>
+        <h2>👤 Пользователь</h2>
+
+        <div id="userModalContent"></div>
+      </div>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="admin.js"></script>
+  </body>
 </html>

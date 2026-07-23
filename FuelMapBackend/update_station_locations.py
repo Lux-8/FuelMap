@@ -14,10 +14,7 @@ import requests
 from database import SessionLocal
 import models
 
-
-HEADERS = {
-    "User-Agent": "FuelMap-personal-student-project/1.0"
-}
+HEADERS = {"User-Agent": "FuelMap-personal-student-project/1.0"}
 
 REQUEST_DELAY = 1.1
 
@@ -29,21 +26,10 @@ def reverse_geocode(lat: float, lng: float) -> str | None:
 
     url = "https://nominatim.openstreetmap.org/reverse"
 
-    params = {
-        "format": "json",
-        "lat": lat,
-        "lon": lng,
-        "zoom": 16,
-        "addressdetails": 1
-    }
+    params = {"format": "json", "lat": lat, "lon": lng, "zoom": 16, "addressdetails": 1}
 
     try:
-        response = requests.get(
-            url,
-            params=params,
-            headers=HEADERS,
-            timeout=10
-        )
+        response = requests.get(url, params=params, headers=HEADERS, timeout=10)
 
         response.raise_for_status()
 
@@ -53,9 +39,7 @@ def reverse_geocode(lat: float, lng: float) -> str | None:
         print(f"[ошибка запроса] {e}")
         return None
 
-
     address = data.get("address", {})
-
 
     road = address.get("road")
 
@@ -65,7 +49,6 @@ def reverse_geocode(lat: float, lng: float) -> str | None:
         or address.get("village")
         or address.get("hamlet")
     )
-
 
     if road and town:
         return f"{town}, {road}"
@@ -79,7 +62,6 @@ def reverse_geocode(lat: float, lng: float) -> str | None:
     return None
 
 
-
 def main():
 
     db = SessionLocal()
@@ -91,9 +73,7 @@ def main():
     updated = 0
     skipped = 0
 
-
     print(f"Всего станций в базе: {total}")
-
 
     for i, station in enumerate(stations, 1):
 
@@ -102,19 +82,12 @@ def main():
             skipped += 1
             continue
 
-
         print(
-            f"[{i}/{total}] {station.name} "
-            f"({station.lat}, {station.lng})...",
-            end=" "
+            f"[{i}/{total}] {station.name} " f"({station.lat}, {station.lng})...",
+            end=" ",
         )
 
-
-        location = reverse_geocode(
-            station.lat,
-            station.lng
-        )
-
+        location = reverse_geocode(station.lat, station.lng)
 
         if location:
 
@@ -126,25 +99,15 @@ def main():
 
             print(f"-> {location}")
 
-
         else:
 
-            print(
-                "местоположение не определено, пропуск"
-            )
-
+            print("местоположение не определено, пропуск")
 
         time.sleep(REQUEST_DELAY)
 
-
     db.close()
 
-
-    print(
-        f"\n=== ИТОГО: обновлено — {updated}, "
-        f"пропущено — {skipped} ==="
-    )
-
+    print(f"\n=== ИТОГО: обновлено — {updated}, " f"пропущено — {skipped} ===")
 
 
 if __name__ == "__main__":

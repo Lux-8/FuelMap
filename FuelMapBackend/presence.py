@@ -15,7 +15,8 @@ def get_online_count() -> int:
 
     # заодно чистим устаревшие записи
     expired = [
-        sid for sid, last_seen in active_sessions.items()
+        sid
+        for sid, last_seen in active_sessions.items()
         if now - last_seen > ONLINE_TIMEOUT_SECONDS
     ]
     for sid in expired:

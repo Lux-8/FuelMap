@@ -1,5 +1,5 @@
-currentStation=null;
+currentStation = null;
 
-let myMarker=null;
+let myMarker = null;
 
-const stationMarkers={};
+const stationMarkers = {};

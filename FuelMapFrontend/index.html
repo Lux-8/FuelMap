@@ -1,417 +1,531 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FuelMap — карта АЗС Твери и Тверской области | Цены, наличие топлива и очереди</title>
+    <title>
+      FuelMap — карта АЗС Твери и Тверской области | Цены, наличие топлива и
+      очереди
+    </title>
 
-    <meta name="description"
-          content="FuelMap — интерактивная карта автозаправок Твери и Тверской области. Проверяйте наличие бензина АИ-92, АИ-95, АИ-98, дизеля и газа, цены, очереди и последние обновления от пользователей.">
+    <meta
+      name="description"
+      content="FuelMap — интерактивная карта автозаправок Твери и Тверской области. Проверяйте наличие бензина АИ-92, АИ-95, АИ-98, дизеля и газа, цены, очереди и последние обновления от пользователей."
+    />
 
-    <meta name="keywords"
-          content="АЗС Тверь, карта заправок, карта АЗС, бензин Тверь, бензин Тверская область, дизель Тверь, газ Тверь, АИ-92, АИ-95, АИ-98, цены бензин, наличие топлива, FuelMap">
+    <meta
+      name="keywords"
+      content="АЗС Тверь, карта заправок, карта АЗС, бензин Тверь, бензин Тверская область, дизель Тверь, газ Тверь, АИ-92, АИ-95, АИ-98, цены бензин, наличие топлива, FuelMap"
+    />
 
-    <meta name="author" content="FuelMap">
-    <meta name="application-name" content="FuelMap">
+    <meta name="author" content="FuelMap" />
+    <meta name="application-name" content="FuelMap" />
 
-    <meta name="apple-mobile-web-app-title" content="FuelMap">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="FuelMap" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
-    <meta itemprop="name" content="FuelMap">
-    <meta itemprop="description" content="Интерактивная карта автозаправок Твери и Тверской области с актуальными ценами, наличием топлива и очередями.">
-    <meta itemprop="image" content="https://fuelmap.site/assets/preview.png">
+    <meta itemprop="name" content="FuelMap" />
+    <meta
+      itemprop="description"
+      content="Интерактивная карта автозаправок Твери и Тверской области с актуальными ценами, наличием топлива и очередями."
+    />
+    <meta itemprop="image" content="https://fuelmap.site/assets/preview.png" />
 
-    <meta name="robots"
-          content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
 
-    <meta name="theme-color" content="#24b25b">
+    <meta name="theme-color" content="#24b25b" />
 
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no" />
 
-    <link rel="canonical" href="https://fuelmap.site/">
+    <link rel="canonical" href="https://fuelmap.site/" />
 
     <!-- Favicons -->
-    <link rel="icon" href="/assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
     <!-- Open Graph -->
-    <meta property="og:site_name" content="FuelMap">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="FuelMap — карта АЗС Твери">
-    <meta property="og:description"
-          content="Проверяйте наличие топлива, цены и очереди на АЗС Твери и Тверской области.">
-    <meta property="og:url" content="https://fuelmap.site/">
-    <meta property="og:image" content="https://fuelmap.site/assets/preview.png">
-    <meta property="og:image:secure_url" content="https://fuelmap.site/assets/preview.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:alt" content="FuelMap — карта АЗС Твери и Тверской области">
-    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="FuelMap" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FuelMap — карта АЗС Твери" />
+    <meta
+      property="og:description"
+      content="Проверяйте наличие топлива, цены и очереди на АЗС Твери и Тверской области."
+    />
+    <meta property="og:url" content="https://fuelmap.site/" />
+    <meta
+      property="og:image"
+      content="https://fuelmap.site/assets/preview.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://fuelmap.site/assets/preview.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta
+      property="og:image:alt"
+      content="FuelMap — карта АЗС Твери и Тверской области"
+    />
+    <meta property="og:locale" content="ru_RU" />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FuelMap — карта АЗС">
-    <meta name="twitter:description"
-          content="Карта автозаправок Твери и области с актуальными ценами и наличием топлива.">
-    <meta name="twitter:image" content="https://fuelmap.site/assets/preview.png">
-    <meta name="twitter:site" content="@FuelMap">
-    <meta name="twitter:creator" content="@FuelMap">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FuelMap — карта АЗС" />
+    <meta
+      name="twitter:description"
+      content="Карта автозаправок Твери и области с актуальными ценами и наличием топлива."
+    />
+    <meta
+      name="twitter:image"
+      content="https://fuelmap.site/assets/preview.png"
+    />
+    <meta name="twitter:site" content="@FuelMap" />
+    <meta name="twitter:creator" content="@FuelMap" />
 
     <!-- PWA -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="FuelMap">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="FuelMap" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <!-- Язык -->
-    <meta http-equiv="content-language" content="ru">
+    <meta http-equiv="content-language" content="ru" />
 
     <!-- Schema.org -->
     <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"WebSite",
-      "name":"FuelMap",
-      "url":"https://fuelmap.site",
-      "description":"Карта автозаправок Твери и Тверской области с актуальным наличием топлива, ценами и очередями.",
-      "inLanguage":"ru",
-      "publisher":{
-"@type":"Organization",
-  "name":"FuelMap",
-  "url":"https://fuelmap.site",
-  "logo":{
-    "@type":"ImageObject",
-    "url":"https://fuelmap.site/assets/logo.png"
-  }
-},
-      "potentialAction":{
-        "@type":"SearchAction",
-        "target":"https://fuelmap.site/?q={search_term_string}",
-        "query-input":"required name=search_term_string"
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FuelMap",
+        "url": "https://fuelmap.site",
+        "description": "Карта автозаправок Твери и Тверской области с актуальным наличием топлива, ценами и очередями.",
+        "inLanguage": "ru",
+        "publisher": {
+          "@type": "Organization",
+          "name": "FuelMap",
+          "url": "https://fuelmap.site",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuelmap.site/assets/logo.png"
+          }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://fuelmap.site/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       }
-    }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=2" />
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    />
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    />
+  </head>
 
-<body>
+  <body>
+    <header>
+      <div class="logo">FuelMap</div>
+      <input id="search" placeholder="Поиск заправки..." />
+      <button id="profileBtn">Профиль</button>
+      <button id="updatesBtn">Недавнее</button>
+    </header>
 
-<header>
-    <div class="logo">FuelMap</div>
-    <input id="search" placeholder="Поиск заправки...">
-    <button id="profileBtn">Профиль</button>
-    <button id="updatesBtn">Недавнее</button>
+    <nav class="filters">
+      <button class="active">Все</button>
+      <button>92</button>
+      <button>95</button>
+      <button>98</button>
+      <button>ДТ</button>
+      <button>Газ</button>
+    </nav>
 
-</header>
-
-<nav class="filters">
-    <button class="active">Все</button>
-    <button>92</button>
-    <button>95</button>
-    <button>98</button>
-    <button>ДТ</button>
-    <button>Газ</button>
-</nav>
-
-<div id="colorLegend" class="color-legend">
-    <button id="legendToggle" class="legend-toggle" aria-label="Свернуть/развернуть легенду">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div id="colorLegend" class="color-legend">
+      <button
+        id="legendToggle"
+        class="legend-toggle"
+        aria-label="Свернуть/развернуть легенду"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 9L12 15L18 9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
-    </button>
-    <div id="legendItems" class="legend-items">
-        <div class="legend-item"><span class="legend-dot legend-green"></span> Есть топливо</div>
-        <div class="legend-item"><span class="legend-dot legend-orange"></span> Ожидание привоза / очереди без бензина</div>
-        <div class="legend-item"><span class="legend-dot legend-gray"></span> Нет топлива / нет данных</div>
+      </button>
+      <div id="legendItems" class="legend-items">
+        <div class="legend-item">
+          <span class="legend-dot legend-green"></span> Есть топливо
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-orange"></span> Ожидание привоза /
+          очереди без бензина
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-gray"></span> Нет топлива / нет данных
+        </div>
+      </div>
     </div>
-</div>
 
-<button id="locateBtn" aria-label="Найти меня">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 2V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M12 19V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M2 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M19 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-</button>
+    <button id="locateBtn" aria-label="Найти меня">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+        <path
+          d="M12 2V5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M12 19V22"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M2 12H5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M19 12H22"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
 
-<div id="supportBadge">Поддержка: lux89901ru@gmail.com</div>
+    <div id="supportBadge">Поддержка: lux89901ru@gmail.com</div>
 
-<div id="map"></div>
+    <div id="map"></div>
 
-<div id="stationPanel" class="station-panel">
-    <button id="closePanel">✕</button>
-    <h2 id="panelName"></h2>
-    <p id="panelAddress">Адрес неизвестен</p>
-    <p id="panelStatus"></p>
-    <p id="panelUpdated" class="panel-updated"></p>
-    <div id="panelFuel"></div>
-    <p id="panelAiSummary" class="ai-summary"></p>
-    <button id="panelReport">Сообщить</button>
-</div>
+    <div id="stationPanel" class="station-panel">
+      <button id="closePanel">✕</button>
+      <h2 id="panelName"></h2>
+      <p id="panelAddress">Адрес неизвестен</p>
+      <p id="panelStatus"></p>
+      <p id="panelUpdated" class="panel-updated"></p>
+      <div id="panelFuel"></div>
+      <p id="panelAiSummary" class="ai-summary"></p>
+      <button id="panelReport">Сообщить</button>
+    </div>
 
-<div id="updatesOverlay"></div>
+    <div id="updatesOverlay"></div>
 
-<section id="updates">
-    <h3>Недавнее</h3>
-    <div id="updatesList"></div>
-</section>
+    <section id="updates">
+      <h3>Недавнее</h3>
+      <div id="updatesList"></div>
+    </section>
 
-<div id="profileModal" class="modal">
-    <div class="modal-content profile-window">
+    <div id="profileModal" class="modal">
+      <div class="modal-content profile-window">
         <span class="close-profile modal-close" id="closeProfile">&times;</span>
 
-        <div id="authLoggedIn" style="display:none;">
+        <div id="authLoggedIn" style="display: none">
+          <label class="profile-avatar">
+            <img
+              id="profileAvatarImg"
+              src="assets/default-avatar.png"
+              alt="Аватар"
+            />
+            <input type="file" id="avatarInput" accept="image/*" hidden />
+          </label>
 
-    <label class="profile-avatar">
-    <img id="profileAvatarImg" src="assets/default-avatar.png" alt="Аватар">
-    <input 
-        type="file" 
-        id="avatarInput" 
-        accept="image/*"
-        hidden
-    >
-</label>
+          <p style="text-align: center; color: #94a3b8; font-size: 13px">
+            Нажмите на аватар, чтобы изменить фото
+          </p>
 
-    <p style="text-align:center;color:#94a3b8;font-size:13px;">
-Нажмите на аватар, чтобы изменить фото
-</p>
+          <h2 id="profileTitle">Профиль</h2>
 
+          <div class="profile-card-info">
+            <div class="profile-row">
+              <span>Имя</span>
+              <p id="profileName"></p>
+            </div>
 
-    <h2 id="profileTitle">
-        Профиль
-    </h2>
+            <div class="profile-row">
+              <span>Email</span>
+              <p id="profileEmail"></p>
+            </div>
 
+            <div class="profile-row">
+              <span>ID пользователя</span>
+              <p id="profileId"></p>
+            </div>
+          </div>
 
-    <div class="profile-card-info">
+          <div class="profile-section">
+            <h3>Рейтинг пользователей</h3>
 
-        <div class="profile-row">
-            <span>Имя</span>
-            <p id="profileName"></p>
+            <p>Скоро добавим систему рейтинга FuelMap</p>
+          </div>
+
+          <div class="profile-section creators">
+            <h3>О проекте FuelMap</h3>
+
+            <p>
+              Узнайте больше о проекте, создателях и способах связи:
+              <br />
+              <a href="about/about.html"> О проекте и контакты → </a>
+            </p>
+          </div>
+
+          <p>
+            В будущем в FuelMap могут появиться новые функции и интересные
+            возможности.
+          </p>
+
+          <button id="logoutBtn" class="logout-btn">Выйти из аккаунта</button>
         </div>
-
-
-        <div class="profile-row">
-            <span>Email</span>
-            <p id="profileEmail"></p>
-        </div>
-
-
-        <div class="profile-row">
-            <span>ID пользователя</span>
-            <p id="profileId"></p>
-        </div>
-
-    </div>
-
-
-    <div class="profile-section">
-
-        <h3>Рейтинг пользователей</h3>
-
-        <p>
-            Скоро добавим систему рейтинга FuelMap
-        </p>
-
-    </div>
-
-
-   <div class="profile-section creators">
-
-    <h3>О проекте FuelMap</h3>
-
-    <p>
-        Узнайте больше о проекте, создателях и способах связи:
-        <br>
-        <a href="about/about.html">
-            О проекте и контакты →
-        </a>
-    </p>
-
-</div>
-
-        <p>
-    В будущем в FuelMap могут появиться новые функции и интересные возможности.
-    </p>
-
-    <button id="logoutBtn" class="logout-btn">
-        Выйти из аккаунта
-    </button>
-
-</div>
 
         <div id="authForms">
-            <h2>Профиль</h2>
+          <h2>Профиль</h2>
 
-            <div class="auth-tabs">
-                <button id="tabLogin" class="auth-tab active">Вход</button>
-                <button id="tabRegister" class="auth-tab">Регистрация</button>
-            </div>
+          <div class="auth-tabs">
+            <button id="tabLogin" class="auth-tab active">Вход</button>
+            <button id="tabRegister" class="auth-tab">Регистрация</button>
+          </div>
 
-            <button id="googleLoginBtn" class="google-btn">Войти через Google</button>
+          <button id="googleLoginBtn" class="google-btn">
+            Войти через Google
+          </button>
 
-            <div class="auth-divider">или</div>
+          <div class="auth-divider">или</div>
 
-            <div id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Email">
-                <input type="password" id="loginPassword" placeholder="Пароль">
-                <button id="loginSubmit">Войти</button>
-            </div>
+          <div id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" />
+            <input type="password" id="loginPassword" placeholder="Пароль" />
+            <button id="loginSubmit">Войти</button>
+          </div>
 
-            <div id="registerForm" style="display:none;">
-                <input type="text" id="registerName" placeholder="Имя">
-                <input type="email" id="registerEmail" placeholder="Email">
-                <input type="password" id="registerPassword" placeholder="Пароль (мин. 6 символов)">
-                <button id="registerSubmit">Создать аккаунт</button>
-            </div>
+          <div id="registerForm" style="display: none">
+            <input type="text" id="registerName" placeholder="Имя" />
+            <input type="email" id="registerEmail" placeholder="Email" />
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="Пароль (мин. 6 символов)"
+            />
+            <button id="registerSubmit">Создать аккаунт</button>
+          </div>
 
-            <p id="authError" class="auth-error"></p>
+          <p id="authError" class="auth-error"></p>
         </div>
+      </div>
     </div>
-</div>
 
-<div id="reportModal" class="modal">
-    <div class="modal-content">
+    <div id="reportModal" class="modal">
+      <div class="modal-content">
         <span class="close modal-close" id="closeReport">&times;</span>
 
         <h2>Сообщить о наличии топлива</h2>
 
-        <label><input type="checkbox" id="a92"> АИ-92
-            <input type="number" id="price_a92" placeholder="цена, ₽" step="0.1" class="price-input">
-        </label><br>
+        <label
+          ><input type="checkbox" id="a92" /> АИ-92
+          <input
+            type="number"
+            id="price_a92"
+            placeholder="цена, ₽"
+            step="0.1"
+            class="price-input"
+          /> </label
+        ><br />
 
-        <label><input type="checkbox" id="a95"> АИ-95
-            <input type="number" id="price_a95" placeholder="цена, ₽" step="0.1" class="price-input">
-        </label><br>
+        <label
+          ><input type="checkbox" id="a95" /> АИ-95
+          <input
+            type="number"
+            id="price_a95"
+            placeholder="цена, ₽"
+            step="0.1"
+            class="price-input"
+          /> </label
+        ><br />
 
-        <label><input type="checkbox" id="a98"> АИ-98
-            <input type="number" id="price_a98" placeholder="цена, ₽" step="0.1" class="price-input">
-        </label><br>
+        <label
+          ><input type="checkbox" id="a98" /> АИ-98
+          <input
+            type="number"
+            id="price_a98"
+            placeholder="цена, ₽"
+            step="0.1"
+            class="price-input"
+          /> </label
+        ><br />
 
-        <label><input type="checkbox" id="diesel"> ДТ
-            <input type="number" id="price_diesel" placeholder="цена, ₽" step="0.1" class="price-input">
-        </label><br>
+        <label
+          ><input type="checkbox" id="diesel" /> ДТ
+          <input
+            type="number"
+            id="price_diesel"
+            placeholder="цена, ₽"
+            step="0.1"
+            class="price-input"
+          /> </label
+        ><br />
 
-        <label><input type="checkbox" id="gas"> Газ
-            <input type="number" id="price_gas" placeholder="цена, ₽" step="0.1" class="price-input">
+        <label
+          ><input type="checkbox" id="gas" /> Газ
+          <input
+            type="number"
+            id="price_gas"
+            placeholder="цена, ₽"
+            step="0.1"
+            class="price-input"
+          />
         </label>
 
         <div class="queue-section">
-    <label><input type="checkbox" id="hasQueue"> Есть очередь</label>
+          <label><input type="checkbox" id="hasQueue" /> Есть очередь</label>
 
-    <div id="queueRating" class="star-rating" style="display:none;">
-        <span data-value="1">★</span>
-        <span data-value="2">★</span>
-        <span data-value="3">★</span>
-        <span data-value="4">★</span>
-        <span data-value="5">★</span>
-    </div>
-</div>
+          <div id="queueRating" class="star-rating" style="display: none">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+          </div>
+        </div>
 
-        <br><br>
+        <br /><br />
 
         <textarea id="comment" placeholder="Комментарий..."></textarea>
 
-        <br><br>
+        <br /><br />
 
         <button id="sendReport">Отправить</button>
+      </div>
     </div>
-</div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
-<script src="config.js?v=1"></script>
+    <script src="config.js?v=1"></script>
 
-<script src="js/app.js?v=1"></script>
-<script src="js/auth.js?v=1"></script>
-<script src="js/utils.js?v=1"></script>
-<script src="js/filters.js?v=1"></script>
+    <script src="js/app.js?v=1"></script>
+    <script src="js/auth.js?v=1"></script>
+    <script src="js/utils.js?v=1"></script>
+    <script src="js/filters.js?v=1"></script>
 
-<script src="js/map.js?v=1"></script>
-<script src="js/geolocation.js?v=1"></script>
-<script src="js/stations.js?v=1"></script>
-<script src="js/search.js?v=1"></script>
+    <script src="js/map.js?v=1"></script>
+    <script src="js/geolocation.js?v=1"></script>
+    <script src="js/stations.js?v=1"></script>
+    <script src="js/search.js?v=1"></script>
 
-<script src="js/panel.js?v=1"></script>
-<script src="js/profile.js?v=1"></script>
-<script src="js/report.js?v=1"></script>
+    <script src="js/panel.js?v=1"></script>
+    <script src="js/profile.js?v=1"></script>
+    <script src="js/report.js?v=1"></script>
 
-<script src="js/updates.js?v=1"></script>
+    <script src="js/updates.js?v=1"></script>
 
-<script>
-    createMap();
-    loadStations();
+    <script>
+      createMap();
+      loadStations();
 
-    // страховка под мобильные браузеры: адресная строка может схлопнуться/появиться
-    // уже ПОСЛЕ первой отрисовки карты, из-за чего Leaflet посчитает размер неверно —
-    // принудительно пересчитываем через секунду после загрузки
-    setTimeout(() => {
+      // страховка под мобильные браузеры: адресная строка может схлопнуться/появиться
+      // уже ПОСЛЕ первой отрисовки карты, из-за чего Leaflet посчитает размер неверно —
+      // принудительно пересчитываем через секунду после загрузки
+      setTimeout(() => {
         if (map) map.invalidateSize();
-    }, 1000);
+      }, 1000);
 
-    // ===== Presence ping (для счётчика "онлайн" в админке) =====
-    function getSessionId() {
+      // ===== Presence ping (для счётчика "онлайн" в админке) =====
+      function getSessionId() {
         let id = localStorage.getItem("fuelmap_session_id");
         if (!id) {
-            id = crypto.randomUUID();
-            localStorage.setItem("fuelmap_session_id", id);
+          id = crypto.randomUUID();
+          localStorage.setItem("fuelmap_session_id", id);
         }
         return id;
-    }
+      }
 
-    function sendPing() {
-        fetch(`${API}/ping?session_id=${getSessionId()}`, { method: "POST" }).catch(() => {});
-    }
+      function sendPing() {
+        fetch(`${API}/ping?session_id=${getSessionId()}`, {
+          method: "POST",
+        }).catch(() => {});
+      }
 
-    sendPing();
-    setInterval(sendPing, 25000);
+      sendPing();
+      setInterval(sendPing, 25000);
 
-    // ===== Легенда: сворачивание/разворачивание =====
-    const legendToggle = document.getElementById("legendToggle");
-    const colorLegend = document.getElementById("colorLegend");
+      // ===== Легенда: сворачивание/разворачивание =====
+      const legendToggle = document.getElementById("legendToggle");
+      const colorLegend = document.getElementById("colorLegend");
 
-    function applyLegendState(collapsed) {
+      function applyLegendState(collapsed) {
         colorLegend.classList.toggle("collapsed", collapsed);
-    }
+      }
 
-    // по умолчанию на телефонах легенда свёрнута, чтобы не мешала карте
-    const savedLegendState = localStorage.getItem("fuelmap_legend_collapsed");
-    const initialCollapsed = savedLegendState !== null
-        ? savedLegendState === "true"
-        : window.innerWidth <= 600;
+      // по умолчанию на телефонах легенда свёрнута, чтобы не мешала карте
+      const savedLegendState = localStorage.getItem("fuelmap_legend_collapsed");
+      const initialCollapsed =
+        savedLegendState !== null
+          ? savedLegendState === "true"
+          : window.innerWidth <= 600;
 
-    applyLegendState(initialCollapsed);
+      applyLegendState(initialCollapsed);
 
-    legendToggle.addEventListener("click", () => {
+      legendToggle.addEventListener("click", () => {
         const collapsed = !colorLegend.classList.contains("collapsed");
         applyLegendState(collapsed);
         localStorage.setItem("fuelmap_legend_collapsed", collapsed);
-    });
-</script>
+      });
+    </script>
+  </body>
 
-</body>
+  <h1 class="visually-hidden">
+    FuelMap — карта автозаправок Твери и Тверской области
+  </h1>
 
-<h1 class="visually-hidden">
-FuelMap — карта автозаправок Твери и Тверской области
-</h1>
-
-<p class="visually-hidden">
-FuelMap помогает находить ближайшие АЗС, смотреть наличие топлива, цены на бензин АИ-92, АИ-95, АИ-98, дизельное топливо, газ, а также информацию об очередях и последних обновлениях.
-</p>
-
+  <p class="visually-hidden">
+    FuelMap помогает находить ближайшие АЗС, смотреть наличие топлива, цены на
+    бензин АИ-92, АИ-95, АИ-98, дизельное топливо, газ, а также информацию об
+    очередях и последних обновлениях.
+  </p>
 </html>

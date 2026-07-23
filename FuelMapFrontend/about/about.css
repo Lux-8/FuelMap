@@ -1,90 +1,77 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f7f6;
-    color: #222;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7f6;
+  color: #222;
 }
-
 
 header {
-    height: 60px;
-    background: white;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
-
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #24b25b;
+  font-size: 24px;
+  font-weight: bold;
+  color: #24b25b;
 }
-
 
 .page-container {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
 }
-
 
 h1 {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
-
 
 .profile-section {
-    background: white;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
-
 
 .profile-section h2 {
-    margin-top: 0;
-    color: #24b25b;
+  margin-top: 0;
+  color: #24b25b;
 }
 
-
 .profile-section p {
-    line-height: 1.6;
+  line-height: 1.6;
 }
 
 .profile-section b {
-    color: #24b25b;
+  color: #24b25b;
 }
 
 a {
-    color: #24b25b;
-    text-decoration: none;
-    font-weight: 600;
+  color: #24b25b;
+  text-decoration: none;
+  font-weight: 600;
 }
-
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 @media (max-width: 600px) {
+  .page-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
 
-    .page-container {
-        margin: 20px auto;
-        padding: 15px;
-    }
+  .profile-section {
+    padding: 20px;
+  }
 
-
-    .profile-section {
-        padding: 20px;
-    }
-
-
-    .logo {
-        font-size: 20px;
-    }
-
+  .logo {
+    font-size: 20px;
+  }
 }

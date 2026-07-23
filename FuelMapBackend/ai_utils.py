@@ -37,7 +37,7 @@ def generate_station_summary(station_name: str, comments: list) -> str | None:
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=60,
-            temperature=0.3
+            temperature=0.3,
         )
         return response.choices[0].message.content.strip()
 

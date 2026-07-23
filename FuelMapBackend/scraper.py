@@ -39,8 +39,7 @@ MATCH_THRESHOLD = 0.6
 # ==== ИИ-КЛИЕНТ (Groq, OpenAI-совместимый) ====
 
 client = OpenAI(
-    api_key=os.getenv("GROQ_API_KEY"),
-    base_url="https://api.groq.com/openai/v1"
+    api_key=os.getenv("GROQ_API_KEY"), base_url="https://api.groq.com/openai/v1"
 )
 
 
@@ -106,7 +105,7 @@ null — если про этот вид топлива в посте ничег
             model="llama-3.1-8b-instant",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=200,
-            temperature=0.1
+            temperature=0.1,
         )
 
         raw = response.choices[0].message.content.strip()
@@ -166,7 +165,9 @@ def apply_update(db, station, data: dict):
             changed = True
 
     if changed:
-        has_any_fuel = any([station.a92, station.a95, station.a98, station.diesel, station.gas])
+        has_any_fuel = any(
+            [station.a92, station.a95, station.a98, station.diesel, station.gas]
+        )
         if has_any_fuel:
             station.status = "green"
             station.text = "Топливо есть"
@@ -203,14 +204,18 @@ def process_posts(posts: list, source_label: str):
         match, score = find_matching_station(db, station_name)
 
         if match is None:
-            print(f"[{source_label}] Не найдено совпадение для '{station_name}' (лучший score: {score:.2f}) — пропущено")
+            print(
+                f"[{source_label}] Не найдено совпадение для '{station_name}' (лучший score: {score:.2f}) — пропущено"
+            )
             skipped_count += 1
             continue
 
         changed = apply_update(db, match, info)
 
         if changed:
-            print(f"[{source_label}] Обновлено: '{match.name}' <- пост про '{station_name}' (совпадение {score:.2f})")
+            print(
+                f"[{source_label}] Обновлено: '{match.name}' <- пост про '{station_name}' (совпадение {score:.2f})"
+            )
             updated_count += 1
 
     db.close()
@@ -219,7 +224,9 @@ def process_posts(posts: list, source_label: str):
 
 def main():
     if not os.getenv("GROQ_API_KEY"):
-        print("ОШИБКА: GROQ_API_KEY не найден в .env — без него ИИ не сможет разбирать посты.")
+        print(
+            "ОШИБКА: GROQ_API_KEY не найден в .env — без него ИИ не сможет разбирать посты."
+        )
         return
 
     total_updated = 0
@@ -256,7 +263,9 @@ def main():
             total_updated += updated
             total_skipped += skipped
 
-    print(f"\n=== ИТОГО: обновлено станций — {total_updated}, пропущено (не сопоставлено) — {total_skipped} ===")
+    print(
+        f"\n=== ИТОГО: обновлено станций — {total_updated}, пропущено (не сопоставлено) — {total_skipped} ==="
+    )
 
 
 if __name__ == "__main__":

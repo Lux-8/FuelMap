@@ -27,7 +27,7 @@ app.add_middleware(
         "https://fuelmap.site",
         "https://www.fuelmap.site",
         "https://fuelmap-4cx.pages.dev",
-        "http://127.0.0.1:5500"
+        "http://127.0.0.1:5500",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -70,52 +70,33 @@ app.add_middleware(
     secret_key=SESSION_SECRET,
     same_site="lax",
     https_only=True,
-    max_age=600  # сессия для OAuth-флоу живёт всего 10 минут — достаточно для логина
+    max_age=600,  # сессия для OAuth-флоу живёт всего 10 минут — достаточно для логина
 )
 
 app.include_router(auth_router.router)
 app.include_router(admin_router.router)
+
 
 @app.middleware("http")
 async def track_visits(request: Request, call_next):
 
     response = await call_next(request)
 
-
     if request.url.path.startswith("/admin"):
         return response
 
-
     db = SessionLocal()
 
-
-    user_agent = request.headers.get(
-        "user-agent",
-        ""
-    )
-
+    user_agent = request.headers.get("user-agent", "")
 
     ua = parse(user_agent)
 
-
     visit = models.Visit(
-
         ip=request.client.host,
-
         browser=ua.browser.family,
-
-        device=
-        ua.device.family
-        if ua.device.family
-        else "Desktop",
-
-        created_at=datetime.now()
-        .strftime(
-            "%d.%m.%Y %H:%M"
-        )
-
+        device=ua.device.family if ua.device.family else "Desktop",
+        created_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
     )
-
 
     db.add(visit)
 
@@ -123,8 +104,8 @@ async def track_visits(request: Request, call_next):
 
     db.close()
 
-
     return response
+
 
 class ReportRequest(BaseModel):
     station_id: int
@@ -160,7 +141,9 @@ def update_station_ai_summary(station_id: int):
         .all()
     )
 
-    comments = [r.comment.strip() for r in recent_reports if r.comment and r.comment.strip()]
+    comments = [
+        r.comment.strip() for r in recent_reports if r.comment and r.comment.strip()
+    ]
 
     if comments:
         summary = generate_station_summary(station.name, comments)
@@ -183,7 +166,7 @@ def station_to_dict(s):
         "ai_summary": s.ai_summary,
         "has_queue": s.has_queue,
         "queue_rating": s.queue_rating,
-	"updated_at": s.updated_at,
+        "updated_at": s.updated_at,
         "price_a92": s.price_a92,
         "price_a95": s.price_a95,
         "price_a98": s.price_a98,
@@ -194,8 +177,8 @@ def station_to_dict(s):
             "a95": s.a95,
             "a98": s.a98,
             "diesel": s.diesel,
-            "gas": s.gas
-        }
+            "gas": s.gas,
+        },
     }
 
 
@@ -243,12 +226,7 @@ def get_stations():
 def get_recent_reports(limit: int = 20):
     db = SessionLocal()
 
-    reports = (
-        db.query(models.Report)
-        .order_by(models.Report.id.desc())
-        .limit(100)
-        .all()
-    )
+    reports = db.query(models.Report).order_by(models.Report.id.desc()).limit(100).all()
 
     result = []
 
@@ -258,16 +236,20 @@ def get_recent_reports(limit: int = 20):
         if not comment:
             continue
 
-        comment_count = db.query(models.Comment).filter(models.Comment.report_id == r.id).count()
+        comment_count = (
+            db.query(models.Comment).filter(models.Comment.report_id == r.id).count()
+        )
 
-        result.append({
-            "id": r.id,
-            "station_name": r.station.name if r.station else "АЗС",
-            "author": r.author or "Аноним",
-            "comment": comment,
-            "created_at": r.created_at,
-            "comment_count": comment_count
-        })
+        result.append(
+            {
+                "id": r.id,
+                "station_name": r.station.name if r.station else "АЗС",
+                "author": r.author or "Аноним",
+                "comment": comment,
+                "created_at": r.created_at,
+                "comment_count": comment_count,
+            }
+        )
 
         if len(result) >= limit:
             break
@@ -291,12 +273,10 @@ def get_comments(report_id: int):
         .all()
     )
 
-    result = [{
-        "id": c.id,
-        "author": c.author,
-        "text": c.text,
-        "created_at": c.created_at
-    } for c in comments]
+    result = [
+        {"id": c.id, "author": c.author, "text": c.text, "created_at": c.created_at}
+        for c in comments
+    ]
 
     db.close()
     return result
@@ -323,7 +303,7 @@ def create_comment(report_id: int, data: CommentRequest, request: Request):
         report_id=report_id,
         author=author,
         text=text,
-        created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
+        created_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
     )
 
     db.add(comment)
@@ -331,16 +311,23 @@ def create_comment(report_id: int, data: CommentRequest, request: Request):
     db.refresh(comment)
     db.close()
 
-    return {"id": comment.id, "author": comment.author, "text": comment.text, "created_at": comment.created_at}
+    return {
+        "id": comment.id,
+        "author": comment.author,
+        "text": comment.text,
+        "created_at": comment.created_at,
+    }
 
 
 @app.post("/report")
-def create_report(data: ReportRequest, request: Request, background_tasks: BackgroundTasks):
+def create_report(
+    data: ReportRequest, request: Request, background_tasks: BackgroundTasks
+):
     db = SessionLocal()
 
-    station = db.query(models.Station)\
-        .filter(models.Station.id == data.station_id)\
-        .first()
+    station = (
+        db.query(models.Station).filter(models.Station.id == data.station_id).first()
+    )
 
     if station is None:
         db.close()
@@ -356,29 +343,28 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
         a98=data.a98,
         diesel=data.diesel,
         gas=data.gas,
-
         price_a92=data.price_a92,
         price_a95=data.price_a95,
         price_a98=data.price_a98,
         price_diesel=data.price_diesel,
         price_gas=data.price_gas,
-
         has_queue=data.has_queue,
         queue_rating=data.queue_rating,
-
         author=author,
         comment=data.comment,
-        created_at=datetime.now().strftime("%d.%m.%Y %H:%M")
+        created_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
     )
 
     db.add(report)
     db.commit()
 
     # сразу применяем последний репорт к станции
-    last_report = db.query(models.Report)\
-        .filter(models.Report.station_id == data.station_id)\
-        .order_by(models.Report.id.desc())\
+    last_report = (
+        db.query(models.Report)
+        .filter(models.Report.station_id == data.station_id)
+        .order_by(models.Report.id.desc())
         .first()
+    )
 
     if last_report:
         station.a92 = last_report.a92
@@ -406,19 +392,11 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
             station.has_queue = last_report.has_queue
 
         if last_report.queue_rating is not None:
-            station.queue_rating = max(
-                1,
-                min(5, last_report.queue_rating)
-            )
+            station.queue_rating = max(1, min(5, last_report.queue_rating))
 
-
-        has_any_fuel = any([
-            station.a92,
-            station.a95,
-            station.a98,
-            station.diesel,
-            station.gas
-        ])
+        has_any_fuel = any(
+            [station.a92, station.a95, station.a98, station.diesel, station.gas]
+        )
 
         if has_any_fuel:
             station.status = "green"
@@ -434,19 +412,11 @@ def create_report(data: ReportRequest, request: Request, background_tasks: Backg
 
     station.updated_at = datetime.now(timezone(timedelta(hours=3))).replace(tzinfo=None)
 
-
     db.commit()
     db.close()
 
-
     # ИИ-сводка после ответа
     if data.comment and data.comment.strip():
-        background_tasks.add_task(
-            update_station_ai_summary,
-            data.station_id
-        )
+        background_tasks.add_task(update_station_ai_summary, data.station_id)
 
-
-    return {
-        "success": True
-    }
+    return {"success": True}

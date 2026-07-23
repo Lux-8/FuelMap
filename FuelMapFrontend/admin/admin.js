@@ -15,261 +15,204 @@ const adminLoginError = document.getElementById("adminLoginError");
 
 const TOKEN_KEY = "admin_token";
 
-
 // =====================================
 // HELPERS
 // =====================================
 
 function getToken() {
-    return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 function getHeaders() {
-    return {
-        Authorization: `Bearer ${getToken()}`
-    };
+  return {
+    Authorization: `Bearer ${getToken()}`,
+  };
 }
 
 async function api(url, options = {}) {
+  const response = await fetch(`${API}${url}`, {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      ...getHeaders(),
+    },
+  });
 
-    const response = await fetch(`${API}${url}`, {
-        ...options,
-        headers: {
-            ...(options.headers || {}),
-            ...getHeaders()
-        }
-    });
+  if (response.status === 401 || response.status === 403) {
+    logout();
+    throw new Error("Unauthorized");
+  }
 
-    if (response.status === 401 || response.status === 403) {
-        logout();
-        throw new Error("Unauthorized");
-    }
-
-    return response;
+  return response;
 }
-
 
 // =====================================
 // LOGIN
 // =====================================
 
 async function login() {
+  adminLoginError.textContent = "";
 
-    adminLoginError.textContent = "";
+  const password = adminPassword.value.trim();
 
-    const password = adminPassword.value.trim();
+  if (!password) {
+    adminLoginError.textContent = "Введите пароль";
+    return;
+  }
 
-    if (!password) {
-        adminLoginError.textContent = "Введите пароль";
-        return;
+  try {
+    const response = await fetch(`${API}/admin/login`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      adminLoginError.textContent = data.detail || "Ошибка входа";
+
+      return;
     }
 
-    try {
+    localStorage.setItem(TOKEN_KEY, data.token);
 
-        const response = await fetch(`${API}/admin/login`, {
+    loginScreen.style.display = "none";
+    adminPanel.style.display = "flex";
 
-            method: "POST",
+    await loadStats();
+  } catch (err) {
+    console.error(err);
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                password
-            })
-
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-
-            adminLoginError.textContent =
-                data.detail || "Ошибка входа";
-
-            return;
-        }
-
-        localStorage.setItem(
-            TOKEN_KEY,
-            data.token
-        );
-
-        loginScreen.style.display = "none";
-        adminPanel.style.display = "flex";
-
-        await loadStats();
-
-    } catch (err) {
-
-        console.error(err);
-
-        adminLoginError.textContent =
-            "Сервер недоступен";
-
-    }
-
+    adminLoginError.textContent = "Сервер недоступен";
+  }
 }
 
 if (adminLoginBtn) {
-    adminLoginBtn.onclick = login;
+  adminLoginBtn.onclick = login;
 }
 
 if (adminPassword) {
-
-    adminPassword.addEventListener("keydown", e => {
-
-        if (e.key === "Enter") {
-            login();
-        }
-
-    });
-
+  adminPassword.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      login();
+    }
+  });
 }
-
 
 // =====================================
 // LOGOUT
 // =====================================
 
 function logout() {
+  localStorage.removeItem(TOKEN_KEY);
 
-    localStorage.removeItem(TOKEN_KEY);
-
-    location.reload();
-
+  location.reload();
 }
 
 if (adminLogoutBtn) {
-    adminLogoutBtn.onclick = logout;
+  adminLogoutBtn.onclick = logout;
 }
-
 
 // =====================================
 // AUTO LOGIN
 // =====================================
 
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!getToken()) return;
 
-    if (!getToken())
-        return;
+  loginScreen.style.display = "none";
+  adminPanel.style.display = "flex";
 
-    loginScreen.style.display = "none";
-    adminPanel.style.display = "flex";
-
-    await loadStats();
-
+  await loadStats();
 });
-
 
 // =====================================
 // TABS
 // =====================================
 
 const tabs = [
+  "dashboard",
 
-    "dashboard",
+  "analytics",
 
-    "analytics",
+  "visits",
 
-    "visits",
+  "users",
 
-    "users",
+  "stations",
 
-    "stations",
+  "reports",
 
-    "reports",
-
-    "achievements"
-
+  "achievements",
 ];
 
 let currentTab = "dashboard";
 
 function openTab(tab, event = null) {
+  currentTab = tab;
 
-    currentTab = tab;
+  tabs.forEach((name) => {
+    const page = document.getElementById(name + "Tab");
 
-    tabs.forEach(name => {
+    if (page) page.style.display = "none";
+  });
 
-        const page = document.getElementById(
-            name + "Tab"
-        );
+  const current = document.getElementById(tab + "Tab");
 
-        if (page)
-            page.style.display = "none";
+  if (current) current.style.display = "block";
 
-    });
+  document
+    .querySelectorAll(".admin-menu button")
+    .forEach((btn) => btn.classList.remove("active"));
 
-    const current = document.getElementById(
-        tab + "Tab"
-    );
+  if (event) event.target.classList.add("active");
 
-    if (current)
-        current.style.display = "block";
+  switch (tab) {
+    case "users":
+      loadUsers();
+      break;
 
-    document
-        .querySelectorAll(".admin-menu button")
-        .forEach(btn => btn.classList.remove("active"));
+    case "stations":
+      loadStations();
+      break;
 
-    if (event)
-        event.target.classList.add("active");
+    case "reports":
+      loadReports();
+      break;
 
-    switch (tab) {
-
-        case "users":
-            loadUsers();
-            break;
-
-        case "stations":
-            loadStations();
-            break;
-
-        case "reports":
-            loadReports();
-            break;
-
-        case "visits":
-            loadVisits();
-            break;
-
-    }
-
+    case "visits":
+      loadVisits();
+      break;
+  }
 }
-
 
 // =====================================
 // STATS
 // =====================================
 
 async function loadStats() {
+  try {
+    const response = await api("/admin/stats");
 
-    try {
+    const data = await response.json();
 
-        const response = await api("/admin/stats");
+    document.getElementById("statUsers").textContent = data.users ?? 0;
 
-        const data = await response.json();
+    document.getElementById("statStations").textContent = data.stations ?? 0;
 
-        document.getElementById("statUsers").textContent =
-            data.users ?? 0;
+    document.getElementById("statReports").textContent = data.reports ?? 0;
 
-        document.getElementById("statStations").textContent =
-            data.stations ?? 0;
-
-        document.getElementById("statReports").textContent =
-            data.reports ?? 0;
-
-        document.getElementById("statOnline").textContent =
-            data.online ?? 0;
-
-    }
-
-    catch (err) {
-
-        console.error("Stats error", err);
-
-    }
-
+    document.getElementById("statOnline").textContent = data.online ?? 0;
+  } catch (err) {
+    console.error("Stats error", err);
+  }
 }
 
 // =====================================
@@ -277,22 +220,20 @@ async function loadStats() {
 // =====================================
 
 async function loadUsers() {
+  const table = document.getElementById("usersTable");
 
-    const table = document.getElementById("usersTable");
+  if (!table) return;
 
-    if (!table) return;
+  table.innerHTML = "Загрузка...";
 
-    table.innerHTML = "Загрузка...";
+  try {
+    const response = await api("/admin/users");
 
-    try {
+    const users = await response.json();
 
-        const response = await api("/admin/users");
+    table.innerHTML = "";
 
-        const users = await response.json();
-
-        table.innerHTML = "";
-
-        table.innerHTML += `
+    table.innerHTML += `
         <div class="admin-row">
             <b>ID</b>
             <b>Имя</b>
@@ -302,9 +243,8 @@ async function loadUsers() {
         </div>
         `;
 
-        users.forEach(user => {
-
-            table.innerHTML += `
+    users.forEach((user) => {
+      table.innerHTML += `
             <div class="admin-row">
 
                 <span>#${user.id}</span>
@@ -329,44 +269,29 @@ async function loadUsers() {
 
             </div>
             `;
+    });
+  } catch (err) {
+    console.error(err);
 
-        });
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        table.innerHTML = "Ошибка загрузки пользователей";
-
-    }
-
+    table.innerHTML = "Ошибка загрузки пользователей";
+  }
 }
-
-
 
 // =====================================
 // USER MODAL
 // =====================================
 
 async function openUserModal(id) {
+  try {
+    const response = await api(`/admin/users/${id}`);
 
-    try {
+    const user = await response.json();
 
-        const response =
-            await api(`/admin/users/${id}`);
+    const modal = document.getElementById("userModal");
 
-        const user =
-            await response.json();
+    const content = document.getElementById("userModalContent");
 
-        const modal =
-            document.getElementById("userModal");
-
-        const content =
-            document.getElementById("userModalContent");
-
-        content.innerHTML = `
+    content.innerHTML = `
 
             <div class="user-info">
 
@@ -397,9 +322,7 @@ async function openUserModal(id) {
 
                 <div>
                     <b>Статус</b><br>
-                    ${user.is_blocked
-                        ? "🔴 Заблокирован"
-                        : "🟢 Активен"}
+                    ${user.is_blocked ? "🔴 Заблокирован" : "🟢 Активен"}
                 </div>
 
                 <div
@@ -411,15 +334,13 @@ async function openUserModal(id) {
                     ">
 
                     ${
-                        user.is_blocked
-                        ?
-                        `<button
+                      user.is_blocked
+                        ? `<button
                             class="admin-btn"
                             onclick="unblockUser(${user.id})">
                             Разблокировать
                         </button>`
-                        :
-                        `<button
+                        : `<button
                             class="admin-btn"
                             onclick="blockUser(${user.id})">
                             Заблокировать
@@ -441,65 +362,46 @@ async function openUserModal(id) {
 
         `;
 
-        modal.style.display = "flex";
+    modal.style.display = "flex";
+  } catch (err) {
+    console.error(err);
 
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        showMessage("Ошибка загрузки пользователя");
-
-    }
-
+    showMessage("Ошибка загрузки пользователя");
+  }
 }
-
 
 // =====================================
 // USER ACTIONS
 // =====================================
 
 async function blockUser(id) {
+  if (!confirm("Заблокировать пользователя?")) return;
 
-    if (!confirm("Заблокировать пользователя?"))
-        return;
+  await api(`/admin/users/${id}/block`, {
+    method: "PUT",
+  });
 
-    await api(`/admin/users/${id}/block`, {
-        method: "PUT"
-    });
-
-    alert("Пользователь заблокирован");
-
+  alert("Пользователь заблокирован");
 }
-
-
 
 async function unblockUser(id) {
+  await api(`/admin/users/${id}/unblock`, {
+    method: "PUT",
+  });
 
-    await api(`/admin/users/${id}/unblock`, {
-        method: "PUT"
-    });
-
-    alert("Пользователь разблокирован");
-
+  alert("Пользователь разблокирован");
 }
 
-
-
 async function deleteUser(id) {
+  if (!confirm("Удалить пользователя?")) return;
 
-    if (!confirm("Удалить пользователя?"))
-        return;
+  await api(`/admin/users/${id}`, {
+    method: "DELETE",
+  });
 
-    await api(`/admin/users/${id}`, {
-        method: "DELETE"
-    });
+  closeUserModal();
 
-    closeUserModal();
-
-    loadUsers();
-
+  loadUsers();
 }
 
 // =====================================
@@ -507,20 +409,18 @@ async function deleteUser(id) {
 // =====================================
 
 async function loadStations() {
+  const table = document.getElementById("stationsTable");
 
-    const table = document.getElementById("stationsTable");
+  if (!table) return;
 
-    if (!table) return;
+  table.innerHTML = "Загрузка...";
 
-    table.innerHTML = "Загрузка...";
+  try {
+    const response = await api("/admin/stations");
 
-    try {
+    const stations = await response.json();
 
-        const response = await api("/admin/stations");
-
-        const stations = await response.json();
-
-        table.innerHTML = `
+    table.innerHTML = `
             <div class="admin-row">
                 <b>ID</b>
                 <b>Название</b>
@@ -530,9 +430,8 @@ async function loadStations() {
             </div>
         `;
 
-        stations.forEach(station => {
-
-            table.innerHTML += `
+    stations.forEach((station) => {
+      table.innerHTML += `
                 <div class="admin-row">
 
                     <span>#${station.id}</span>
@@ -561,120 +460,93 @@ async function loadStations() {
 
                 </div>
             `;
+    });
+  } catch (err) {
+    console.error(err);
 
-        });
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        table.innerHTML = "Ошибка загрузки";
-
-    }
-
+    table.innerHTML = "Ошибка загрузки";
+  }
 }
-
 
 // =====================================
 // STATIONS — добавление вручную
 // =====================================
 
 async function createStation() {
+  const name = document.getElementById("newStationName").value.trim();
+  const address = document.getElementById("newStationAddress").value.trim();
+  const lat = parseFloat(document.getElementById("newStationLat").value);
+  const lng = parseFloat(document.getElementById("newStationLng").value);
 
-    const name = document.getElementById("newStationName").value.trim();
-    const address = document.getElementById("newStationAddress").value.trim();
-    const lat = parseFloat(document.getElementById("newStationLat").value);
-    const lng = parseFloat(document.getElementById("newStationLng").value);
+  const errorEl = document.getElementById("newStationError");
+  if (errorEl) errorEl.textContent = "";
 
-    const errorEl = document.getElementById("newStationError");
-    if (errorEl) errorEl.textContent = "";
+  if (!name || isNaN(lat) || isNaN(lng)) {
+    if (errorEl)
+      errorEl.textContent = "Заполните название и корректные координаты";
+    return;
+  }
 
-    if (!name || isNaN(lat) || isNaN(lng)) {
-        if (errorEl) errorEl.textContent = "Заполните название и корректные координаты";
-        return;
+  try {
+    const response = await api("/admin/stations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, address: address || null, lat, lng }),
+    });
+
+    if (!response.ok) {
+      if (errorEl) errorEl.textContent = "Ошибка при создании заправки";
+      return;
     }
 
-    try {
-        const response = await api("/admin/stations", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, address: address || null, lat, lng })
-        });
+    document.getElementById("newStationName").value = "";
+    document.getElementById("newStationAddress").value = "";
+    document.getElementById("newStationLat").value = "";
+    document.getElementById("newStationLng").value = "";
 
-        if (!response.ok) {
-            if (errorEl) errorEl.textContent = "Ошибка при создании заправки";
-            return;
-        }
-
-        document.getElementById("newStationName").value = "";
-        document.getElementById("newStationAddress").value = "";
-        document.getElementById("newStationLat").value = "";
-        document.getElementById("newStationLng").value = "";
-
-        loadStations();
-        loadStats();
-
-    } catch (err) {
-        console.error(err);
-        if (errorEl) errorEl.textContent = "Ошибка подключения";
-    }
+    loadStations();
+    loadStats();
+  } catch (err) {
+    console.error(err);
+    if (errorEl) errorEl.textContent = "Ошибка подключения";
+  }
 }
-
-
 
 async function deleteStation(id) {
+  if (!confirm("Удалить заправку?")) return;
 
-    if (!confirm("Удалить заправку?"))
-        return;
+  try {
+    await api(`/admin/stations/${id}`, {
+      method: "DELETE",
+    });
 
-    try {
+    loadStations();
 
-        await api(`/admin/stations/${id}`, {
-            method: "DELETE"
-        });
+    loadStats();
+  } catch (err) {
+    console.error(err);
 
-        loadStations();
-
-        loadStats();
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        alert("Не удалось удалить");
-
-    }
-
+    alert("Не удалось удалить");
+  }
 }
-
-
 
 // =====================================
 // REPORTS
 // =====================================
 
 async function loadReports() {
+  const table = document.getElementById("reportsTable");
 
-    const table =
-        document.getElementById("reportsTable");
+  if (!table) return;
 
-    if (!table) return;
+  table.innerHTML = "Загрузка...";
 
-    table.innerHTML = "Загрузка...";
+  try {
+    const response = await api("/admin/reports");
 
-    try {
+    const reports = await response.json();
 
-        const response =
-            await api("/admin/reports");
-
-        const reports =
-            await response.json();
-
-        table.innerHTML = `
+    table.innerHTML = `
             <div class="admin-row">
                 <b>ID</b>
                 <b>АЗС</b>
@@ -685,9 +557,8 @@ async function loadReports() {
             </div>
         `;
 
-        reports.forEach(report => {
-
-            table.innerHTML += `
+    reports.forEach((report) => {
+      table.innerHTML += `
                 <div class="admin-row">
 
                     <span>
@@ -738,50 +609,42 @@ async function loadReports() {
                     style="display:none; padding:10px 0 10px 20px;">
                 </div>
             `;
+    });
+  } catch (err) {
+    console.error(err);
 
-        });
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        table.innerHTML =
-            "Ошибка загрузки репортов";
-
-    }
-
+    table.innerHTML = "Ошибка загрузки репортов";
+  }
 }
-
 
 // =====================================
 // REPORTS — комментарии (ответы) внутри репорта
 // =====================================
 
 async function toggleAdminComments(reportId) {
+  const box = document.getElementById(`admin-comments-${reportId}`);
+  if (!box) return;
 
-    const box = document.getElementById(`admin-comments-${reportId}`);
-    if (!box) return;
+  if (box.style.display === "block") {
+    box.style.display = "none";
+    return;
+  }
 
-    if (box.style.display === "block") {
-        box.style.display = "none";
-        return;
+  box.style.display = "block";
+  box.innerHTML = "Загрузка...";
+
+  try {
+    const response = await api(`/admin/reports/${reportId}/comments`);
+    const comments = await response.json();
+
+    if (comments.length === 0) {
+      box.innerHTML = "<i>Нет ответов</i>";
+      return;
     }
 
-    box.style.display = "block";
-    box.innerHTML = "Загрузка...";
-
-    try {
-        const response = await api(`/admin/reports/${reportId}/comments`);
-        const comments = await response.json();
-
-        if (comments.length === 0) {
-            box.innerHTML = "<i>Нет ответов</i>";
-            return;
-        }
-
-        box.innerHTML = comments.map(c => `
+    box.innerHTML = comments
+      .map(
+        (c) => `
             <div class="admin-row" style="grid-template-columns:1fr 2fr 1fr auto;">
                 <span>${c.author}</span>
                 <span>${c.text}</span>
@@ -793,60 +656,47 @@ async function toggleAdminComments(reportId) {
                     Удалить
                 </button>
             </div>
-        `).join("");
-
-    } catch (err) {
-        console.error(err);
-        box.innerHTML = "Ошибка загрузки ответов";
-    }
+        `,
+      )
+      .join("");
+  } catch (err) {
+    console.error(err);
+    box.innerHTML = "Ошибка загрузки ответов";
+  }
 }
 
 async function deleteAdminComment(commentId, reportId) {
+  if (!confirm("Удалить этот ответ?")) return;
 
-    if (!confirm("Удалить этот ответ?"))
-        return;
+  try {
+    await api(`/admin/comments/${commentId}`, { method: "DELETE" });
 
-    try {
-        await api(`/admin/comments/${commentId}`, { method: "DELETE" });
-
-        // перерисовываем список комментариев этого репорта
-        const box = document.getElementById(`admin-comments-${reportId}`);
-        box.style.display = "none";
-        toggleAdminComments(reportId);
-
-    } catch (err) {
-        console.error(err);
-        alert("Не удалось удалить ответ");
-    }
+    // перерисовываем список комментариев этого репорта
+    const box = document.getElementById(`admin-comments-${reportId}`);
+    box.style.display = "none";
+    toggleAdminComments(reportId);
+  } catch (err) {
+    console.error(err);
+    alert("Не удалось удалить ответ");
+  }
 }
 
-
-
 async function deleteReport(id) {
+  if (!confirm("Удалить репорт?")) return;
 
-    if (!confirm("Удалить репорт?"))
-        return;
+  try {
+    await api(`/admin/reports/${id}`, {
+      method: "DELETE",
+    });
 
-    try {
+    loadReports();
 
-        await api(`/admin/reports/${id}`, {
-            method: "DELETE"
-        });
+    loadStats();
+  } catch (err) {
+    console.error(err);
 
-        loadReports();
-
-        loadStats();
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        alert("Ошибка удаления");
-
-    }
-
+    alert("Ошибка удаления");
+  }
 }
 
 // =====================================
@@ -854,22 +704,18 @@ async function deleteReport(id) {
 // =====================================
 
 async function loadVisits() {
+  const table = document.getElementById("visitsTable");
 
-    const table = document.getElementById("visitsTable");
+  if (!table) return;
 
-    if (!table) return;
+  table.innerHTML = "Загрузка...";
 
-    table.innerHTML = "Загрузка...";
+  try {
+    const response = await api("/admin/visits");
 
-    try {
+    const data = await response.json();
 
-        const response =
-            await api("/admin/visits");
-
-        const data =
-            await response.json();
-
-        table.innerHTML = `
+    table.innerHTML = `
 
             <h3 style="margin-bottom:20px">
                 Всего посещений: ${data.total}
@@ -884,9 +730,8 @@ async function loadVisits() {
 
         `;
 
-        data.visits.forEach(v => {
-
-            table.innerHTML += `
+    data.visits.forEach((v) => {
+      table.innerHTML += `
 
                 <div class="admin-row">
 
@@ -901,162 +746,120 @@ async function loadVisits() {
                 </div>
 
             `;
+    });
+  } catch (err) {
+    console.error(err);
 
-        });
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        table.innerHTML =
-            "Ошибка загрузки посещений";
-
-    }
-
+    table.innerHTML = "Ошибка загрузки посещений";
+  }
 }
-
-
 
 // =====================================
 // ANALYTICS
 // =====================================
 
 async function loadAnalytics() {
+  try {
+    const response = await api("/admin/visits");
 
-    try {
+    const data = await response.json();
 
-        const response =
-            await api("/admin/visits");
+    const cards = document.querySelectorAll("#analyticsTab .stat-number");
 
-        const data =
-            await response.json();
+    if (cards.length >= 3) {
+      cards[0].textContent = data.total;
 
-        const cards =
-            document.querySelectorAll(
-                "#analyticsTab .stat-number"
-            );
+      cards[1].textContent = data.total;
 
-        if (cards.length >= 3) {
-
-            cards[0].textContent =
-                data.total;
-
-            cards[1].textContent =
-                data.total;
-
-            cards[2].textContent =
-                data.total;
-
-        }
-
+      cards[2].textContent = data.total;
     }
-
-    catch (err) {
-
-        console.error(err);
-
-    }
-
+  } catch (err) {
+    console.error(err);
+  }
 }
-
-
 
 // =====================================
 // NOTIFICATIONS
 // =====================================
 
 function showMessage(text) {
+  const div = document.createElement("div");
 
-    const div =
-        document.createElement("div");
+  div.textContent = text;
 
-    div.textContent = text;
+  div.style.position = "fixed";
+  div.style.right = "20px";
+  div.style.bottom = "20px";
+  div.style.padding = "12px 18px";
+  div.style.background = "#2563eb";
+  div.style.color = "#fff";
+  div.style.borderRadius = "12px";
+  div.style.zIndex = "9999";
 
-    div.style.position = "fixed";
-    div.style.right = "20px";
-    div.style.bottom = "20px";
-    div.style.padding = "12px 18px";
-    div.style.background = "#2563eb";
-    div.style.color = "#fff";
-    div.style.borderRadius = "12px";
-    div.style.zIndex = "9999";
+  document.body.appendChild(div);
 
-    document.body.appendChild(div);
-
-    setTimeout(() => {
-
-        div.remove();
-
-    }, 2500);
-
+  setTimeout(() => {
+    div.remove();
+  }, 2500);
 }
-
-
 
 // =====================================
 // АВТООБНОВЛЕНИЕ КАЖДЫЕ 15 СЕКУНД
 // =====================================
 
 function isUserTyping() {
-    const el = document.activeElement;
-    if (!el) return false;
-    return el.tagName === "INPUT" || el.tagName === "TEXTAREA";
+  const el = document.activeElement;
+  if (!el) return false;
+  return el.tagName === "INPUT" || el.tagName === "TEXTAREA";
 }
 
 function refreshCurrentTab() {
+  // не дёргаем интерфейс, если человек сейчас что-то вводит
+  // (например, заполняет форму новой заправки)
+  if (isUserTyping()) return;
 
-    // не дёргаем интерфейс, если человек сейчас что-то вводит
-    // (например, заполняет форму новой заправки)
-    if (isUserTyping()) return;
+  // не обновляем, если открыто модальное окно с карточкой пользователя —
+  // иначе список за модалкой перерисуется, а модалка останется как есть, это ок,
+  // но саму модалку трогать не будем
+  loadStats();
 
-    // не обновляем, если открыто модальное окно с карточкой пользователя —
-    // иначе список за модалкой перерисуется, а модалка останется как есть, это ок,
-    // но саму модалку трогать не будем
-    loadStats();
+  switch (currentTab) {
+    case "users":
+      loadUsers();
+      break;
+    case "stations":
+      loadStations();
+      break;
+    case "reports":
+      // не перерисовываем таблицу репортов, если у кого-то открыт
+      // список ответов под репортом — иначе он схлопнется на каждое обновление
+      const anyThreadOpen = Array.from(
+        document.querySelectorAll('[id^="admin-comments-"]'),
+      ).some((el) => el.style.display === "block");
 
-    switch (currentTab) {
-        case "users":
-            loadUsers();
-            break;
-        case "stations":
-            loadStations();
-            break;
-        case "reports":
-            // не перерисовываем таблицу репортов, если у кого-то открыт
-            // список ответов под репортом — иначе он схлопнется на каждое обновление
-            const anyThreadOpen = Array.from(
-                document.querySelectorAll('[id^="admin-comments-"]')
-            ).some(el => el.style.display === "block");
-
-            if (!anyThreadOpen) {
-                loadReports();
-            }
-            break;
-        case "visits":
-            loadVisits();
-            break;
-    }
+      if (!anyThreadOpen) {
+        loadReports();
+      }
+      break;
+    case "visits":
+      loadVisits();
+      break;
+  }
 }
 
 setInterval(refreshCurrentTab, 15000);
-
 
 // =====================================
 // START
 // =====================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!getToken()) return;
 
-    if (!getToken())
-        return;
+  loginScreen.style.display = "none";
+  adminPanel.style.display = "flex";
 
-    loginScreen.style.display = "none";
-    adminPanel.style.display = "flex";
+  loadStats();
 
-    loadStats();
-
-    openTab("dashboard");
-
+  openTab("dashboard");
 });

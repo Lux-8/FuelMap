@@ -14,8 +14,17 @@ ok = True
 
 # 1. Проверка пакетов
 print("\n[1] Пакеты Python:")
-packages = ["fastapi", "uvicorn", "sqlalchemy", "jwt", "passlib",
-            "authlib", "itsdangerous", "multipart", "dotenv"]
+packages = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "jwt",
+    "passlib",
+    "authlib",
+    "itsdangerous",
+    "multipart",
+    "dotenv",
+]
 
 for pkg in packages:
     found = importlib.util.find_spec(pkg) is not None
@@ -32,6 +41,7 @@ if not os.path.exists(".env"):
     ok = False
 else:
     from dotenv import load_dotenv
+
     load_dotenv()
 
     required_vars = ["JWT_SECRET", "SESSION_SECRET", "FRONTEND_URL"]
@@ -48,7 +58,9 @@ else:
     for var in optional_vars:
         value = os.getenv(var)
         if not value:
-            print(f"    {var:20s} — пусто (Google-вход не будет работать, email/пароль будет)")
+            print(
+                f"    {var:20s} — пусто (Google-вход не будет работать, email/пароль будет)"
+            )
         else:
             print(f"    {var:20s} — заполнено")
 

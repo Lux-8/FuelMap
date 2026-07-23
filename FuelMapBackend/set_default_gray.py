@@ -17,9 +17,10 @@ updated = 0
 skipped = 0
 
 for station in stations:
-    has_reports = db.query(models.Report).filter(
-        models.Report.station_id == station.id
-    ).first() is not None
+    has_reports = (
+        db.query(models.Report).filter(models.Report.station_id == station.id).first()
+        is not None
+    )
 
     if has_reports:
         skipped += 1
@@ -38,4 +39,6 @@ for station in stations:
 db.commit()
 db.close()
 
-print(f"Переведено в 'нет данных': {updated}, пропущено (есть история репортов): {skipped}")
+print(
+    f"Переведено в 'нет данных': {updated}, пропущено (есть история репортов): {skipped}"
+)
