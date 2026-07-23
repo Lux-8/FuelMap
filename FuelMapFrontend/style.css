@@ -1169,3 +1169,102 @@ textarea{
         left: 10px !important;
     }
 }
+
+
+/* ================= SUPPORT BADGE ================= */
+
+#supportBadge{
+    position:fixed;
+    left:10px;
+    bottom:10px;
+    z-index:2500;
+
+    font-size:11px;
+    color:var(--muted);
+
+    background:rgba(15,22,38,.75);
+    backdrop-filter:blur(6px);
+
+    padding:5px 10px;
+    border-radius:8px;
+    border:1px solid var(--panel-border);
+
+    pointer-events:none;
+    user-select:text;
+}
+
+@media(max-width:600px){
+    #supportBadge{
+        font-size:10px;
+        padding:4px 8px;
+        left:8px;
+        bottom:8px;
+    }
+}
+
+/* ================= LEGEND TOGGLE (сворачивается в кружок) ================= */
+
+.color-legend{
+    transition:width .2s ease, height .2s ease, padding .2s ease, border-radius .2s ease;
+}
+
+.legend-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    width:100%;
+
+    background:none;
+    border:none;
+    color:var(--muted);
+    cursor:pointer;
+    padding:2px 0;
+}
+
+.legend-toggle svg{
+    transition:transform .2s ease;
+    flex-shrink:0;
+}
+
+.legend-items{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    margin-top:8px;
+
+    overflow:hidden;
+    max-height:200px;
+    transition:max-height .2s ease, margin-top .2s ease, opacity .15s ease;
+    opacity:1;
+}
+
+/* ---- свёрнутое состояние: маленький кружок ---- */
+
+.color-legend.collapsed{
+    width:40px;
+    height:40px;
+    padding:0;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.color-legend.collapsed .legend-toggle{
+    width:100%;
+    height:100%;
+    padding:0;
+}
+
+.color-legend.collapsed .legend-items{
+    max-height:0;
+    margin-top:0;
+    opacity:0;
+    display:none;
+}
+
+.color-legend.collapsed .legend-toggle svg{
+    transform:rotate(180deg);
+}
