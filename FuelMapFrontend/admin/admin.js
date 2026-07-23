@@ -134,6 +134,62 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // =====================================
+// PAGINATION / SEARCH STATE
+// =====================================
+
+const pageState = {
+  users: { page: 1, q: "" },
+  stations: { page: 1, q: "", status: "" },
+  reports: { page: 1 },
+  visits: { page: 1 },
+};
+
+/**
+ * Рисует кнопки "Назад / стр X из Y / Вперёд" в контейнере containerId
+ * и вызывает onPageChange(newPage) при клике.
+ */
+function renderPagination(containerId, total, page, pageSize, onPageChange) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+  if (totalPages <= 1) {
+    container.innerHTML = "";
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const prevBtn = document.createElement("button");
+  prevBtn.textContent = "← Назад";
+  prevBtn.disabled = page <= 1;
+  prevBtn.onclick = () => onPageChange(page - 1);
+
+  const info = document.createElement("span");
+  info.className = "admin-page-info";
+  info.textContent = `Стр. ${page} из ${totalPages} (всего: ${total})`;
+
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "Вперёд →";
+  nextBtn.disabled = page >= totalPages;
+  nextBtn.onclick = () => onPageChange(page + 1);
+
+  container.appendChild(prevBtn);
+  container.appendChild(info);
+  container.appendChild(nextBtn);
+}
+
+/** Простой debounce для полей поиска, чтобы не долбить API на каждую букву. */
+function debounce(fn, delay = 350) {
+  let timer = null;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+// =====================================
 // TABS
 // =====================================
 
@@ -190,6 +246,10 @@ function openTab(tab, event = null) {
     case "visits":
       loadVisits();
       break;
+
+    case "analytics":
+      loadAnalytics();
+      break;
   }
 }
 
@@ -210,6 +270,9 @@ async function loadStats() {
     document.getElementById("statReports").textContent = data.reports ?? 0;
 
     document.getElementById("statOnline").textContent = data.online ?? 0;
+
+    const blockedEl = document.getElementById("statBlocked");
+    if (blockedEl) blockedEl.textContent = data.blocked_users ?? 0;
   } catch (err) {
     console.error("Stats error", err);
   }
@@ -226,26 +289,40 @@ async function loadUsers() {
 
   table.innerHTML = "Загрузка...";
 
-  try {
-    const response = await api("/admin/users");
+  const { page, q } = pageState.users;
+  const params = new URLSearchParams({ page, page_size: 20 });
+  if (q) params.set("q", q);
 
-    const users = await response.json();
+  try {
+    const response = await api(`/admin/users?${params}`);
+
+    const data = await response.json();
+    const users = data.items || [];
+
+    const totalEl = document.getElementById("usersTotal");
+    if (totalEl) totalEl.textContent = `Всего: ${data.total}`;
 
     table.innerHTML = "";
 
     table.innerHTML += `
-        <div class="admin-row">
+        <div class="admin-row" style="grid-template-columns: 0.5fr 1.5fr 2fr 1.3fr 1fr 1fr auto;">
             <b>ID</b>
             <b>Имя</b>
             <b>Email</b>
-            <b>Дата регистрации</b>
+            <b>Регистрация</b>
+            <b>Статус</b>
+            <b>Вход</b>
             <b>Действия</b>
         </div>
         `;
 
+    if (users.length === 0) {
+      table.innerHTML += `<div class="admin-row">Ничего не найдено</div>`;
+    }
+
     users.forEach((user) => {
       table.innerHTML += `
-            <div class="admin-row">
+            <div class="admin-row" style="grid-template-columns: 0.5fr 1.5fr 2fr 1.3fr 1fr 1fr auto;">
 
                 <span>#${user.id}</span>
 
@@ -254,6 +331,22 @@ async function loadUsers() {
                 <span>${user.email}</span>
 
                 <span>${user.created_at || "-"}</span>
+
+                <span>
+                    ${
+                      user.is_blocked
+                        ? '<span class="badge badge-red">Заблокирован</span>'
+                        : '<span class="badge badge-green">Активен</span>'
+                    }
+                </span>
+
+                <span>
+                    ${
+                      user.via_google
+                        ? '<span class="badge badge-gray">Google</span>'
+                        : '<span class="badge badge-gray">Email</span>'
+                    }
+                </span>
 
                 <div>
 
@@ -270,11 +363,34 @@ async function loadUsers() {
             </div>
             `;
     });
+
+    renderPagination(
+      "usersPagination",
+      data.total,
+      data.page,
+      data.page_size,
+      (p) => {
+        pageState.users.page = p;
+        loadUsers();
+      },
+    );
   } catch (err) {
     console.error(err);
 
     table.innerHTML = "Ошибка загрузки пользователей";
   }
+}
+
+const usersSearchInput = document.getElementById("usersSearch");
+if (usersSearchInput) {
+  usersSearchInput.addEventListener(
+    "input",
+    debounce(() => {
+      pageState.users.q = usersSearchInput.value.trim();
+      pageState.users.page = 1;
+      loadUsers();
+    }),
+  );
 }
 
 // =====================================
@@ -325,6 +441,16 @@ async function openUserModal(id) {
                     ${user.is_blocked ? "🔴 Заблокирован" : "🟢 Активен"}
                 </div>
 
+                <div>
+                    <b>Последний вход</b><br>
+                    ${user.last_login || "—"}
+                </div>
+
+                <div>
+                    <b>Репортов отправлено</b><br>
+                    ${user.reports_count ?? 0}
+                </div>
+
                 <div
                     style="
                         display:flex;
@@ -352,7 +478,7 @@ async function openUserModal(id) {
                         style="background:#dc2626"
                         onclick="deleteUser(${user.id})">
 
-                        Удалить Удалить
+                        Удалить
 
                     </button>
 
@@ -381,7 +507,9 @@ async function blockUser(id) {
     method: "PUT",
   });
 
-  alert("Пользователь заблокирован");
+  showMessage("Пользователь заблокирован");
+  await openUserModal(id);
+  loadUsers();
 }
 
 async function unblockUser(id) {
@@ -389,7 +517,9 @@ async function unblockUser(id) {
     method: "PUT",
   });
 
-  alert("Пользователь разблокирован");
+  showMessage("Пользователь разблокирован");
+  await openUserModal(id);
+  loadUsers();
 }
 
 async function deleteUser(id) {
@@ -408,6 +538,31 @@ async function deleteUser(id) {
 // STATIONS
 // =====================================
 
+function statusBadge(status) {
+  if (status === "green")
+    return '<span class="badge badge-green">🟢 Есть топливо</span>';
+  if (status === "orange")
+    return '<span class="badge badge-orange">🟠 Очередь</span>';
+  return '<span class="badge badge-gray">⚪ Нет топлива</span>';
+}
+
+function fuelTags(fuel) {
+  const labels = {
+    a92: "АИ-92",
+    a95: "АИ-95",
+    a98: "АИ-98",
+    diesel: "ДТ",
+    gas: "Газ",
+  };
+
+  return `<div class="fuel-tags">${Object.entries(labels)
+    .map(
+      ([key, label]) =>
+        `<span class="fuel-tag ${fuel[key] ? "active" : ""}">${label}</span>`,
+    )
+    .join("")}</div>`;
+}
+
 async function loadStations() {
   const table = document.getElementById("stationsTable");
 
@@ -415,35 +570,51 @@ async function loadStations() {
 
   table.innerHTML = "Загрузка...";
 
-  try {
-    const response = await api("/admin/stations");
+  const { page, q, status } = pageState.stations;
+  const params = new URLSearchParams({ page, page_size: 20 });
+  if (q) params.set("q", q);
+  if (status) params.set("status", status);
 
-    const stations = await response.json();
+  try {
+    const response = await api(`/admin/stations?${params}`);
+
+    const data = await response.json();
+    const stations = data.items || [];
+
+    const totalEl = document.getElementById("stationsTotal");
+    if (totalEl) totalEl.textContent = `Всего: ${data.total}`;
 
     table.innerHTML = `
-            <div class="admin-row">
+            <div class="admin-row" style="grid-template-columns: 0.5fr 1.6fr 1.8fr 1.3fr 1.8fr 1.2fr auto;">
                 <b>ID</b>
                 <b>Название</b>
+                <b>Адрес</b>
                 <b>Статус</b>
-                <b>Координаты</b>
+                <b>Топливо</b>
+                <b>Обновлено</b>
                 <b>Действия</b>
             </div>
         `;
 
+    if (stations.length === 0) {
+      table.innerHTML += `<div class="admin-row">Ничего не найдено</div>`;
+    }
+
     stations.forEach((station) => {
       table.innerHTML += `
-                <div class="admin-row">
+                <div class="admin-row" style="grid-template-columns: 0.5fr 1.6fr 1.8fr 1.3fr 1.8fr 1.2fr auto;">
 
                     <span>#${station.id}</span>
 
-                    <span>${station.name}</span>
+                    <span title="Координаты: ${station.lat}, ${station.lng}">${station.name}</span>
 
-                    <span>${station.status}</span>
+                    <span>${station.address || "—"}</span>
 
-                    <span>
-                        ${station.lat},
-                        ${station.lng}
-                    </span>
+                    <span>${statusBadge(station.status)}</span>
+
+                    <span>${fuelTags(station.fuel)}</span>
+
+                    <span>${station.updated_at || "—"}</span>
 
                     <div>
 
@@ -461,11 +632,43 @@ async function loadStations() {
                 </div>
             `;
     });
+
+    renderPagination(
+      "stationsPagination",
+      data.total,
+      data.page,
+      data.page_size,
+      (p) => {
+        pageState.stations.page = p;
+        loadStations();
+      },
+    );
   } catch (err) {
     console.error(err);
 
     table.innerHTML = "Ошибка загрузки";
   }
+}
+
+const stationsSearchInput = document.getElementById("stationsSearch");
+if (stationsSearchInput) {
+  stationsSearchInput.addEventListener(
+    "input",
+    debounce(() => {
+      pageState.stations.q = stationsSearchInput.value.trim();
+      pageState.stations.page = 1;
+      loadStations();
+    }),
+  );
+}
+
+const stationsStatusFilter = document.getElementById("stationsStatusFilter");
+if (stationsStatusFilter) {
+  stationsStatusFilter.addEventListener("change", () => {
+    pageState.stations.status = stationsStatusFilter.value;
+    pageState.stations.page = 1;
+    loadStations();
+  });
 }
 
 // =====================================
@@ -541,10 +744,14 @@ async function loadReports() {
 
   table.innerHTML = "Загрузка...";
 
-  try {
-    const response = await api("/admin/reports");
+  const { page } = pageState.reports;
+  const params = new URLSearchParams({ page, page_size: 20 });
 
-    const reports = await response.json();
+  try {
+    const response = await api(`/admin/reports?${params}`);
+
+    const data = await response.json();
+    const reports = data.items || [];
 
     table.innerHTML = `
             <div class="admin-row">
@@ -567,6 +774,7 @@ async function loadReports() {
 
                     <span>
                         ${report.station_name}
+                        ${report.has_queue ? '<br><span class="badge badge-orange">Очередь</span>' : ""}
                     </span>
 
                     <span>
@@ -610,6 +818,17 @@ async function loadReports() {
                 </div>
             `;
     });
+
+    renderPagination(
+      "reportsPagination",
+      data.total,
+      data.page,
+      data.page_size,
+      (p) => {
+        pageState.reports.page = p;
+        loadReports();
+      },
+    );
   } catch (err) {
     console.error(err);
 
@@ -710,10 +929,14 @@ async function loadVisits() {
 
   table.innerHTML = "Загрузка...";
 
+  const { page } = pageState.visits;
+  const params = new URLSearchParams({ page, page_size: 20 });
+
   try {
-    const response = await api("/admin/visits");
+    const response = await api(`/admin/visits?${params}`);
 
     const data = await response.json();
+    const visits = data.items || [];
 
     table.innerHTML = `
 
@@ -730,7 +953,7 @@ async function loadVisits() {
 
         `;
 
-    data.visits.forEach((v) => {
+    visits.forEach((v) => {
       table.innerHTML += `
 
                 <div class="admin-row">
@@ -747,6 +970,17 @@ async function loadVisits() {
 
             `;
     });
+
+    renderPagination(
+      "visitsPagination",
+      data.total,
+      data.page,
+      data.page_size,
+      (p) => {
+        pageState.visits.page = p;
+        loadVisits();
+      },
+    );
   } catch (err) {
     console.error(err);
 
@@ -760,19 +994,43 @@ async function loadVisits() {
 
 async function loadAnalytics() {
   try {
-    const response = await api("/admin/visits");
+    const response = await api("/admin/analytics");
 
     const data = await response.json();
 
-    const cards = document.querySelectorAll("#analyticsTab .stat-number");
+    const todayEl = document.getElementById("analyticsToday");
+    const weekEl = document.getElementById("analyticsWeek");
+    const monthEl = document.getElementById("analyticsMonth");
 
-    if (cards.length >= 3) {
-      cards[0].textContent = data.total;
+    if (todayEl) todayEl.textContent = data.today ?? 0;
+    if (weekEl) weekEl.textContent = data.week ?? 0;
+    if (monthEl) monthEl.textContent = data.month ?? 0;
 
-      cards[1].textContent = data.total;
+    const chart = document.getElementById("analyticsChart");
+    if (!chart) return;
 
-      cards[2].textContent = data.total;
+    const days = data.last_days || [];
+
+    if (days.length === 0) {
+      chart.innerHTML = "<p>Пока нет данных о посещениях</p>";
+      return;
     }
+
+    const max = Math.max(...days.map((d) => d.count), 1);
+
+    chart.innerHTML = days
+      .map((d) => {
+        const heightPct = Math.max(4, Math.round((d.count / max) * 100));
+        const shortDate = d.date.slice(0, 5); // dd.mm
+        return `
+                <div class="analytics-chart-bar-wrap">
+                    <span class="analytics-chart-count">${d.count}</span>
+                    <div class="analytics-chart-bar" style="height:${heightPct}%"></div>
+                    <span class="analytics-chart-label">${shortDate}</span>
+                </div>
+            `;
+      })
+      .join("");
   } catch (err) {
     console.error(err);
   }
@@ -843,6 +1101,9 @@ function refreshCurrentTab() {
       break;
     case "visits":
       loadVisits();
+      break;
+    case "analytics":
+      loadAnalytics();
       break;
   }
 }

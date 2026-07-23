@@ -552,3 +552,158 @@ body {
 .admin-main {
   overflow: visible !important;
 }
+
+/* ===== TOOLBAR (search + filters) ===== */
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.admin-search {
+  background: #0c1327;
+  border: 1px solid #1c2947;
+  color: #e6ebf7;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  min-width: 220px;
+  outline: none;
+}
+
+.admin-search:focus {
+  border-color: #2563eb;
+}
+
+.admin-toolbar-total {
+  color: #8b98b8;
+  font-size: 13px;
+  margin-left: auto;
+}
+
+/* ===== PAGINATION ===== */
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.admin-pagination button {
+  background: #10182e;
+  border: 1px solid #1b294c;
+  color: #e6ebf7;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.admin-pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.admin-pagination button:not(:disabled):hover {
+  border-color: #2563eb;
+}
+
+.admin-pagination .admin-page-info {
+  color: #8b98b8;
+  font-size: 13px;
+}
+
+/* ===== BADGES ===== */
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.badge-red {
+  background: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+}
+
+.badge-gray {
+  background: rgba(139, 152, 184, 0.15);
+  color: #8b98b8;
+}
+
+.badge-orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+}
+
+.fuel-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.fuel-tag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #1c2947;
+  color: #8b98b8;
+}
+
+.fuel-tag.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+/* ===== ANALYTICS MINI CHART ===== */
+
+.analytics-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 140px;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+.analytics-chart-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.analytics-chart-bar {
+  width: 100%;
+  max-width: 36px;
+  background: linear-gradient(180deg, #2563eb, #1d4ed8);
+  border-radius: 6px 6px 0 0;
+  min-height: 3px;
+}
+
+.analytics-chart-label {
+  color: #8b98b8;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.analytics-chart-count {
+  color: #e6ebf7;
+  font-size: 12px;
+  font-weight: 600;
+}
