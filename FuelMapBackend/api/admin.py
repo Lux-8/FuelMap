@@ -518,10 +518,33 @@ def admin_delete_report(report_id: int, _: bool = Depends(get_current_admin)):
     finally:
         db.close()
 
+@router.get("/admin/users")
+def admin_get_users(page: int = 1, page_size: int = 20, _: bool = Depends(get_current_admin)):
+    db = SessionLocal()
+
+    # Считаем общее количество для пагинации фронтенда
+    total_count = db.query(models.User).count()
+
+    # Считаем, сколько записей нужно пропустить
+    offset = (page - 1) * page_size
+
+    # Запрашиваем только нужную страницу с сортировкой
+    users = db.query(models.User).order_by(models.User.id.desc()).offset(offset).limit(page_size).all()
+
 
 # ==============================================================
 # ЗАПРАВКИ
 # ==============================================================
+
+    db.close()
+    
+    # Возвращаем структуру для фронтенда
+    return {
+    "items": result,
+    "total": total_count,
+    "page": page,
+    "page_size": page_size
+}
 
 
 @router.get("/admin/stations")
